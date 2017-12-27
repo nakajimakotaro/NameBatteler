@@ -5,6 +5,17 @@ set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_VERBOSE_MAKEFILE 1)
 
 link_directories("./")
-add_executable(nameBattler src/main.cpp src/screen.cpp src/screen.h src/input.cpp src/input.h)
-target_link_libraries(nameBattler pdcurses)
+add_executable(nameBattler
+        src/main.cpp
+        src/screen.cpp
+        src/screen.h
+        src/input.cpp
+        src/input.h
+        src/commandManager.cpp
+        src/depth.cpp
+        src/messageArea.cpp
+        src/rect.cpp
+        src/game.cpp
+        src/scene.cpp src/scene.h src/fps.cpp src/fps.h)
+target_link_libraries(nameBattler winmm)
 
