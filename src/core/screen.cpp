@@ -87,7 +87,7 @@ void Screen::writeChar(char c, int x, int y, int layer){
     }
     char cStr[2] = {c, '\0'};
     DWORD p;
-    WriteConsoleOutputCharacter(this->backScreen(), cStr, 1, {(SHORT)x, (SHORT)y}, &p);
+    WriteConsoleOutputCharacter(this->backScreen(), cStr, 1, {(SHORT)x - this->rect.x, (SHORT)y - this->rect.y}, &p);
     this->depth.write(x, y, layer);
 }
 

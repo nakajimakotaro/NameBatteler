@@ -21,10 +21,8 @@ public:
 
 class Screen {
 private:
-    enum {
-        WIDTH = 160,
-        HEIGHT = 50,
-    };
+    static const int WIDTH = 160;
+    static const int HEIGHT = 50;
 private:
     std::vector<HANDLE> poolScreen = {};
     int frontScreenNumber = 0;
