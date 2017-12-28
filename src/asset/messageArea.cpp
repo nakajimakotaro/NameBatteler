@@ -13,3 +13,16 @@ MessageArea::MessageArea():
 void MessageArea::message(const char* str){
     Game::get()->screen.writeString(str, this->rect.x, this->rect.y, 0, this->rect);
 }
+
+void MessageArea::update() {
+
+}
+
+void MessageArea::draw() {
+
+}
+
+GameObject::Type MessageArea::getType() {
+    return GameObject::Type::PLAYER;
+}
+
