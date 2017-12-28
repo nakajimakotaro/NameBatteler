@@ -12,9 +12,10 @@ public:
 
     int x, y, w, h;
     bool in(int x, int y)const;
-    Rect intersect(int x, int y, const unsigned long w, int h)const;
+    Rect intersect(int x, int y, int w, int h)const;
     Rect intersect(const Rect& rect)const;
 };
 
 
 #endif //NAMEBATTLER_RECT_H
+

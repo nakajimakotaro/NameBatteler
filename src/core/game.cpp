@@ -4,10 +4,8 @@
 
 #include <iostream>
 #include "game.h"
-#include "noneScene.h"
-#include "gameingScene.h"
+#include "../scene/gameing/gameingScene.h"
 #include <cmath>
-#include <utility>
 
 std::unique_ptr<Game> Game::instance;
 

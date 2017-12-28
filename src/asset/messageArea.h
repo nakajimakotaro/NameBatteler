@@ -6,7 +6,7 @@
 #define NAMEBATTLER_MESSAGEBOX_H
 
 
-#include "rect.h"
+#include "../common/rect.h"
 
 //80Byteまでのメッセージ(Shift-jisだから40字)
 class MessageArea {

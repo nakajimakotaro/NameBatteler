@@ -3,7 +3,7 @@
 //
 
 #include "messageArea.h"
-#include "game.h"
+#include "../core/game.h"
 
 
 MessageArea::MessageArea():

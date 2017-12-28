@@ -7,18 +7,18 @@ set(CMAKE_VERBOSE_MAKEFILE 1)
 link_directories("./")
 add_executable(nameBattler
         src/main.cpp
-        src/screen.cpp
-        src/screen.h
-        src/input.cpp
-        src/input.h
-        src/commandManager.cpp
-        src/depth.cpp
-        src/messageArea.cpp
-        src/rect.cpp
-        src/game.cpp
-        src/scene.h
-        src/fps.cpp src/fps.h
-        src/noneScene.cpp src/noneScene.h
-        src/gameingScene.cpp src/gameingScene.h src/gameObject.cpp src/gameObject.h src/player.cpp src/player.h)
+        src/core/screen.cpp
+        src/core/input.cpp
+        src/core/commandManager.cpp
+        src/core/depth.cpp
+        src/core/game.cpp
+        src/core/fps.cpp
+        src/common/rect.cpp
+        src/scene/scene.h
+        src/scene/gameing/gameingScene.cpp
+        src/asset/messageArea.cpp
+        src/asset/gameObject.cpp
+        src/asset/player.cpp
+        )
 target_link_libraries(nameBattler winmm)
 

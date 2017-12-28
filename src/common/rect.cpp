@@ -19,7 +19,7 @@ bool Rect::in(int x, int y)const{
            y >= this->y &&
            y <  this->y + this->h;
 }
-Rect Rect::intersect(int x, int y, const unsigned long w, int h)const{
+Rect Rect::intersect(int x, int y, int w, int h) const {
     return this->intersect(Rect(x, y, w, h));
 }
 Rect Rect::intersect(const Rect& rect)const{

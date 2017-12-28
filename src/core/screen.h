@@ -6,7 +6,7 @@
 #define NAMEBATTLER_SCREEN_H
 
 #include <windows.h>
-#include "rect.h"
+#include "../common/rect.h"
 #include "depth.h"
 
 class Screen {
