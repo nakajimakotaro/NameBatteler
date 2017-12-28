@@ -14,8 +14,8 @@ add_executable(nameBattler
         src/common/rect.cpp
         src/scene/scene.h
         src/scene/gameing/gameingScene.cpp
+        src/asset/gameObject.h
         src/asset/messageArea.cpp
-        src/asset/gameObject.cpp
         src/asset/player.cpp
         )
 target_link_libraries(nameBattler winmm)
