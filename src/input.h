@@ -5,11 +5,9 @@
 #ifndef NAMEBATTLER_INPUT_H
 #define NAMEBATTLER_INPUT_H
 
-#include <windows.h>
-
-class input {
-    INPUT_RECORD pushKey;
-
+class Input {
+public:
+    bool isPush(int key);
 };
 
 

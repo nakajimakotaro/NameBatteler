@@ -4,7 +4,9 @@
 
 #include <iostream>
 #include "game.h"
+#include "noneScene.h"
 #include <cmath>
+#include <utility>
 
 std::unique_ptr<Game> Game::instance;
 
@@ -15,27 +17,22 @@ std::unique_ptr<Game>& Game::get(){
     return Game::instance;
 }
 Game::Game():
-        fps(30)
+        fps(30),
+        scene(std::make_shared<NoneScene>())
 {
-
 }
 
 int Game::loop(){
     while(true){
-        char fpsStr[100];
-        sprintf(fpsStr, "%d", this->fps.fps());
-        this->messageArea.message(fpsStr);
         if(this->nextScene){
             this->scene->endScene();
             this->scene = this->nextScene;
             this->scene->startScene();
             this->nextScene.reset();
         }
-        if(this->scene) {
-            this->scene->endScene();
-            this->scene = scene;
-            this->scene->startScene();
-        }
+
+        this->scene->update();
+        this->scene->draw();
         this->screen.swap();
         this->fps.wait();
     }
@@ -43,6 +40,6 @@ int Game::loop(){
 }
 
 void Game::changeScene(std::shared_ptr<Scene> scene) {
-    this->nextScene = scene;
+    this->nextScene = std::move(scene);
 }
 

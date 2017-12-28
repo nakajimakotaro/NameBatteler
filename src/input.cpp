@@ -3,3 +3,9 @@
 //
 
 #include "input.h"
+#include <windows.h>
+
+bool Input::isPush(int key) {
+    return GetAsyncKeyState(key) != 0;
+}
+

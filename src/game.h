@@ -13,6 +13,7 @@
 #include "messageArea.h"
 #include "scene.h"
 #include "fps.h"
+#include "input.h"
 
 class Game {
 private:
@@ -24,9 +25,9 @@ private:
     std::shared_ptr<Scene> nextScene;
 public:
     Screen screen;
-    std::shared_ptr<Scene> scene;
-    MessageArea messageArea;
+    Input input;
     FPS fps;
+    std::shared_ptr<Scene> scene;
 
     int loop();
     void changeScene(std::shared_ptr<Scene> scene);

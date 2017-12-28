@@ -13,8 +13,7 @@ public:
     virtual void update() = 0;
     virtual void draw() = 0;
     virtual void endScene() = 0;
-    virtual ~Scene();
+    virtual ~Scene() = default;
 };
-
 
 #endif //NAMEBATTLER_SCENE_H
