@@ -22,7 +22,7 @@ Game::Game():
 }
 
 int Game::loop(){
-    while(true){
+    while(!this->isExitRequire){
         if(this->nextScene){
             this->scene->endScene();
             this->scene = this->nextScene;
@@ -40,5 +40,9 @@ int Game::loop(){
 
 void Game::changeScene(std::shared_ptr<Scene> scene) {
     this->nextScene = std::move(scene);
+}
+
+void Game::exitRequire() {
+    this->isExitRequire = true;
 }
 

@@ -91,3 +91,8 @@ void Screen::writeChar(char c, int x, int y, int layer){
     this->depth.write(x, y, layer);
 }
 
+void Screen::move(int x, int y){
+    this->rect.x += x;
+    this->rect.y += y;
+}
+

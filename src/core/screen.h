@@ -37,6 +37,7 @@ public:
     void swap();
     void writeString(const char* str, int x, int y, int layer = 0, Rect rect = Rect(0, 0, Screen::WIDTH, Screen::HEIGHT));
     void writeChar(char c, int x, int y, int layer = 0);
+    void move(int x, int y);
     ~Screen();
 };
 

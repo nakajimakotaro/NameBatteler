@@ -14,6 +14,7 @@ void GameingScene::startScene() {
 }
 
 void GameingScene::update() {
+    this->inputManager.update();
     for(const auto &object: this->objectList){
         object->update();
     }

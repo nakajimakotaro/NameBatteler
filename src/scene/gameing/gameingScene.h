@@ -10,8 +10,11 @@
 #include <memory>
 #include "../scene.h"
 #include "../../asset/gameObject.h"
+#include "gameingInputManager.h"
 
 class GameingScene final: public Scene{
+public:
+    GameingInputManager inputManager;
 public:
     GameingScene();
     std::vector<std::unique_ptr<GameObject>> objectList;

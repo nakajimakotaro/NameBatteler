@@ -26,8 +26,10 @@ public:
     Input input;
     FPS fps;
     std::shared_ptr<Scene> scene;
+    bool isExitRequire = false;
 
     int loop();
+    void exitRequire();
     void changeScene(std::shared_ptr<Scene> scene);
 };
 

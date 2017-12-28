@@ -12,11 +12,13 @@ add_executable(nameBattler
         src/core/game.cpp
         src/core/fps.cpp
         src/common/rect.cpp
-        src/scene/scene.h
-        src/scene/gameing/gameingScene.cpp
         src/asset/gameObject.h
         src/asset/messageArea.cpp
         src/asset/player.cpp
+        src/scene/scene.h
+        src/scene/inputManager.cpp
+        src/scene/gameing/gameingScene.cpp
+        src/scene/gameing/gameingInputManager.cpp
         )
 target_link_libraries(nameBattler winmm)
 
