@@ -19,6 +19,6 @@ add_executable(nameBattler
         src/scene.h
         src/fps.cpp src/fps.h
         src/noneScene.cpp src/noneScene.h
-        )
+        src/gameingScene.cpp src/gameingScene.h src/gameObject.cpp src/gameObject.h src/player.cpp src/player.h)
 target_link_libraries(nameBattler winmm)
 

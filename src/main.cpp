@@ -1,4 +1,3 @@
-#include <windows.h>
 #include "screen.h"
 #include "game.h"
 

@@ -5,6 +5,7 @@
 #include <iostream>
 #include "game.h"
 #include "noneScene.h"
+#include "gameingScene.h"
 #include <cmath>
 #include <utility>
 
@@ -18,7 +19,7 @@ std::unique_ptr<Game>& Game::get(){
 }
 Game::Game():
         fps(30),
-        scene(std::make_shared<NoneScene>())
+        scene(std::make_shared<GameingScene>())
 {
 }
 

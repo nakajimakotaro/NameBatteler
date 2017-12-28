@@ -4,8 +4,8 @@
 #include "screen.h"
 
 Screen::Screen():
-rect(0, 0, Screen::WIDTH, Screen::HEIGHT),
-depth(Screen::WIDTH, Screen::HEIGHT)
+        rect(0, 0, Screen::WIDTH, Screen::HEIGHT),
+        depth(Screen::WIDTH, Screen::HEIGHT)
 {
     for(int i = 0;i < 2;i++){
         HANDLE handle = CreateConsoleScreenBuffer(GENERIC_READ | GENERIC_WRITE, 0, nullptr, CONSOLE_TEXTMODE_BUFFER, nullptr);
