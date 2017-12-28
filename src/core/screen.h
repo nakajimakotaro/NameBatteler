@@ -7,7 +7,17 @@
 
 #include <windows.h>
 #include "../common/rect.h"
-#include "depth.h"
+
+class Depth {
+private:
+    std::vector<int> depthLayer;
+    const int width, height;
+public:
+    Depth(int w, int h);
+    bool checkFront(int x, int y, int layer);
+    void write(int x, int y, int layer);
+    void clean();
+};
 
 class Screen {
 private:

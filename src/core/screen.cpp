@@ -2,6 +2,25 @@
 #include <vector>
 
 #include "screen.h"
+Depth::Depth(int w, int h):
+        width(w),
+        height(h),
+        depthLayer(w * h, INT_MIN)
+{
+}
+
+bool Depth::checkFront(int x, int y, int layer){
+    return this->depthLayer[x + y * this->width] <= layer;
+}
+void Depth::write(int x, int y, int layer){
+    if(this->checkFront(x, y, layer)){
+        this->depthLayer[x + y * this->width] = layer;
+    }
+}
+void Depth::clean(){
+    std::fill(this->depthLayer.begin(), this->depthLayer.end(), INT_MIN);
+}
+
 
 Screen::Screen():
         rect(0, 0, Screen::WIDTH, Screen::HEIGHT),

@@ -10,7 +10,6 @@ add_executable(nameBattler
         src/core/screen.cpp
         src/core/input.cpp
         src/core/commandManager.cpp
-        src/core/depth.cpp
         src/core/game.cpp
         src/core/fps.cpp
         src/common/rect.cpp
