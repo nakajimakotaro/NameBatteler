@@ -17,7 +17,7 @@ public:
     GameingInputManager inputManager;
 public:
     GameingScene();
-    std::vector<std::unique_ptr<GameObject>> objectList;
+    std::vector<std::shared_ptr<GameObject>> objectList;
     void startScene() override;
     void update() override;
     void draw() override;

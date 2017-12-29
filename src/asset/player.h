@@ -17,6 +17,7 @@ public:
     void update() override;
     void draw() override;
     GameObject::Type getType() override;
+    void jump();
 };
 
 

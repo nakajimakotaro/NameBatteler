@@ -19,6 +19,6 @@ add_executable(nameBattler
         src/scene/inputManager.cpp
         src/scene/gameing/gameingScene.cpp
         src/scene/gameing/gameingInputManager.cpp
-        )
+        src/common/state.cpp src/common/state.h src/common/stateMachine.cpp src/common/stateMachine.h)
 target_link_libraries(nameBattler winmm)
 

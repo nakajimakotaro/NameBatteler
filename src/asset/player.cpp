@@ -23,3 +23,6 @@ GameObject::Type Player::getType() {
     return GameObject::Type::PLAYER;
 }
 
+void Player::jump() {
+}
+

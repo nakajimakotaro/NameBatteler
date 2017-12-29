@@ -21,8 +21,8 @@ public:
 
 class Screen {
 private:
-    static const int WIDTH = 160;
-    static const int HEIGHT = 50;
+    constexpr static const int WIDTH = 160;
+    constexpr static const int HEIGHT = 50;
 private:
     std::vector<HANDLE> poolScreen = {};
     int frontScreenNumber = 0;
