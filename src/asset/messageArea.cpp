@@ -23,6 +23,6 @@ void MessageArea::draw() {
 }
 
 GameObject::Type MessageArea::getType() {
-    return GameObject::Type::PLAYER;
+    return GameObject::Type::MESSAGE_AREA;
 }
 

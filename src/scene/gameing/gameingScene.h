@@ -13,6 +13,8 @@
 #include "gameingInputManager.h"
 
 class GameingScene final: public Scene{
+private:
+    std::vector<std::shared_ptr<GameObject>> addQueueList;
 public:
     GameingInputManager inputManager;
 public:
@@ -22,6 +24,7 @@ public:
     void update() override;
     void draw() override;
     void endScene() override;
+    void addObject(std::shared_ptr<GameObject> obj);
 };
 
 

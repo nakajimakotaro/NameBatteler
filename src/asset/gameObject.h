@@ -11,9 +11,14 @@ public:
     enum class Type{
         PLAYER,
         CAMERA,
+        BLOCK,
+        MESSAGE_AREA,
+        DEBUG_MESSAGE
     };
+    virtual void start(){};
     virtual void update(){};
     virtual void draw(){};
+    virtual void end(){};
     virtual Type getType() = 0;
     virtual ~GameObject() = default;
 };

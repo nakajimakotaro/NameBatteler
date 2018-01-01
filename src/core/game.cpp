@@ -17,6 +17,7 @@ Game::Game():
         fps(30),
         scene(std::make_shared<GameingScene>())
 {
+    this->scene->startScene();
 }
 
 int Game::loop(){
@@ -36,7 +37,7 @@ int Game::loop(){
     return 0;
 }
 
-void Game::changeScene(std::shared_ptr<Scene> scene) {
+void Game::changeScene(std::shared_ptr<GameingScene> scene) {
     this->nextScene = std::move(scene);
 }
 

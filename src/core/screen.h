@@ -28,15 +28,15 @@ private:
     std::vector<HANDLE> poolScreen = {};
     int frontScreenNumber = 0;
     Depth depth;
-    Rect rect;
 
 
     HANDLE frontScreen();
     HANDLE backScreen();
 public:
+    Rect rect;
     Screen();
     void swap();
-    void writeString(const char* str, int x, int y, int layer = 0, Rect rect = Rect(0, 0, Screen::WIDTH, Screen::HEIGHT));
+    void writeString(std::string str, int x, int y, int layer = 0, Rect rect = Rect(-1, -1, -1, -1));
     void writeChar(char c, int x, int y, int layer = 0);
     void move(int x, int y);
     ~Screen();

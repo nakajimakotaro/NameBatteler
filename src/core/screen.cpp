@@ -1,7 +1,8 @@
 #include <windows.h>
 #include <vector>
-
+#include <string>
 #include "screen.h"
+
 Depth::Depth(int w, int h):
         width(w),
         height(h),
@@ -72,9 +73,11 @@ Screen::~Screen(){
     }
 }
 
-void Screen::writeString(const char* text, int x, int y,  int layer, Rect rect){
-    const size_t len = strlen(text);
-    Rect drawRect = rect.intersect(x, y, len, 1);
+void Screen::writeString(std::string text, int x, int y,  int layer, Rect rect){
+    if(rect.w == -1 && rect.h == -1){
+        rect = this->rect;
+    }
+    Rect drawRect = rect.intersect(x, y, text.length(), 1);
     if(drawRect.w < 0 || drawRect.h < 0){
         return;
     }
@@ -83,15 +86,17 @@ void Screen::writeString(const char* text, int x, int y,  int layer, Rect rect){
     }
 }
 void Screen::writeChar(char c, int x, int y, int layer){
+    int screenX = (x - this->rect.x);
+    int screenY = (y - this->rect.y);
     if(
             !this->rect.in(x, y) ||
-            !this->depth.checkFront(x, y, layer)) {
+            !this->depth.checkFront(screenX, screenY, layer)) {
         return;
     }
     char cStr[2] = {c, '\0'};
     DWORD p;
-    WriteConsoleOutputCharacter(this->backScreen(), cStr, 1, {(SHORT)(x - this->rect.x), (SHORT)(y - this->rect.y)}, &p);
-    this->depth.write(x, y, layer);
+    WriteConsoleOutputCharacter(this->backScreen(), cStr, 1, {(SHORT)screenX, (SHORT)screenY}, &p);
+    this->depth.write(screenX, screenY, layer);
 }
 
 void Screen::move(int x, int y){
