@@ -2,10 +2,8 @@
 // Created by harus on 2017/12/22.
 //
 
-#include <iostream>
 #include "game.h"
 #include "../scene/gameing/gameingScene.h"
-#include <cmath>
 
 std::unique_ptr<Game> Game::instance;
 

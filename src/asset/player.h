@@ -8,12 +8,19 @@
 
 #include "gameObject.h"
 #include "../common/rect.h"
+#include "../common/stateMachine.h"
+#include <memory>
 
-class Player final: public GameObject{
+class Player final: public GameObject, public std::enable_shared_from_this<Player>{
+public:
+    static std::shared_ptr<Player> create();
+private:
+    Player();
+    void init();
 public:
     Rect rect;
-    Player();
 public:
+    std::shared_ptr<StateMachine<Player>> state;
     void update() override;
     void draw() override;
     GameObject::Type getType() override;

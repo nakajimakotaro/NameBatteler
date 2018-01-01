@@ -6,12 +6,10 @@
 #define NAMEBATTLER_GAME_H
 
 
-#include <vector>
 #include <memory>
 #include "screen.h"
 #include "../scene/scene.h"
 #include "fps.h"
-#include "input.h"
 
 class Game {
 private:
@@ -23,7 +21,6 @@ private:
     std::shared_ptr<Scene> nextScene;
 public:
     Screen screen;
-    Input input;
     FPS fps;
     std::shared_ptr<Scene> scene;
     bool isExitRequire = false;

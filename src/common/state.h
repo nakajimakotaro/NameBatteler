@@ -7,12 +7,23 @@
 
 #include <memory>
 
+template <typename T> class StateMachine;
+template <typename T> class State {
+protected:
+    explicit State(std::weak_ptr<StateMachine<T>> machine);
 
-class State {
 public:
-    State();
-    void update();
+    std::weak_ptr<StateMachine<T>> machine;
+    virtual void start(){};
+    virtual void update(){};
+    virtual void end(){};
+    virtual ~State() = default;
 };
+
+template <typename T> State<T>::State(std::weak_ptr<StateMachine<T>> machine):
+        machine(machine)
+{
+}
 
 
 

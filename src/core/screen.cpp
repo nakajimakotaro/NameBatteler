@@ -28,11 +28,15 @@ Screen::Screen():
 {
     for(int i = 0;i < 2;i++){
         HANDLE handle = CreateConsoleScreenBuffer(GENERIC_READ | GENERIC_WRITE, 0, nullptr, CONSOLE_TEXTMODE_BUFFER, nullptr);
-        this->poolScreen.push_back(handle);
         CONSOLE_CURSOR_INFO cursorInfo;
         GetConsoleCursorInfo(handle, &cursorInfo);
         cursorInfo.bVisible = false;
         SetConsoleCursorInfo(handle, &cursorInfo);
+        SetConsoleScreenBufferSize(handle, {Screen::WIDTH, Screen::HEIGHT});
+        SMALL_RECT winRect{0, 0, Screen::WIDTH - 1, Screen::HEIGHT - 1};
+        SetConsoleWindowInfo(handle, TRUE, &winRect);
+
+        this->poolScreen.push_back(handle);
     }
     this->swap(); //Å‰‚Ì‰æ–Ê‚Í‰Šú‰»‚³‚ê‚Ä‚¢‚È‚¢‚Ì‚Åˆê“xswap‚µ‚Ä‚¨‚­
 }
@@ -40,8 +44,7 @@ HANDLE Screen::frontScreen(){
     return this->poolScreen[this->frontScreenNumber];
 }
 HANDLE Screen::backScreen(){
-    int backScreenNumber = this->frontScreenNumber == 0 ? 1 : 0;
-    return this->poolScreen[backScreenNumber];
+    return this->poolScreen[this->frontScreenNumber == 0 ? 1 : 0];
 }
 void Screen::swap(){
     this->frontScreenNumber = this->frontScreenNumber == 0 ? 1 : 0;
@@ -92,7 +95,7 @@ void Screen::writeChar(char c, int x, int y, int layer){
 }
 
 void Screen::move(int x, int y){
-    this->rect.x += x;
-    this->rect.y += y;
+    this->rect.x = x;
+    this->rect.y = y;
 }
 

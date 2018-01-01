@@ -6,6 +6,7 @@
 #define NAMEBATTLER_SCREEN_H
 
 #include <windows.h>
+#include <vector>
 #include "../common/rect.h"
 
 class Depth {
@@ -20,7 +21,7 @@ public:
 };
 
 class Screen {
-private:
+public:
     constexpr static const int WIDTH = 160;
     constexpr static const int HEIGHT = 50;
 private:

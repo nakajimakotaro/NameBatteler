@@ -8,17 +8,20 @@ link_directories("./")
 add_executable(nameBattler
         src/main.cpp
         src/core/screen.cpp
-        src/core/input.cpp
         src/core/game.cpp
         src/core/fps.cpp
         src/common/rect.cpp
+        src/common/state.h
+        src/common/stateMachine.h
         src/asset/gameObject.h
         src/asset/messageArea.cpp
         src/asset/player.cpp
+        src/asset/playerJumpState.cpp
+        src/asset/playerRunState.cpp
         src/scene/scene.h
         src/scene/inputManager.cpp
         src/scene/gameing/gameingScene.cpp
         src/scene/gameing/gameingInputManager.cpp
-        src/common/state.cpp src/common/state.h src/common/stateMachine.cpp src/common/stateMachine.h)
+        src/asset/camera.cpp src/asset/camera.h)
 target_link_libraries(nameBattler winmm)
 

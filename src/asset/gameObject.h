@@ -9,7 +9,8 @@
 class GameObject {
 public:
     enum class Type{
-        PLAYER
+        PLAYER,
+        CAMERA,
     };
     virtual void update(){};
     virtual void draw(){};

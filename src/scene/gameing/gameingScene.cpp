@@ -7,7 +7,7 @@
 
 GameingScene::GameingScene()
 {
-    this->objectList.push_back(std::make_unique<Player>());
+    this->objectList.push_back(Player::create());
 }
 
 void GameingScene::startScene() {
