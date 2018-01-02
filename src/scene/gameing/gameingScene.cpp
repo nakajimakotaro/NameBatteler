@@ -49,27 +49,3 @@ void GameingScene::endScene() {
 void GameingScene::addObject(std::shared_ptr<GameObject> obj){
     this->addQueueList.push_back(obj);
 }
-std::shared_ptr<GameObject> GameingScene::getObject(GameObject::Type type){
-    return *std::find_if(this->objectList.begin(), this->objectList.end(),
-                         [type](auto obj){
-                             return obj->getType() == type;
-                         });
-}
-
-std::vector<std::shared_ptr<GameObject>> GameingScene::getObjectAll(GameObject::Type type){
-    std::vector<std::shared_ptr<GameObject>> res;
-    auto begin = this->objectList.begin();
-    while (true) {
-        begin = std::find_if(begin, this->objectList.end(),
-                             [type](auto obj) {
-                                 return obj->getType() == type;
-                             });
-        if (begin != this->objectList.end()) {
-            res.push_back(*begin);
-            begin++;
-        } else {
-            break;
-        }
-    }
-    return res;
-}

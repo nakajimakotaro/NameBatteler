@@ -14,11 +14,9 @@ void DebugMessage::update() {
     this->rect.x = Game::get()->screen.rect.x;
 }
 
-
 void DebugMessage::draw() {
     auto strFPS = std::to_string(Game::get()->fps.fps());
-    //Game::get()->screen.writeString(strFPS, this->rect.x + 10, this->rect.y);
-    Game::get()->screen.writeString("ABCDEFGHIJKLMNOPQRSTUVWXYZ", this->rect.x + 10, this->rect.y);
+    Game::get()->screen.writeString(strFPS, this->rect.x, this->rect.y);
 }
 
 GameObject::Type DebugMessage::getType() {

@@ -11,6 +11,7 @@
 #include "../scene.h"
 #include "../../asset/gameObject.h"
 #include "gameingInputManager.h"
+#include <algorithm>
 
 class GameingScene final: public Scene{
 private:
@@ -25,9 +26,35 @@ public:
     void draw() override;
     void endScene() override;
     void addObject(std::shared_ptr<GameObject> obj);
-    std::shared_ptr<GameObject> getObject(GameObject::Type type);
-    std::vector<std::shared_ptr<GameObject>> getObjectAll(GameObject::Type type);
+    template <typename T> std::shared_ptr<T> getObject(GameObject::Type type);
+    template <typename T> std::vector<std::shared_ptr<T>> getObjectAll(GameObject::Type type);
 };
+
+template <typename T>
+std::shared_ptr<T> GameingScene::getObject(GameObject::Type type){
+    return std::dynamic_pointer_cast<T>(*std::find_if(this->objectList.begin(), this->objectList.end(),
+                         [type](auto obj){
+                             return obj->getType() == type;
+                         }));
+}
+template <typename T>
+std::vector<std::shared_ptr<T>> GameingScene::getObjectAll(GameObject::Type type){
+    std::vector<std::shared_ptr<T>> res;
+    auto begin = this->objectList.begin();
+    while (true) {
+        begin = std::find_if(begin, this->objectList.end(),
+                             [type](auto obj) {
+                                 return obj->getType() == type;
+                             });
+        if (begin != this->objectList.end()) {
+            res.push_back(std::dynamic_pointer_cast<T>(*begin));
+            begin++;
+        } else {
+            break;
+        }
+    }
+    return res;
+}
 
 
 #endif //NAMEBATTLER_GAMEINGSCENE_H

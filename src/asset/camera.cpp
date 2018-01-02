@@ -13,16 +13,12 @@ Camera::Camera():
 {
 }
 
+
+void Camera::start() {
+    this->player = Game::get()->scene->getObject<Player>(GameObject::Type::PLAYER);
+}
 void Camera::update() {
     this->rect.x = this->player.lock()->rect.x - 120;
     Game::get()->screen.move(this->rect.x, this->rect.y);
-}
-
-void Camera::start() {
-    auto _player = *std::find_if(Game::get()->scene->objectList.begin(), Game::get()->scene->objectList.end(),
-                 [](auto obj){
-                     return obj->getType() == GameObject::Type::PLAYER;
-                 });
-    this->player = reinterpret_cast<std::shared_ptr<Player>&>(_player);
 }
 
