@@ -4,6 +4,8 @@
 
 #include "player.h"
 #include "playerRunState.h"
+#include "../scene/inputManager.h"
+#include "../core/game.h"
 
 #include <utility>
 
@@ -21,7 +23,11 @@ PlayerRunState::PlayerRunState(std::weak_ptr<StateMachine<Player>> machine):
 }
 
 void PlayerRunState::update() {
-    this->machine.lock()->body.lock()->rect.x -= 1;
+    this->machine.lock()->body.lock()->rect.x -= this->machine.lock()->body.lock()->speed;
+
+    if(Game::get()->scene->inputManager.isPush(InputManager::LIST::KEY_SPACE)) {
+        this->machine.lock()->changeRequire("jump");
+    }
 }
 
 

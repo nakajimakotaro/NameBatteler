@@ -8,11 +8,11 @@
 
 class Rect {
 public:
-    explicit Rect(int x = 0, int y = 0, int w = 0, int h = 0);
+    explicit Rect(double x = 0, double y = 0, double w = 0, double h = 0);
 
-    int x, y, w, h;
-    bool in(int x, int y)const;
-    Rect intersect(int x, int y, int w, int h)const;
+    double x, y, w, h;
+    bool in(double x, double y)const;
+    Rect intersect(double x, double y, double w, double h)const;
     Rect intersect(const Rect& rect)const;
 };
 

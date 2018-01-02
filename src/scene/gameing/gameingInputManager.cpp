@@ -11,11 +11,7 @@ void GameingInputManager::update() {
     if(this->isPush(InputManager::LIST::KEY_ESCAPE)) {
         Game::get()->exitRequire();
     }
-    if(this->isPush(InputManager::LIST::KEY_SPACE)) {
-        auto _player = *std::find_if(Game::get()->scene->objectList.begin(), Game::get()->scene->objectList.end(),
-                                     [](auto obj){
-                                         return obj->getType() == GameObject::Type::PLAYER;
-                                     });
-        reinterpret_cast<std::shared_ptr<Player>&>(_player);
+    if(this->isPush(InputManager::LIST::KEY_R)) {
+        Game::get()->scene->reset();
     }
 }

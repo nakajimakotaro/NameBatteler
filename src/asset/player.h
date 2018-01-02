@@ -20,6 +20,7 @@ private:
 public:
     Rect rect;
 public:
+    int speed = 1;
     std::shared_ptr<StateMachine<Player>> state;
     void update() override;
     void draw() override;

@@ -12,12 +12,16 @@
 
 class PlayerJumpState: public State<Player>{
 public:
+    int countFrame = 0;
+    double baseY = 0;
     static const std::string name(){
         return "jump";
     };
     static StateMapPair<Player> mapPair();
     explicit PlayerJumpState(std::weak_ptr<StateMachine<Player>> machine);
-    void update() override {};
+    void start() override ;
+    void update() override;
+    void end() override;
 };
 
 

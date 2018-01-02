@@ -19,6 +19,7 @@ template <typename T> class StateMachine final: public std::enable_shared_from_t
 private:
     StateMachine() = default;
     void init(std::weak_ptr<T> body, std::string  initState, StateMap<T> eventMap);
+    std::string nextState;
 public:
     std::weak_ptr<T> body;
     StateMap<T> stateMap;
@@ -30,7 +31,7 @@ public:
         ptr->init(body, initState, eventMap);
         return ptr;
     }
-    void change(std::string name);
+    void changeRequire(std::string name);
     void update();
 };
 
@@ -44,14 +45,18 @@ void StateMachine<T>::init(std::weak_ptr<T> body, std::string initState, StateMa
 
 
 template<typename T>
-void StateMachine<T>::change(std::string name) {
-    this->state->end();
-    this->state = this->stateMap.at(name)(this->shared_from_this());
-    this->state->start();
+void StateMachine<T>::changeRequire(std::string name) {
+    this->nextState = name;
 }
 
 template<typename T>
 void StateMachine<T>::update() {
+    if(!this->nextState.empty()){
+        this->state->end();
+        this->state = this->stateMap.at(this->nextState)(this->shared_from_this());
+        this->state->start();
+        this->nextState.clear();
+    }
     this->state->update();
 }
 

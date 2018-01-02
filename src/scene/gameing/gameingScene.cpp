@@ -49,3 +49,10 @@ void GameingScene::endScene() {
 void GameingScene::addObject(std::shared_ptr<GameObject> obj){
     this->addQueueList.push_back(obj);
 }
+
+
+void GameingScene::reset() {
+    this->objectList.clear();
+    this->addQueueList.clear();
+    this->startScene();
+}

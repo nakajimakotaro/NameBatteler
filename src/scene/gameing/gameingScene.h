@@ -26,6 +26,7 @@ public:
     void draw() override;
     void endScene() override;
     void addObject(std::shared_ptr<GameObject> obj);
+    void reset();
     template <typename T> std::shared_ptr<T> getObject(GameObject::Type type);
     template <typename T> std::vector<std::shared_ptr<T>> getObjectAll(GameObject::Type type);
 };
