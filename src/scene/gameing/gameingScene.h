@@ -25,6 +25,8 @@ public:
     void draw() override;
     void endScene() override;
     void addObject(std::shared_ptr<GameObject> obj);
+    std::shared_ptr<GameObject> getObject(GameObject::Type type);
+    std::vector<std::shared_ptr<GameObject>> getObjectAll(GameObject::Type type);
 };
 
 
