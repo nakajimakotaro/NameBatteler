@@ -6,7 +6,7 @@
 #include <windows.h>
 
 bool InputManager::isPush(LIST key) {
-    return GetAsyncKeyState(static_cast<int>(key)) != 0;
+    return (GetAsyncKeyState(static_cast<int>(key)) & 1 << 15) != 0;
 }
 
 void InputManager::update() {
