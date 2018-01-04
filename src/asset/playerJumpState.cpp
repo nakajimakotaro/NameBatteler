@@ -22,11 +22,11 @@ PlayerJumpState::PlayerJumpState(std::weak_ptr<StateMachine<Player>> machine):
 }
 
 void PlayerJumpState::start() {
-    this->baseY = this->machine.lock()->body.lock()->rect.y;
+    this->baseY = this->machine.lock()->body.lock()->y();
 }
 void PlayerJumpState::update() {
-    this->machine.lock()->body.lock()->rect.x -= this->machine.lock()->body.lock()->speed;
-    this->machine.lock()->body.lock()->rect.y = this->baseY - sin(this->countFrame / 30.0 * 3.1415) * 20;
+    this->machine.lock()->body.lock()->localX -= this->machine.lock()->body.lock()->speed;
+    this->machine.lock()->body.lock()->localY = this->baseY - sin(this->countFrame / 30.0 * 3.1415) * 20;
     if(this->countFrame > 30){
         this->machine.lock()->changeRequire("run");
     }
@@ -35,5 +35,5 @@ void PlayerJumpState::update() {
 }
 
 void PlayerJumpState::end() {
-    this->machine.lock()->body.lock()->rect.y = this->baseY;
+    this->machine.lock()->body.lock()->localY = this->baseY;
 }

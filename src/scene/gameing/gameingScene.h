@@ -11,6 +11,7 @@
 #include "../scene.h"
 #include "../../asset/gameObject.h"
 #include "gameingInputManager.h"
+#include "../../common/collision.h"
 #include <algorithm>
 
 class GameingScene final: public Scene{
@@ -21,11 +22,12 @@ public:
 public:
     GameingScene();
     std::vector<std::shared_ptr<GameObject>> objectList;
+    Collision collision;
     void startScene() override;
     void update() override;
     void draw() override;
     void endScene() override;
-    void addObject(std::shared_ptr<GameObject> obj);
+    std::shared_ptr<GameObject> addObject(std::shared_ptr<GameObject> obj);
     void reset();
     template <typename T> std::shared_ptr<T> getObject(GameObject::Type type);
     template <typename T> std::vector<std::shared_ptr<T>> getObjectAll(GameObject::Type type);

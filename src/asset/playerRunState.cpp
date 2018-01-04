@@ -23,7 +23,7 @@ PlayerRunState::PlayerRunState(std::weak_ptr<StateMachine<Player>> machine):
 }
 
 void PlayerRunState::update() {
-    this->machine.lock()->body.lock()->rect.x -= this->machine.lock()->body.lock()->speed;
+    this->machine.lock()->body.lock()->localX -= this->machine.lock()->body.lock()->speed;
 
     if(Game::get()->scene->inputManager.isPush(InputManager::LIST::KEY_SPACE)) {
         this->machine.lock()->changeRequire("jump");

@@ -22,6 +22,6 @@ add_executable(nameBattler
         src/scene/inputManager.cpp
         src/scene/gameing/gameingScene.cpp
         src/scene/gameing/gameingInputManager.cpp
-        src/asset/camera.cpp src/asset/camera.h src/asset/block.cpp src/asset/block.h src/asset/debugMessage.cpp src/asset/debugMessage.h)
+        src/asset/camera.cpp src/asset/camera.h src/asset/block.cpp src/asset/block.h src/asset/debugMessage.cpp src/asset/debugMessage.h src/common/collision.cpp src/common/collision.h src/common/collider.cpp src/common/collider.h)
 target_link_libraries(nameBattler winmm)
 

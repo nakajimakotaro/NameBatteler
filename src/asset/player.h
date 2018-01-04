@@ -9,6 +9,7 @@
 #include "gameObject.h"
 #include "../common/rect.h"
 #include "../common/stateMachine.h"
+#include "../common/collision.h"
 #include <memory>
 
 class Player final: public GameObject, public std::enable_shared_from_this<Player>{
@@ -17,15 +18,16 @@ public:
 private:
     Player();
     void init();
-public:
-    Rect rect;
+
+private:
+    std::shared_ptr<Collider> collider;
 public:
     int speed = 1;
+    bool isOnBlock;
     std::shared_ptr<StateMachine<Player>> state;
     void update() override;
     void draw() override;
     GameObject::Type getType() override;
-    void jump();
 };
 
 

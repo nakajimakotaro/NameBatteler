@@ -7,14 +7,13 @@
 
 
 #include "gameObject.h"
-#include "../common/rect.h"
 #include "player.h"
 
 class Camera : public GameObject{
 public:
     Camera();
     std::weak_ptr<Player> player;
-    Rect rect;
+
     void start();
     void update();
     Type getType() {

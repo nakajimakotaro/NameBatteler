@@ -8,15 +8,18 @@
 
 #include "gameObject.h"
 #include "../common/rect.h"
+#include "../common/collision.h"
 
-class Block: public GameObject{
+class Block: public GameObject, public std::enable_shared_from_this<Block>{
 public:
     Block();
-    Rect rect;
+    void start() override;
     void draw() override;
     Type getType() override {
         return GameObject::Type::BLOCK;
     }
+
+    bool isCollision;
 };
 
 

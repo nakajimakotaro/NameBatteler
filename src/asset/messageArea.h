@@ -17,8 +17,6 @@ public:
     void draw() override;
     Type getType() override;
 
-    Rect rect;
-
     void message(const char* str);
 };
 

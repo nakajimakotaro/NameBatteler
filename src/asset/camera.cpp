@@ -9,7 +9,7 @@
 #include "player.h"
 
 Camera::Camera():
-        rect(0, 0, Screen::WIDTH, Screen::HEIGHT)
+GameObject({}, 0 ,0)
 {
 }
 
@@ -18,7 +18,7 @@ void Camera::start() {
     this->player = Game::get()->scene->getObject<Player>(GameObject::Type::PLAYER);
 }
 void Camera::update() {
-    this->rect.x = this->player.lock()->rect.x - 120;
-    Game::get()->screen.move(this->rect.x, this->rect.y);
+    this->localX = this->player.lock()->x() - 120;
+    Game::get()->screen.move(this->x(), this->y());
 }
 

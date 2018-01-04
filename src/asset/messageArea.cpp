@@ -7,11 +7,11 @@
 
 
 MessageArea::MessageArea():
-        rect(0, 0, 80, 1)
+        GameObject({}, 0, 0)
 {
 }
 void MessageArea::message(const char* str){
-    Game::get()->screen.writeString(str, this->rect.x, this->rect.y, 0, this->rect);
+    Game::get()->screen.writeString(str, this->x(), this->y(), 0);
 }
 
 void MessageArea::update() {

@@ -35,6 +35,7 @@ void GameingScene::update() {
     for(const auto &object: this->objectList){
         object->update();
     }
+    this->collision.tick();
 }
 
 void GameingScene::draw() {
@@ -46,13 +47,15 @@ void GameingScene::draw() {
 void GameingScene::endScene() {
 }
 
-void GameingScene::addObject(std::shared_ptr<GameObject> obj){
+std::shared_ptr<GameObject> GameingScene::addObject(std::shared_ptr<GameObject> obj){
     this->addQueueList.push_back(obj);
+    return obj;
 }
 
 
 void GameingScene::reset() {
     this->objectList.clear();
     this->addQueueList.clear();
+    this->collision = Collision();
     this->startScene();
 }

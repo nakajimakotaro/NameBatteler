@@ -14,10 +14,9 @@ std::unique_ptr<Game>& Game::get(){
     return Game::instance;
 }
 Game::Game():
-        fps(30),
-        scene(std::make_shared<GameingScene>())
+        fps(30)
 {
-    this->scene->startScene();
+    this->nextScene = std::make_shared<GameingScene>();
 }
 
 int Game::loop(){
