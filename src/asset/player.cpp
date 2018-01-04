@@ -4,10 +4,11 @@
 
 #include "player.h"
 #include "../core/game.h"
-#include "playerRunState.h"
-#include "playerJumpState.h"
 #include "block.h"
 #include "debugMessage.h"
+#include "playerRunState.h"
+#include "playerJumpState.h"
+#include "playerFallState.h"
 
 
 std::shared_ptr<Player> Player::create() {
@@ -21,20 +22,27 @@ Player::Player():
 {
 }
 void Player::init() {
-    this->isOnBlock = false;
-    this->state = StateMachine<Player>::create(shared_from_this(), PlayerRunState::name(), {PlayerRunState::mapPair(), PlayerJumpState::mapPair()});
+    this->state = StateMachine<Player>::create(shared_from_this(), PlayerRunState::name(), {
+            PlayerRunState::mapPair(),
+            PlayerJumpState::mapPair(),
+            PlayerFallState::mapPair(),
+    });
     this->collider = std::make_shared<Collider>(shared_from_this(), 0, 1, 1, 1, [this](auto obj, auto overarea){
-        this->isOnBlock = true;
+        std::shared_ptr<GameObject> gameObject = (obj->parent.lock());
+        if(gameObject->getType() == GameObject::Type::BLOCK){
+            this->collisionBlock = std::dynamic_pointer_cast<Block>(gameObject);
+        }
     });
     Game::get()->scene->collision.addObjectRequire(this->collider);
 }
 
 void Player::update() {
     this->state->update();
+    this->collisionBlock.reset();
 }
 
 void Player::draw() {
-    Game::get()->screen.writeChar(this->isOnBlock ? 'b' : 'p', this->x(), this->y());
+    Game::get()->screen.writeChar('p', this->x(), this->y());
 }
 
 GameObject::Type Player::getType() {

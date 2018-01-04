@@ -18,7 +18,16 @@ void GameingScene::startScene() {
     this->addObject(std::make_shared<DebugMessage>());
     this->addObject(std::make_shared<Camera>());
     this->addObject(Player::create());
-    this->addObject(std::make_shared<Block>());
+    for(int i = -100;i < 50;i++){
+        auto block = this->addObject(std::make_shared<Block>());
+        block->localX = i;
+        block->localY = 47;
+    }
+    for(int i = -300;i < -100;i++){
+        auto block = this->addObject(std::make_shared<Block>());
+        block->localX = i;
+        block->localY = 30;
+    }
 }
 
 void GameingScene::update() {

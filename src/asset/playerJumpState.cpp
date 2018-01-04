@@ -4,8 +4,8 @@
 
 #include "playerJumpState.h"
 
-#include <utility>
 #include <cmath>
+#include "block.h"
 
 StateMapPair<Player> PlayerJumpState::mapPair() {
     return std::make_pair(
@@ -15,6 +15,9 @@ StateMapPair<Player> PlayerJumpState::mapPair() {
             }
     );
 }
+std::shared_ptr<Player> PlayerJumpState::body() {
+    return this->machine.lock()->body.lock();
+}
 
 PlayerJumpState::PlayerJumpState(std::weak_ptr<StateMachine<Player>> machine):
         State<Player>(std::move(machine))
@@ -22,18 +25,19 @@ PlayerJumpState::PlayerJumpState(std::weak_ptr<StateMachine<Player>> machine):
 }
 
 void PlayerJumpState::start() {
-    this->baseY = this->machine.lock()->body.lock()->y();
 }
 void PlayerJumpState::update() {
-    this->machine.lock()->body.lock()->localX -= this->machine.lock()->body.lock()->speed;
-    this->machine.lock()->body.lock()->localY = this->baseY - sin(this->countFrame / 30.0 * 3.1415) * 20;
-    if(this->countFrame > 30){
-        this->machine.lock()->changeRequire("run");
+    this->body()->localX -= this->body()->speed;
+    double risingY = cos(this->countFrame / 30.0 * M_PI) * 2;
+    if(risingY < 0.1){
+        this->machine.lock()->changeRequire("fall");
     }
+    this->body()->localY -= risingY;
 
     this->countFrame++;
 }
 
 void PlayerJumpState::end() {
-    this->machine.lock()->body.lock()->localY = this->baseY;
 }
+
+

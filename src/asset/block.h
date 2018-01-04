@@ -13,6 +13,7 @@
 class Block: public GameObject, public std::enable_shared_from_this<Block>{
 public:
     Block();
+    void update();
     void start() override;
     void draw() override;
     Type getType() override {

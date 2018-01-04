@@ -1,8 +1,9 @@
 cmake_minimum_required(VERSION 3.9)
-project(nameBattler)
+project(nameBattler CXX)
 
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_VERBOSE_MAKEFILE 1)
+set(CMAKE_CXX_FLAGS_RELEASE "-O2 -march=native")
 
 link_directories("./")
 add_executable(nameBattler
@@ -22,6 +23,6 @@ add_executable(nameBattler
         src/scene/inputManager.cpp
         src/scene/gameing/gameingScene.cpp
         src/scene/gameing/gameingInputManager.cpp
-        src/asset/camera.cpp src/asset/camera.h src/asset/block.cpp src/asset/block.h src/asset/debugMessage.cpp src/asset/debugMessage.h src/common/collision.cpp src/common/collision.h src/common/collider.cpp src/common/collider.h)
+        src/asset/camera.cpp src/asset/camera.h src/asset/block.cpp src/asset/block.h src/asset/debugMessage.cpp src/asset/debugMessage.h src/common/collision.cpp src/common/collision.h src/common/collider.cpp src/common/collider.h src/asset/playerFallState.cpp src/asset/playerFallState.h)
 target_link_libraries(nameBattler winmm)
 

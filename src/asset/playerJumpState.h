@@ -7,10 +7,11 @@
 
 
 #include "../common/state.h"
-#include "player.h"
-#include "playerRunState.h"
 
+class Player;
 class PlayerJumpState: public State<Player>{
+private:
+    std::shared_ptr<Player> body();
 public:
     int countFrame = 0;
     double baseY = 0;
