@@ -17,6 +17,9 @@ StateMapPair<Player> PlayerRunState::mapPair() {
             }
     );
 }
+std::shared_ptr<Player> PlayerRunState::body() {
+    return this->machine.lock()->body.lock();
+}
 PlayerRunState::PlayerRunState(std::weak_ptr<StateMachine<Player>> machine):
         State<Player>(std::move(machine))
 {
@@ -28,6 +31,11 @@ void PlayerRunState::update() {
     if(Game::get()->scene->inputManager.isPush(InputManager::LIST::KEY_SPACE)) {
         this->machine.lock()->changeRequire("jump");
     }
+
+    if(this->countFrame % 30 == 0){
+        this->body()->speed += 0.4;
+    }
+    this->countFrame++;
 }
 
 

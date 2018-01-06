@@ -9,6 +9,7 @@
 #include "playerRunState.h"
 #include "playerJumpState.h"
 #include "playerFallState.h"
+#include "enemy.h"
 
 
 std::shared_ptr<Player> Player::create() {
@@ -18,7 +19,7 @@ std::shared_ptr<Player> Player::create() {
 }
 
 Player::Player():
-        GameObject({}, 40 ,40)
+        GameObject({}, 40 ,46)
 {
 }
 void Player::init() {
@@ -29,8 +30,17 @@ void Player::init() {
     });
     this->collider = std::make_shared<Collider>(shared_from_this(), 0, 1, 1, 1, [this](auto obj, auto overarea){
         std::shared_ptr<GameObject> gameObject = (obj->parent.lock());
-        if(gameObject->getType() == GameObject::Type::BLOCK){
-            this->collisionBlock = std::dynamic_pointer_cast<Block>(gameObject);
+        switch (gameObject->getType()){
+            case Type::PLAYER:break;
+            case Type::CAMERA:break;
+            case Type::BLOCK:
+                this->collisionBlock = std::dynamic_pointer_cast<Block>(gameObject);
+                break;
+            case Type::MESSAGE_AREA:break;
+            case Type::DEBUG_MESSAGE:break;
+            case Type::COLLIDER:break;
+            case Type::ENEMY:break;
+                this->collisionEnemy = std::dynamic_pointer_cast<Enemy>(gameObject);
         }
     });
     Game::get()->scene->collision.addObjectRequire(this->collider);

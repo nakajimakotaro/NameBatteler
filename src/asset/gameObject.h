@@ -16,7 +16,8 @@ public:
         BLOCK,
         MESSAGE_AREA,
         DEBUG_MESSAGE,
-        COLLIDER
+        COLLIDER,
+        ENEMY
     };
 
     GameObject(std::weak_ptr<GameObject> parent, double localX, double localY):

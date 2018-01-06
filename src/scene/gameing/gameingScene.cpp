@@ -6,6 +6,7 @@
 #include "gameingScene.h"
 #include "../../asset/player.h"
 #include "../../asset/camera.h"
+#include "../../asset/enemy.h"
 #include "../../asset/block.h"
 #include "../../asset/debugMessage.h"
 #include "../../core/game.h"
@@ -23,11 +24,17 @@ void GameingScene::startScene() {
         block->localX = i;
         block->localY = 47;
     }
-    for(int i = -300;i < -100;i++){
+    for(int i = -200;i < -100;i++){
         auto block = this->addObject(std::make_shared<Block>());
         block->localX = i;
         block->localY = 30;
     }
+    auto enemy1 = this->addObject(std::make_shared<Enemy>());
+    enemy1->localX = -60;
+    enemy1->localY = 37;
+    auto enemy2 = this->addObject(std::make_shared<Enemy>());
+    enemy2->localX = -150;
+    enemy2->localY = 17;
 }
 
 void GameingScene::update() {

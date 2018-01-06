@@ -19,8 +19,6 @@ public:
     Type getType() override {
         return GameObject::Type::BLOCK;
     }
-
-    bool isCollision;
 };
 
 

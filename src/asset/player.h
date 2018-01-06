@@ -11,8 +11,8 @@
 #include "../common/stateMachine.h"
 #include "../common/collision.h"
 #include <memory>
-
 class Block;
+class Enemy;
 class Player final: public GameObject, public std::enable_shared_from_this<Player>{
 public:
     static std::shared_ptr<Player> create();
@@ -23,8 +23,9 @@ private:
 private:
     std::shared_ptr<Collider> collider;
 public:
-    int speed = 1;
+    double speed = 1;
     std::shared_ptr<Block> collisionBlock;
+    std::shared_ptr<Enemy> collisionEnemy;
     std::shared_ptr<StateMachine<Player>> state;
     void update() override;
     void draw() override;
