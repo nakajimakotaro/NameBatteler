@@ -6,7 +6,7 @@
 #define NAMEBATTLER_CAMERA_H
 
 
-#include "gameObject.h"
+#include "../common/gameObject.h"
 #include "player.h"
 
 class Camera : public GameObject{
@@ -15,10 +15,10 @@ public:
     std::weak_ptr<Player> player;
 
     void start();
-    void update();
     Type getType() {
         return GameObject::Type::CAMERA;
     }
+    void set();
 };
 
 

@@ -20,7 +20,6 @@ std::shared_ptr<Player> PlayerFallState::body() {
 }
 
 PlayerFallState::PlayerFallState(std::weak_ptr<StateMachine<Player>> machine) : State(machine) {
-
 }
 
 
@@ -37,9 +36,9 @@ void PlayerFallState::update() {
 
     double fallY;
     if(this->countFrame < 30){
-        fallY = sin(this->countFrame / 30.0 * M_PI);
+        fallY = sin(this->countFrame / 60.0 * M_PI);
     }else{
-        fallY = 2;
+        fallY = 1;
     }
 
     this->body()->localY += fallY;

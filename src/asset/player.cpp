@@ -10,6 +10,7 @@
 #include "playerJumpState.h"
 #include "playerFallState.h"
 #include "enemy.h"
+#include "camera.h"
 
 
 std::shared_ptr<Player> Player::create() {
@@ -54,6 +55,7 @@ void Player::init() {
 void Player::update() {
     this->state->update();
     this->collisionBlock.reset();
+    Game::get()->scene->getObject<Camera>(GameObject::Type::CAMERA)->set();
 }
 
 void Player::draw() {

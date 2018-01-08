@@ -14,4 +14,13 @@ void GameingInputManager::update() {
     if(this->isPush(InputManager::LIST::KEY_R)) {
         Game::get()->scene->reset();
     }
+    static bool pushingD = false;
+    if(this->isPush(InputManager::LIST::KEY_D)) {
+        if(!pushingD){
+            Game::get()->scene->pause();
+            pushingD = true;
+        }
+    }else{
+        pushingD = false;
+    }
 }

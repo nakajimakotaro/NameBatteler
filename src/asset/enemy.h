@@ -7,7 +7,7 @@
 
 
 
-#include "gameObject.h"
+#include "../common/gameObject.h"
 class Enemy: public GameObject{
 public:
     Enemy();

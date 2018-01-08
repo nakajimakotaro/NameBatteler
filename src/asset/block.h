@@ -6,7 +6,7 @@
 #define NAMEBATTLER_BLOCK_H
 
 
-#include "gameObject.h"
+#include "../common/gameObject.h"
 #include "../common/rect.h"
 #include "../common/collision.h"
 

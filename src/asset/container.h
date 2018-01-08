@@ -6,7 +6,7 @@
 #define NAMEBATTLER_CONTAINER_H
 
 
-#include "gameObject.h"
+#include "../common/gameObject.h"
 
 class Container: GameObject{
 private:

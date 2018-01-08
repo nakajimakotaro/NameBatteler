@@ -32,9 +32,6 @@ void PlayerRunState::update() {
         this->machine.lock()->changeRequire("jump");
     }
 
-    if(this->countFrame % 30 == 0){
-        this->body()->speed += 0.4;
-    }
     this->countFrame++;
 }
 

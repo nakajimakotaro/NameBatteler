@@ -10,7 +10,7 @@ GameObject(0, 0)
 {
 
 }
-void DebugMessage::update() {
+void DebugMessage::postUpdate() {
     this->localX = Game::get()->screen.rect.x;
 }
 

@@ -7,7 +7,7 @@
 
 
 #include "../common/rect.h"
-#include "gameObject.h"
+#include "../common/gameObject.h"
 
 //80Byteまでのメッセージ(Shift-jisだから40字)
 class MessageArea final: public GameObject{

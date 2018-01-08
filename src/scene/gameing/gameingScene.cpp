@@ -10,6 +10,7 @@
 #include "../../asset/block.h"
 #include "../../asset/debugMessage.h"
 #include "../../core/game.h"
+#include "../../asset/particle.h"
 
 GameingScene::GameingScene()
 {
@@ -48,10 +49,16 @@ void GameingScene::update() {
         this->addQueueList.clear();
     }
     this->inputManager.update();
-    for(const auto &object: this->objectList){
-        object->update();
+
+    if(!this->isPause){
+        this->collision.tick();
+        for(const auto &object: this->objectList){
+            object->update();
+        }
+        for(const auto &object: this->objectList){
+            object->postUpdate();
+        }
     }
-    this->collision.tick();
 }
 
 void GameingScene::draw() {
@@ -61,6 +68,10 @@ void GameingScene::draw() {
 }
 
 void GameingScene::endScene() {
+}
+
+void GameingScene::pause(){
+    this->isPause = !this->isPause;
 }
 
 std::shared_ptr<GameObject> GameingScene::addObject(std::shared_ptr<GameObject> obj){

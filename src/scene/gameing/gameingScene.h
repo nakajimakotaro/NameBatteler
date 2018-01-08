@@ -9,14 +9,16 @@
 #include <vector>
 #include <memory>
 #include "../scene.h"
-#include "../../asset/gameObject.h"
+#include "../../common/gameObject.h"
 #include "gameingInputManager.h"
 #include "../../common/collision.h"
 #include <algorithm>
+#include <unordered_map>
 
 class GameingScene final: public Scene{
 private:
     std::vector<std::shared_ptr<GameObject>> addQueueList;
+    bool isPause = false;
 public:
     GameingInputManager inputManager;
 public:
@@ -31,6 +33,8 @@ public:
     void reset();
     template <typename T> std::shared_ptr<T> getObject(GameObject::Type type);
     template <typename T> std::vector<std::shared_ptr<T>> getObjectAll(GameObject::Type type);
+
+    void pause();
 };
 
 template <typename T>

@@ -6,7 +6,7 @@
 #define NAMEBATTLER_COLLIDER_H
 
 
-#include "../asset/gameObject.h"
+#include "gameObject.h"
 #include "rect.h"
 
 class Collider final: public GameObject{

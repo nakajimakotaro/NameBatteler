@@ -26,6 +26,26 @@ public:
 
 class Screen {
 public:
+    enum class ForColor{
+        RED = FOREGROUND_RED,
+        BLUE = FOREGROUND_BLUE,
+        GREEN = FOREGROUND_GREEN,
+        CYAN = BLUE | GREEN,
+        MAGENTA = RED | GREEN,
+        YELLOW = RED | BLUE,
+        WHILE = RED | GREEN | BLUE,
+        BLACK = 0,
+    };
+    enum class BackColor {
+        RED = BACKGROUND_RED,
+        BLUE = BACKGROUND_BLUE,
+        GREEN = BACKGROUND_GREEN,
+        CYAN = BLUE | GREEN,
+        MAGENTA = RED | GREEN,
+        YELLOW = RED | BLUE,
+        WHILE = RED | GREEN | BLUE,
+        BLACK = 0,
+    };
     constexpr static const int WIDTH = 160;
     constexpr static const int HEIGHT = 50;
 private:
@@ -40,8 +60,19 @@ public:
     Rect rect;
     Screen();
     void swap();
-    void writeString(std::string str, int x, int y, int layer = 0, Rect rect = Rect(-1, -1, -1, -1));
-    void writeChar(char c, int x, int y, int layer = 0);
+    void writeString(std::string str,
+                     double x,
+                     double y,
+                     ForColor forColor = ForColor::WHILE,
+                     BackColor backColor = BackColor::BLACK,
+                     int layer = 0,
+                     Rect rect = Rect(-1, -1, -1, -1));
+    void writeChar(char c,
+                   double x,
+                   double y,
+                   ForColor forColor = ForColor::WHILE,
+                   BackColor backColor = BackColor::BLACK,
+                   int layer = 0);
     void move(int x, int y);
     ~Screen();
 };

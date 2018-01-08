@@ -11,7 +11,7 @@ MessageArea::MessageArea():
 {
 }
 void MessageArea::message(const char* str){
-    Game::get()->screen.writeString(str, this->x(), this->y(), 0);
+    Game::get()->screen.writeString(str, this->x(), this->y());
 }
 
 void MessageArea::update() {

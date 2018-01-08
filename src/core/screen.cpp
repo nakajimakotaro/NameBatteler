@@ -1,6 +1,7 @@
 #include <windows.h>
 #include <vector>
 #include <string>
+#include <cmath>
 #include "screen.h"
 
 Depth::Depth(int w, int h):
@@ -54,12 +55,18 @@ void Screen::swap(){
     CONSOLE_SCREEN_BUFFER_INFO screenBufferInfo = {};
     GetConsoleScreenBufferInfo(this->backScreen(), &screenBufferInfo);
 
-    COORD start = {0, 0};
     DWORD p;
+    FillConsoleOutputAttribute(
+            this->backScreen(),
+            static_cast<int>(Screen::ForColor::WHILE),
+            static_cast<DWORD>(screenBufferInfo.dwSize.X * screenBufferInfo.dwSize.Y),
+            {0, 0},
+            &p
+    );
     FillConsoleOutputCharacter(
             this->backScreen(),
             ' ',
-            screenBufferInfo.dwSize.X * screenBufferInfo.dwSize.Y,
+            static_cast<DWORD>(screenBufferInfo.dwSize.X * screenBufferInfo.dwSize.Y),
             {0, 0},
             &p
     );
@@ -68,34 +75,41 @@ void Screen::swap(){
 }
 
 Screen::~Screen(){
-    for(auto h = this->poolScreen.begin();h != this->poolScreen.end();h++) {
-        CloseHandle(*h);
+    for (auto &h : this->poolScreen) {
+        CloseHandle(h);
     }
 }
 
-void Screen::writeString(std::string text, int x, int y,  int layer, Rect rect){
+void Screen::writeString(std::string str,
+                         double x,
+                         double y,
+                         ForColor forColor,
+                         BackColor backColor,
+                         int layer,
+                         Rect rect){
     if(rect.w == -1 && rect.h == -1){
         rect = this->rect;
     }
-    Rect drawRect = rect.intersect(x, y, text.length(), 1);
+    Rect drawRect = rect.intersect(x, y, str.length(), 1);
     if(drawRect.w < 0 || drawRect.h < 0){
         return;
     }
     for(int i = 0;i < drawRect.w;i++){
-        this->writeChar(text[i], drawRect.x + i, y, layer);
+        this->writeChar(str[i], drawRect.x + i, y, forColor, backColor, layer);
     }
 }
-void Screen::writeChar(char c, int x, int y, int layer){
-    int screenX = (x - this->rect.x);
-    int screenY = (y - this->rect.y);
+void Screen::writeChar(char c, double x, double y, Screen::ForColor forColor, Screen::BackColor backColor, int layer) {
+    int screenX = std::floor(x - this->rect.x);
+    int screenY = std::floor(y - this->rect.y);
     if(
             !this->rect.in(x, y) ||
             !this->depth.checkFront(screenX, screenY, layer)) {
         return;
     }
-    char cStr[2] = {c, '\0'};
     DWORD p;
-    WriteConsoleOutputCharacter(this->backScreen(), cStr, 1, {(SHORT)screenX, (SHORT)screenY}, &p);
+    WORD attribute = static_cast<int>(forColor) | static_cast<int>(backColor);
+    WriteConsoleOutputAttribute(this->backScreen(), &attribute, 1, {(SHORT)screenX, (SHORT)screenY}, &p);
+    WriteConsoleOutputCharacter(this->backScreen(), &c, 1, {(SHORT)screenX, (SHORT)screenY}, &p);
     this->depth.write(screenX, screenY, layer);
 }
 
@@ -103,4 +117,3 @@ void Screen::move(int x, int y){
     this->rect.x = x;
     this->rect.y = y;
 }
-

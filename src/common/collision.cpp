@@ -33,8 +33,9 @@ Rect intersect(const Rect& a, const Rect& b){
     return result;
 }
 Rect intersect(std::shared_ptr<Collider> a, std::shared_ptr<Collider> b){
-    return intersect(Rect(a->x(), a->y(), a->w, a->h),
-                     Rect(b->x(), b->y(), b->w, b->h));
+    //Ø‚èŽÌ‚Ä‚Ä‚¢‚é‚Ì‚Í•\Ž¦‚Æ‡‚í‚¹‚é‚½‚ß
+    return intersect(Rect(std::floor(a->x()), std::floor(a->y()), std::floor(a->w), std::floor(a->h)),
+                     Rect(std::floor(b->x()), std::floor(b->y()), std::floor(b->w), std::floor(b->h)));
 }
 
 void Collision::tick() {

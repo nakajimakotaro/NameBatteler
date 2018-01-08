@@ -6,7 +6,7 @@
 #define NAMEBATTLER_PLAYER_H
 
 
-#include "gameObject.h"
+#include "../common/gameObject.h"
 #include "../common/rect.h"
 #include "../common/stateMachine.h"
 #include "../common/collision.h"
@@ -20,7 +20,7 @@ private:
     Player();
     void init();
 public:
-    double speed = 1;
+    double speed = 0.5;
     std::shared_ptr<Block> collisionBlock;
     std::shared_ptr<Enemy> collisionEnemy;
     std::shared_ptr<StateMachine<Player>> state;

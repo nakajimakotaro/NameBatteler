@@ -3,6 +3,7 @@
 //
 
 #include "collider.h"
+#include "../core/game.h"
 
 Collider::Collider(double localX, double localY, double w, double h,
                    std::function<void(std::shared_ptr<Collider>, Rect)> collision):
