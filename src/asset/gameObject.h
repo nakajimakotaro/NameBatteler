@@ -7,8 +7,10 @@
 
 
 #include <memory>
+#include <algorithm>
+#include <vector>
 
-class GameObject {
+class GameObject: public std::enable_shared_from_this<GameObject>{
 public:
     enum class Type{
         PLAYER,
@@ -19,29 +21,22 @@ public:
         COLLIDER,
         ENEMY
     };
-
-    GameObject(std::weak_ptr<GameObject> parent, double localX, double localY):
-            parent(parent),
-            localX(localX),
-            localY(localY)
-    { };
+private:
     std::weak_ptr<GameObject> parent;
+    std::vector<std::weak_ptr<GameObject>> childList;
+public:
     double localX;
     double localY;
-    double x()const {
-        if(this->parent.use_count() != 0){
-            return this->parent.lock()->x() + this->localX;
-        }else{
-            return this->localX;
-        }
+protected:
+    GameObject(double localX, double localY);
+public:
+    std::weak_ptr<GameObject> getParent(){
+        return this->parent;
     }
-    double y() const{
-        if(this->parent.use_count() != 0){
-            return this->parent.lock()->y() + this->localY;
-        }else{
-            return this->localY;
-        }
-    }
+    double x() const;
+    double y() const;
+    void addChild(std::weak_ptr<GameObject> child);
+    void removeChild(std::weak_ptr<GameObject> child);
     virtual void start(){};
     virtual void update(){};
     virtual void draw(){};
@@ -49,6 +44,5 @@ public:
     virtual Type getType() = 0;
     virtual ~GameObject() = default;
 };
-
 
 #endif //NAMEBATTLER_GAMEOBJECT_H

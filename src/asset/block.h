@@ -10,7 +10,7 @@
 #include "../common/rect.h"
 #include "../common/collision.h"
 
-class Block: public GameObject, public std::enable_shared_from_this<Block>{
+class Block: public GameObject{
 public:
     Block();
     void update();

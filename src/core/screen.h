@@ -9,6 +9,10 @@
 #include <vector>
 #include "../common/rect.h"
 
+struct Layer{
+    int depth = 0;
+
+};
 class Depth {
 private:
     std::vector<int> depthLayer;

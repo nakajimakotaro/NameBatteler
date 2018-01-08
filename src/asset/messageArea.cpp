@@ -7,7 +7,7 @@
 
 
 MessageArea::MessageArea():
-        GameObject({}, 0, 0)
+        GameObject(0, 0)
 {
 }
 void MessageArea::message(const char* str){

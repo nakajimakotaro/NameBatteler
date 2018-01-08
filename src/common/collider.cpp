@@ -4,9 +4,9 @@
 
 #include "collider.h"
 
-Collider::Collider(std::weak_ptr<GameObject> parent, double localX, double localY, double w, double h,
+Collider::Collider(double localX, double localY, double w, double h,
                    std::function<void(std::shared_ptr<Collider>, Rect)> collision):
-        GameObject(parent, localX, localY),
+        GameObject(localX, localY),
         w(w),
         h(h),
         collision(collision)

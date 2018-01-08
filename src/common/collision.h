@@ -10,13 +10,6 @@
 #include <vector>
 #include "rect.h"
 #include "collider.h"
-
-class CollisionInterface {
-public:
-    virtual Rect getCollisionRect() = 0;
-    virtual void collision(std::shared_ptr<CollisionInterface> object, Rect rect){};
-    virtual ~CollisionInterface() = default;
-};
 class Collision {
 private:
     std::vector<std::shared_ptr<Collider>> collisionList;

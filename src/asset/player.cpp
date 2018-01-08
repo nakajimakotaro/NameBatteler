@@ -13,23 +13,25 @@
 
 
 std::shared_ptr<Player> Player::create() {
-    auto ptr = std::shared_ptr<Player>(new Player());
+    auto ptr = std::shared_ptr<Player>(
+            new Player()
+    );
     ptr->init();
     return ptr;
 }
 
 Player::Player():
-        GameObject({}, 40 ,46)
+        GameObject(40 ,46)
 {
 }
 void Player::init() {
-    this->state = StateMachine<Player>::create(shared_from_this(), PlayerRunState::name(), {
+    this->state = StateMachine<Player>::create(std::dynamic_pointer_cast<Player>(shared_from_this()), PlayerRunState::name(), {
             PlayerRunState::mapPair(),
             PlayerJumpState::mapPair(),
             PlayerFallState::mapPair(),
     });
-    this->collider = std::make_shared<Collider>(shared_from_this(), 0, 1, 1, 1, [this](auto obj, auto overarea){
-        std::shared_ptr<GameObject> gameObject = (obj->parent.lock());
+    auto collisionFunc = [this](auto obj, auto overarea){
+        std::shared_ptr<GameObject> gameObject = (obj->getParent().lock());
         switch (gameObject->getType()){
             case Type::PLAYER:break;
             case Type::CAMERA:break;
@@ -39,11 +41,14 @@ void Player::init() {
             case Type::MESSAGE_AREA:break;
             case Type::DEBUG_MESSAGE:break;
             case Type::COLLIDER:break;
-            case Type::ENEMY:break;
+            case Type::ENEMY:
                 this->collisionEnemy = std::dynamic_pointer_cast<Enemy>(gameObject);
+                break;
         }
-    });
-    Game::get()->scene->collision.addObjectRequire(this->collider);
+    };
+    auto collider = std::shared_ptr<Collider>(new Collider(0, 1, 1, 1, collisionFunc));
+    this->addChild(collider);
+    Game::get()->scene->collision.addObjectRequire(collider);
 }
 
 void Player::update() {

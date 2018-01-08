@@ -1,12 +1,12 @@
-#include "player.h"//
+//
 // Created by nakajimakotaro on 2017/12/30.
 //
 
 #ifndef NAMEBATTLER_PLAYERJUMPSTATE_H
 #define NAMEBATTLER_PLAYERJUMPSTATE_H
 
-
 #include "../common/state.h"
+#include "../common/stateMachine.h"
 
 class Player;
 class PlayerJumpState: public State<Player>{

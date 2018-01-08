@@ -13,15 +13,12 @@
 #include <memory>
 class Block;
 class Enemy;
-class Player final: public GameObject, public std::enable_shared_from_this<Player>{
+class Player final: public GameObject{
 public:
     static std::shared_ptr<Player> create();
 private:
     Player();
     void init();
-
-private:
-    std::shared_ptr<Collider> collider;
 public:
     double speed = 1;
     std::shared_ptr<Block> collisionBlock;
@@ -29,6 +26,7 @@ public:
     std::shared_ptr<StateMachine<Player>> state;
     void update() override;
     void draw() override;
+    std::shared_ptr<GameObject> s_this();
     GameObject::Type getType() override;
 };
 

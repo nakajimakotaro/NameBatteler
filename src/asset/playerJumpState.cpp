@@ -5,6 +5,7 @@
 #include "playerJumpState.h"
 
 #include <cmath>
+#include "player.h"
 #include "block.h"
 
 StateMapPair<Player> PlayerJumpState::mapPair() {
@@ -28,7 +29,7 @@ void PlayerJumpState::start() {
 }
 void PlayerJumpState::update() {
     this->body()->localX -= this->body()->speed;
-    double risingY = cos(this->countFrame / 30.0 * M_PI) * 2;
+    double risingY = cos(this->countFrame / 30.0 * M_PI);
     if(risingY < 0.1){
         this->machine.lock()->changeRequire("fall");
     }

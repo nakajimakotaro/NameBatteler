@@ -6,8 +6,7 @@
 #include "../core/game.h"
 
 DebugMessage::DebugMessage():
-GameObject({}, 0, 0)
-
+GameObject(0, 0)
 {
 
 }

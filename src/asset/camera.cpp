@@ -9,7 +9,7 @@
 #include "player.h"
 
 Camera::Camera():
-GameObject({}, 0 ,0)
+GameObject(0 ,0)
 {
 }
 

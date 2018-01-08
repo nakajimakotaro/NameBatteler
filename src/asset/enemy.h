@@ -8,7 +8,7 @@
 
 
 #include "gameObject.h"
-class Enemy: public GameObject, public std::enable_shared_from_this<Enemy>{
+class Enemy: public GameObject{
 public:
     Enemy();
     void start() override;
