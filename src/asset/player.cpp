@@ -22,7 +22,8 @@ std::shared_ptr<Player> Player::create() {
 }
 
 Player::Player():
-        GameObject(40 ,46)
+        GameObject(40 ,37),
+        range(3)
 {
 }
 void Player::init() {
@@ -47,7 +48,7 @@ void Player::init() {
                 break;
         }
     };
-    auto collider = std::shared_ptr<Collider>(new Collider(0, 1, 1, 1, collisionFunc));
+    auto collider = std::shared_ptr<Collider>(new Collider(-3, 3, 6, 1, collisionFunc));
     this->addChild(collider);
     Game::get()->scene->collision.addObjectRequire(collider);
 }
@@ -59,9 +60,30 @@ void Player::update() {
 }
 
 void Player::draw() {
-    Game::get()->screen.writeChar('p', this->x(), this->y());
+    this->state->draw();
+
+    const double num = 6;
+    const double loopTime = 60;
+    for(int i = 0;i < num;i++){
+        double x, y;
+        double garbage;
+        const double percent = modf(this->countFrame() / (double)loopTime + i / (double)num, &garbage);
+        x = std::cos(-1 * percent * M_PI * 2) * range * 2;
+        y = std::sin(-1 * percent * M_PI * 2) * range    ;
+        x += this->x();
+        y += this->y();
+        Game::get()->screen.writeChar(' ', x, y, Screen::ForColor::CYAN, Screen::BackColor::CYAN);
+    }
+    Game::get()->screen.writeChar('*', this->x(), this->y(), Screen::ForColor::MAGENTA);
 }
 
 GameObject::Type Player::getType() {
     return GameObject::Type::PLAYER;
+}
+
+double Player::bottomX() {
+    return this->x();
+}
+double Player::bottomY() {
+    return this->y() + this->range - 1;
 }

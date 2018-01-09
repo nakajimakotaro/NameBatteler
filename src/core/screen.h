@@ -31,8 +31,8 @@ public:
         BLUE = FOREGROUND_BLUE,
         GREEN = FOREGROUND_GREEN,
         CYAN = BLUE | GREEN,
-        MAGENTA = RED | GREEN,
-        YELLOW = RED | BLUE,
+        MAGENTA = RED | BLUE,
+        YELLOW = RED | GREEN,
         WHILE = RED | GREEN | BLUE,
         BLACK = 0,
     };
@@ -41,8 +41,8 @@ public:
         BLUE = BACKGROUND_BLUE,
         GREEN = BACKGROUND_GREEN,
         CYAN = BLUE | GREEN,
-        MAGENTA = RED | GREEN,
-        YELLOW = RED | BLUE,
+        MAGENTA = RED | BLUE,
+        YELLOW = RED | GREEN,
         WHILE = RED | GREEN | BLUE,
         BLACK = 0,
     };

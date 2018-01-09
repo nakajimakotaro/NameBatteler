@@ -6,6 +6,7 @@
 #include "playerRunState.h"
 #include "../scene/inputManager.h"
 #include "../core/game.h"
+#include "moveParticle.h"
 
 #include <utility>
 
@@ -25,6 +26,10 @@ PlayerRunState::PlayerRunState(std::weak_ptr<StateMachine<Player>> machine):
 {
 }
 
+
+void PlayerRunState::start() {
+}
+
 void PlayerRunState::update() {
     this->machine.lock()->body.lock()->localX -= this->machine.lock()->body.lock()->speed;
 
@@ -33,6 +38,23 @@ void PlayerRunState::update() {
     }
 
     this->countFrame++;
+}
+void PlayerRunState::draw() {
+    double x, y;
+    const int num = 3;
+    const int loopTime = 20;
+    const int range = 6;
+    for(int i = 0;i < num;i++){
+        double garbage;
+        const double percent = modf(this->countFrame / (double)loopTime + i / (double)num, &garbage);
+        x = std::cos(percent * M_PI) * range;
+        y = 1;
+        x += this->body()->bottomX();
+        y += this->body()->bottomY();
+        Game::get()->screen.writeChar('-', x, y, Screen::ForColor::WHILE, Screen::BackColor::YELLOW, 10);
+    }
+}
+void PlayerRunState::end() {
 }
 
 

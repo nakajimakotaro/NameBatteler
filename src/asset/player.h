@@ -21,6 +21,9 @@ private:
     void init();
 public:
     double speed = 0.5;
+    double bottomX();
+    double bottomY();
+    int range;
     std::shared_ptr<Block> collisionBlock;
     std::shared_ptr<Enemy> collisionEnemy;
     std::shared_ptr<StateMachine<Player>> state;

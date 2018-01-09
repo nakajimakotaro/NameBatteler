@@ -10,7 +10,7 @@
 #include "../common/gameObject.h"
 class Enemy: public GameObject{
 public:
-    Enemy();
+    Enemy(double x, double y);
     void start() override;
     void update() override;
     void draw() override;

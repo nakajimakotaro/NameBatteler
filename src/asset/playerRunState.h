@@ -18,7 +18,10 @@ public:
     static StateMapPair<Player> mapPair();
     std::shared_ptr<Player> body();
     explicit PlayerRunState(std::weak_ptr<StateMachine<Player>> machine);
+    void start() override;
     void update() override;
+    void draw() override;
+    void end() override;
     int countFrame;
 };
 

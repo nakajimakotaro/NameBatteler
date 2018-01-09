@@ -33,6 +33,7 @@ public:
     }
     void changeRequire(std::string name);
     void update();
+    void draw();
 };
 
 template<typename T>
@@ -58,6 +59,10 @@ void StateMachine<T>::update() {
         this->nextState.clear();
     }
     this->state->update();
+}
+template<typename T>
+void StateMachine<T>::draw() {
+    this->state->draw();
 }
 
 #endif //NAMEBATTLER_STATEMACHINE_H

@@ -28,7 +28,7 @@ void PlayerFallState::start() {
 void PlayerFallState::update() {
     this->body()->localX -= this->body()->speed;
     if(this->countFrame > 1 && this->body()->collisionBlock){
-        this->body()->localY = this->body()->collisionBlock->y() - 1;
+        this->body()->localY = this->body()->collisionBlock->y() - this->body()->range;
         this->machine.lock()->changeRequire("run");
         return;
     }

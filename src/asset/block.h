@@ -11,14 +11,18 @@
 #include "../common/collision.h"
 
 class Block: public GameObject{
+private:
+    std::shared_ptr<Collider> collider;
+    double w, h;
 public:
-    Block();
+    Block(double x, double y, double w, double h);
     void update();
     void start() override;
     void draw() override;
     Type getType() override {
         return GameObject::Type::BLOCK;
     }
+    ~Block();
 };
 
 

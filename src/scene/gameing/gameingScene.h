@@ -8,16 +8,17 @@
 
 #include <vector>
 #include <memory>
+#include <algorithm>
 #include "../scene.h"
 #include "../../common/gameObject.h"
 #include "gameingInputManager.h"
 #include "../../common/collision.h"
-#include <algorithm>
-#include <unordered_map>
 
 class GameingScene final: public Scene{
 private:
-    std::vector<std::shared_ptr<GameObject>> addQueueList;
+    std::vector<std::shared_ptr<GameObject>> addQueueList{};
+    std::vector<std::shared_ptr<GameObject>> removeQueueList{};
+    void queueUpdate();
     bool isPause = false;
 public:
     GameingInputManager inputManager;
@@ -30,6 +31,7 @@ public:
     void draw() override;
     void endScene() override;
     std::shared_ptr<GameObject> addObject(std::shared_ptr<GameObject> obj);
+    std::shared_ptr<GameObject> removeObject(std::shared_ptr<GameObject> obj);
     void reset();
     template <typename T> std::shared_ptr<T> getObject(GameObject::Type type);
     template <typename T> std::vector<std::shared_ptr<T>> getObjectAll(GameObject::Type type);

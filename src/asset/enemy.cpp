@@ -5,8 +5,8 @@
 #include "enemy.h"
 #include "../core/game.h"
 
-Enemy::Enemy():
-        GameObject(10 ,41)
+Enemy::Enemy(double x, double y):
+        GameObject(x, y)
 {
     isCollision = false;
 }

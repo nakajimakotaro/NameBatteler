@@ -23,6 +23,6 @@ add_executable(nameBattler
         src/scene/inputManager.cpp
         src/scene/gameing/gameingScene.cpp
         src/scene/gameing/gameingInputManager.cpp
-        src/asset/camera.cpp src/asset/camera.h src/asset/block.cpp src/asset/block.h src/asset/debugMessage.cpp src/asset/debugMessage.h src/common/collision.cpp src/common/collision.h src/common/collider.cpp src/common/collider.h src/asset/playerFallState.cpp src/asset/playerFallState.h src/asset/enemy.cpp src/asset/enemy.h src/asset/playerDamageState.cpp src/asset/playerDamageState.h src/asset/container.cpp src/asset/container.h src/common/gameObject.cpp src/asset/particle.cpp src/asset/particle.h)
+        src/asset/camera.cpp src/asset/camera.h src/asset/block.cpp src/asset/block.h src/asset/debugMessage.cpp src/asset/debugMessage.h src/common/collision.cpp src/common/collision.h src/common/collider.cpp src/common/collider.h src/asset/playerFallState.cpp src/asset/playerFallState.h src/asset/enemy.cpp src/asset/enemy.h src/asset/playerDamageState.cpp src/asset/playerDamageState.h src/asset/container.cpp src/asset/container.h src/common/gameObject.cpp src/asset/particle.cpp src/asset/particle.h src/asset/moveParticle.cpp src/asset/moveParticle.h)
 target_link_libraries(nameBattler winmm)
 

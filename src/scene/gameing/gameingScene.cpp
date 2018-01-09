@@ -10,7 +10,6 @@
 #include "../../asset/block.h"
 #include "../../asset/debugMessage.h"
 #include "../../core/game.h"
-#include "../../asset/particle.h"
 
 GameingScene::GameingScene()
 {
@@ -20,37 +19,44 @@ void GameingScene::startScene() {
     this->addObject(std::make_shared<DebugMessage>());
     this->addObject(std::make_shared<Camera>());
     this->addObject(Player::create());
-    for(int i = -100;i < 50;i++){
-        auto block = this->addObject(std::make_shared<Block>());
-        block->localX = i;
-        block->localY = 47;
+    this->addObject(std::make_shared<Block>(-40, -1, 100, 31));
+    this->addObject(std::make_shared<Block>(-50, 40, 100, 30));
+    this->addObject(std::make_shared<Block>(-150, 30, 90, 30));
+    this->addObject(std::make_shared<Block>(-300, 30, 130, 31));
+    this->addObject(std::make_shared<Block>(-300, 30, 130, 31));
+    this->addObject(std::make_shared<Enemy>(-30, 37));
+    this->addObject(std::make_shared<Enemy>(-120, 17));
+}
+
+void GameingScene::queueUpdate(){
+    auto removeQueueList = this->removeQueueList;
+    this->removeQueueList.clear();
+    //removeQueueのオブジェクトを削除
+    for(auto& removeObject: removeQueueList) {
+        removeObject->end();
     }
-    for(int i = -200;i < -100;i++){
-        auto block = this->addObject(std::make_shared<Block>());
-        block->localX = i;
-        block->localY = 30;
+    for(auto& removeObject: removeQueueList){
+        auto index = std::distance(this->objectList.begin(), std::find(this->objectList.begin(), this->objectList.end(), removeObject));
+        this->objectList[index] = *(this->objectList.end() - 1);
+        this->objectList.pop_back();
     }
-    auto enemy1 = this->addObject(std::make_shared<Enemy>());
-    enemy1->localX = -60;
-    enemy1->localY = 37;
-    auto enemy2 = this->addObject(std::make_shared<Enemy>());
-    enemy2->localX = -150;
-    enemy2->localY = 17;
+
+    auto addQueueList = this->addQueueList;
+    this->addQueueList.clear();
+    //addQueueのオブジェクトを追加
+    for(const auto &obj: addQueueList){
+        this->objectList.push_back(obj);
+    }
+    for(const auto &obj: addQueueList){
+        obj->start();
+    }
 }
 
 void GameingScene::update() {
-    if(!this->addQueueList.empty()){
-        for(const auto &obj: this->addQueueList){
-            this->objectList.push_back(obj);
-        }
-        for(const auto &obj: this->addQueueList){
-            obj->start();
-        }
-        this->addQueueList.clear();
-    }
     this->inputManager.update();
 
     if(!this->isPause){
+        this->queueUpdate();
         this->collision.tick();
         for(const auto &object: this->objectList){
             object->update();
@@ -79,10 +85,16 @@ std::shared_ptr<GameObject> GameingScene::addObject(std::shared_ptr<GameObject> 
     return obj;
 }
 
+std::shared_ptr<GameObject> GameingScene::removeObject(std::shared_ptr<GameObject> obj) {
+    this->removeQueueList.push_back(obj);
+    return obj;
+}
+
 
 void GameingScene::reset() {
     this->objectList.clear();
     this->addQueueList.clear();
+    this->removeQueueList.clear();
     this->collision = Collision();
     this->startScene();
 }

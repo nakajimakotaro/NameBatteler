@@ -21,7 +21,8 @@ public:
         COLLIDER,
         ENEMY,
         Layer,
-        Particle
+        Particle,
+        MoveParticle
     };
 private:
     std::weak_ptr<GameObject> parent;
