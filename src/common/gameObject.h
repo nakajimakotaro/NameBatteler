@@ -26,6 +26,7 @@ public:
 private:
     std::weak_ptr<GameObject> parent;
     std::vector<std::weak_ptr<GameObject>> childList;
+    int startFrame;
 public:
     double localX;
     double localY;
@@ -41,6 +42,7 @@ public:
     double y() const;
     void addChild(std::weak_ptr<GameObject> child);
     void removeChild(std::weak_ptr<GameObject> child);
+    int countFrame();
     virtual void start(){};
     virtual void update(){};
     virtual void postUpdate(){};

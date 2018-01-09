@@ -34,6 +34,7 @@ void FPS::wait() {
     if(this->intervalLast >= this->realIntervalList.size()){
         this->intervalLast = 0;
     }
+    this->countFrame++;
 }
 
 int FPS::fps() {
@@ -42,5 +43,9 @@ int FPS::fps() {
         return 0;
     }
     return static_cast<int>(round(1000 / average));
+}
+
+int FPS::getCountFrame() {
+    return this->countFrame;
 }
 

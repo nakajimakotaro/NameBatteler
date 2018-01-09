@@ -3,6 +3,15 @@
 //
 
 #include "gameObject.h"
+#include "../core/game.h"
+
+GameObject::GameObject(double localX, double localY):
+        localX(localX),
+        localY(localY),
+        startFrame(Game::get()->fps.getCountFrame())
+{
+}
+
 
 double GameObject::x() const {
     if(this->parent.use_count() != 0){
@@ -33,10 +42,7 @@ void GameObject::removeChild(std::weak_ptr<GameObject> child) {
     this->childList.pop_back();
 }
 
-GameObject::GameObject(double localX, double localY):
-    localX(localX),
-    localY(localY)
-{
+int GameObject::countFrame() {
+    return Game::get()->fps.getCountFrame() - this->startFrame;
 }
-
 

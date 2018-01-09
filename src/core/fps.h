@@ -9,14 +9,17 @@
 #include <vector>
 
 class FPS {
-public:
-    explicit FPS(int fps);
+private:
     double interval;
     int startFrameTime = 0;
     std::vector<int> realIntervalList;
     int intervalLast = 0;
+    int countFrame = 0;
+public:
+    explicit FPS(int fps);
     void wait();
     int fps();
+    int getCountFrame();
 };
 
 
