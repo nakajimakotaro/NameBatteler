@@ -55,6 +55,9 @@ void Player::init() {
 
 void Player::update() {
     this->state->update();
+    if(this->bottomY() > 50) {
+        Game::get()->scene->reset();
+    }
     this->collisionBlock.reset();
     Game::get()->scene->getObject<Camera>(GameObject::Type::CAMERA)->set();
 }

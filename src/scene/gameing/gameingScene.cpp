@@ -54,7 +54,6 @@ void GameingScene::queueUpdate(){
 
 void GameingScene::update() {
     this->inputManager.update();
-
     if(!this->isPause){
         this->queueUpdate();
         this->collision.tick();
@@ -64,6 +63,16 @@ void GameingScene::update() {
         for(const auto &object: this->objectList){
             object->postUpdate();
         }
+    }
+
+
+    if(this->resetRequire){
+        this->resetRequire = false;
+        this->objectList.clear();
+        this->addQueueList.clear();
+        this->removeQueueList.clear();
+        this->collision = Collision();
+        this->startScene();
     }
 }
 
@@ -80,6 +89,10 @@ void GameingScene::pause(){
     this->isPause = !this->isPause;
 }
 
+void GameingScene::reset() {
+    this->resetRequire = true;
+}
+
 std::shared_ptr<GameObject> GameingScene::addObject(std::shared_ptr<GameObject> obj){
     this->addQueueList.push_back(obj);
     return obj;
@@ -90,11 +103,3 @@ std::shared_ptr<GameObject> GameingScene::removeObject(std::shared_ptr<GameObjec
     return obj;
 }
 
-
-void GameingScene::reset() {
-    this->objectList.clear();
-    this->addQueueList.clear();
-    this->removeQueueList.clear();
-    this->collision = Collision();
-    this->startScene();
-}

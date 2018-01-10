@@ -36,6 +36,9 @@ void PlayerRunState::update() {
     if(Game::get()->scene->inputManager.isPush(InputManager::LIST::KEY_SPACE)) {
         this->machine.lock()->changeRequire("jump");
     }
+    if(!this->body()->collisionBlock){
+        this->machine.lock()->changeRequire("fall");
+    }
 
     this->countFrame++;
 }

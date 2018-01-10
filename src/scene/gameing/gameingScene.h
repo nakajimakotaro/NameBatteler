@@ -20,6 +20,7 @@ private:
     std::vector<std::shared_ptr<GameObject>> removeQueueList{};
     void queueUpdate();
     bool isPause = false;
+    bool resetRequire = false;
 public:
     GameingInputManager inputManager;
 public:
@@ -32,11 +33,11 @@ public:
     void endScene() override;
     std::shared_ptr<GameObject> addObject(std::shared_ptr<GameObject> obj);
     std::shared_ptr<GameObject> removeObject(std::shared_ptr<GameObject> obj);
-    void reset();
     template <typename T> std::shared_ptr<T> getObject(GameObject::Type type);
     template <typename T> std::vector<std::shared_ptr<T>> getObjectAll(GameObject::Type type);
 
     void pause();
+    void reset();
 };
 
 template <typename T>
