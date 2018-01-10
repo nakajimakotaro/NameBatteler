@@ -20,7 +20,7 @@ private:
     Player();
     void init();
 public:
-    double speed = 0.5;
+    double speed = 1;
     double bottomX();
     double bottomY();
     int range;

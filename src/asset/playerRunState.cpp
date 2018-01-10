@@ -42,7 +42,7 @@ void PlayerRunState::update() {
 void PlayerRunState::draw() {
     double x, y;
     const int num = 3;
-    const int loopTime = 20;
+    const int loopTime = 10;
     const int range = 6;
     for(int i = 0;i < num;i++){
         double garbage;

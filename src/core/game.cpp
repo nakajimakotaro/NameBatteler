@@ -14,7 +14,7 @@ std::unique_ptr<Game>& Game::get(){
     return Game::instance;
 }
 Game::Game():
-        fps(60)
+        fps(30)
 {
     this->nextScene = std::make_shared<GameingScene>();
 }
