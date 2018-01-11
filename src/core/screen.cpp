@@ -38,6 +38,11 @@ Screen::Screen():
         SMALL_RECT winRect{0, 0, Screen::WIDTH - 1, Screen::HEIGHT - 1};
         SetConsoleWindowInfo(handle, TRUE, &winRect);
 
+        CONSOLE_FONT_INFOEX fontInfo;
+        GetCurrentConsoleFontEx(handle, TRUE, &fontInfo);
+        fontInfo.dwFontSize.X = 18;
+        SetCurrentConsoleFontEx(handle, TRUE, &fontInfo);
+
         this->poolScreen.push_back(handle);
     }
     this->swap(); //Å‰‚Ì‰æ–Ê‚Í‰Šú‰»‚³‚ê‚Ä‚¢‚È‚¢‚Ì‚Åˆê“xswap‚µ‚Ä‚¨‚­

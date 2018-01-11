@@ -8,6 +8,7 @@
 #include "../../asset/player.h"
 
 void GameingInputManager::update() {
+    InputManager::update();
     if(this->isPush(InputManager::LIST::KEY_ESCAPE)) {
         Game::get()->exitRequire();
     }

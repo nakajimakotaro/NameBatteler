@@ -30,8 +30,8 @@ public:
     void update() override;
     void draw() override;
     void endScene() override;
-    std::shared_ptr<GameObject> addObject(std::shared_ptr<GameObject> obj);
-    std::shared_ptr<GameObject> removeObject(std::shared_ptr<GameObject> obj);
+    std::shared_ptr<GameObject> addObject(std::weak_ptr<GameObject> obj);
+    std::shared_ptr<GameObject> removeObject(std::weak_ptr<GameObject> obj);
     void reset();
     template <typename T> std::shared_ptr<T> getObject(GameObject::Type type);
     template <typename T> std::vector<std::shared_ptr<T>> getObjectAll(GameObject::Type type);

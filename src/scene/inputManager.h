@@ -88,6 +88,7 @@ public:
         KEY_Y = 0x59,
         KEY_Z = 0x5A,
     };
+public:
     virtual ~InputManager() = default;
     bool isPush(LIST key);
     virtual void update();

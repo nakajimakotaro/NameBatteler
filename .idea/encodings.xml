@@ -3,5 +3,6 @@
   <component name="Encoding">
     <file url="file://$PROJECT_DIR$/src/core/screen.cpp" charset="Shift_JIS" />
     <file url="file://$PROJECT_DIR$/src/main.cpp" charset="Shift_JIS" />
+    <file url="file://$PROJECT_DIR$/src/scene/gameing/gameingScene.cpp" charset="Shift_JIS" />
   </component>
 </project>

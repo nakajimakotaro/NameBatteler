@@ -22,7 +22,9 @@ public:
         ENEMY,
         Layer,
         Particle,
-        MoveParticle
+        MoveParticle,
+        DotBullet,
+        WhipBullet
     };
 private:
     std::weak_ptr<GameObject> parent;

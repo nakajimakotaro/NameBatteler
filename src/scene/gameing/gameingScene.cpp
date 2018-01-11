@@ -80,14 +80,14 @@ void GameingScene::pause(){
     this->isPause = !this->isPause;
 }
 
-std::shared_ptr<GameObject> GameingScene::addObject(std::shared_ptr<GameObject> obj){
-    this->addQueueList.push_back(obj);
-    return obj;
+std::shared_ptr<GameObject> GameingScene::addObject(std::weak_ptr<GameObject> obj){
+    this->addQueueList.push_back(obj.lock());
+    return obj.lock();
 }
 
-std::shared_ptr<GameObject> GameingScene::removeObject(std::shared_ptr<GameObject> obj) {
-    this->removeQueueList.push_back(obj);
-    return obj;
+std::shared_ptr<GameObject> GameingScene::removeObject(std::weak_ptr<GameObject> obj) {
+    this->removeQueueList.push_back(obj.lock());
+    return obj.lock();
 }
 
 

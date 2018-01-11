@@ -16,11 +16,12 @@ class Enemy;
 class Player final: public GameObject{
 public:
     static std::shared_ptr<Player> create();
+    bool isReleaseKeyF = true;
 private:
     Player();
     void init();
 public:
-    double speed = 0.5;
+    double speed = 1;
     double bottomX();
     double bottomY();
     int range;
@@ -31,6 +32,8 @@ public:
     void draw() override;
     std::shared_ptr<GameObject> s_this();
     GameObject::Type getType() override;
+
+    void shot();
 };
 
 

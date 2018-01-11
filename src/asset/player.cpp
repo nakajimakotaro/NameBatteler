@@ -11,6 +11,7 @@
 #include "playerFallState.h"
 #include "enemy.h"
 #include "camera.h"
+#include "whipBullet.h"
 
 
 std::shared_ptr<Player> Player::create() {
@@ -46,6 +47,9 @@ void Player::init() {
             case Type::ENEMY:
                 this->collisionEnemy = std::dynamic_pointer_cast<Enemy>(gameObject);
                 break;
+            case Type::Layer:break;
+            case Type::Particle:break;
+            case Type::MoveParticle:break;
         }
     };
     auto collider = std::shared_ptr<Collider>(new Collider(-3, 3, 6, 1, collisionFunc));
@@ -53,7 +57,19 @@ void Player::init() {
     Game::get()->scene->collision.addObjectRequire(collider);
 }
 
+void Player::shot(){
+    auto bullet = std::shared_ptr<WhipBullet>(new WhipBullet(0, 0, this->getType()));
+    Game::get()->scene->addObject(bullet);
+    this->addChild(bullet);
+}
 void Player::update() {
+    if(this->isReleaseKeyF && Game::get()->scene->inputManager.isPush(InputManager::LIST::KEY_F)){
+        this->isReleaseKeyF = false;
+        this->shot();
+    }
+    if(!Game::get()->scene->inputManager.isPush(InputManager::LIST::KEY_F)){
+        this->isReleaseKeyF = true;
+    }
     this->state->update();
     this->collisionBlock.reset();
     Game::get()->scene->getObject<Camera>(GameObject::Type::CAMERA)->set();
@@ -63,7 +79,7 @@ void Player::draw() {
     this->state->draw();
 
     const double num = 6;
-    const double loopTime = 60;
+    const double loopTime = 30;
     for(int i = 0;i < num;i++){
         double x, y;
         double garbage;
