@@ -7,8 +7,11 @@
 #include "../scene/inputManager.h"
 #include "../core/game.h"
 #include "moveParticle.h"
+#include "../scene/gameing/gameingInputManager.h"
+#include "../scene/gameing/gameingScene.h"
 
 #include <utility>
+
 
 StateMapPair<Player> PlayerRunState::mapPair() {
     return std::make_pair(
@@ -33,7 +36,7 @@ void PlayerRunState::start() {
 void PlayerRunState::update() {
     this->machine.lock()->body.lock()->localX -= this->machine.lock()->body.lock()->speed;
 
-    if(Game::get()->scene->inputManager.isPush(InputManager::LIST::KEY_SPACE)) {
+    if(this->body()->scene.lock()->inputManager->isPush(InputManager::LIST::KEY_SPACE)) {
         this->machine.lock()->changeRequire("jump");
     }
     if(!this->body()->collisionBlock){
@@ -59,5 +62,3 @@ void PlayerRunState::draw() {
 }
 void PlayerRunState::end() {
 }
-
-

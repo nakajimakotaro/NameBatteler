@@ -10,7 +10,7 @@
 #include "../common/gameObject.h"
 class Enemy: public GameObject{
 public:
-    Enemy(double x, double y);
+    Enemy(std::weak_ptr<GameingScene> scene, double x, double y);
     void start() override;
     void update() override;
     void draw() override;

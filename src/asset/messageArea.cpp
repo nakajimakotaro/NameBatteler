@@ -6,8 +6,8 @@
 #include "../core/game.h"
 
 
-MessageArea::MessageArea():
-        GameObject(0, 0)
+MessageArea::MessageArea(std::weak_ptr<GameingScene> scene):
+        GameObject(scene, 0, 0)
 {
 }
 void MessageArea::message(const char* str){

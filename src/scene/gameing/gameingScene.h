@@ -11,28 +11,28 @@
 #include <algorithm>
 #include "../scene.h"
 #include "../../common/gameObject.h"
-#include "gameingInputManager.h"
 #include "../../common/collision.h"
 
-class GameingScene final: public Scene{
+class GameingInputManager;
+class GameingScene final: public Scene, public std::enable_shared_from_this<GameingScene>{
 private:
     std::vector<std::shared_ptr<GameObject>> addQueueList{};
     std::vector<std::shared_ptr<GameObject>> removeQueueList{};
     void queueUpdate();
     bool isPause = false;
     bool resetRequire = false;
+    std::vector<std::shared_ptr<GameObject>> objectList;
 public:
-    GameingInputManager inputManager;
+    std::unique_ptr<GameingInputManager> inputManager;
+    Collision collision;
 public:
     GameingScene();
-    std::vector<std::shared_ptr<GameObject>> objectList;
-    Collision collision;
     void startScene() override;
     void update() override;
     void draw() override;
     void endScene() override;
-    std::shared_ptr<GameObject> addObject(std::shared_ptr<GameObject> obj);
-    std::shared_ptr<GameObject> removeObject(std::shared_ptr<GameObject> obj);
+    std::shared_ptr<GameObject> addObject(std::weak_ptr<GameObject> obj);
+    std::shared_ptr<GameObject> removeObject(std::weak_ptr<GameObject> obj);
     template <typename T> std::shared_ptr<T> getObject(GameObject::Type type);
     template <typename T> std::vector<std::shared_ptr<T>> getObjectAll(GameObject::Type type);
 

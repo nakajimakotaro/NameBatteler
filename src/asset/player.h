@@ -15,9 +15,10 @@ class Block;
 class Enemy;
 class Player final: public GameObject{
 public:
-    static std::shared_ptr<Player> create();
+    static std::shared_ptr<Player> create(std::weak_ptr<GameingScene> scene);
+    bool isReleaseKeyF = true;
 private:
-    Player();
+    Player(std::weak_ptr<GameingScene> scene);
     void init();
 public:
     double speed = 1;
@@ -29,8 +30,9 @@ public:
     std::shared_ptr<StateMachine<Player>> state;
     void update() override;
     void draw() override;
-    std::shared_ptr<GameObject> s_this();
     GameObject::Type getType() override;
+
+    void shot();
 };
 
 

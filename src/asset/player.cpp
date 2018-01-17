@@ -11,18 +11,23 @@
 #include "playerFallState.h"
 #include "enemy.h"
 #include "camera.h"
+#include "whipBullet.h"
+#include "arrowBullet.h"
+#include "../scene/inputManager.h"
+#include "../scene/gameing/gameingInputManager.h"
+#include "../scene/gameing/gameingScene.h"
 
 
-std::shared_ptr<Player> Player::create() {
+std::shared_ptr<Player> Player::create(std::weak_ptr<GameingScene> scene) {
     auto ptr = std::shared_ptr<Player>(
-            new Player()
+            new Player(scene)
     );
     ptr->init();
     return ptr;
 }
 
-Player::Player():
-        GameObject(40 ,37),
+Player::Player(std::weak_ptr<GameingScene> scene):
+        GameObject(scene, 40 ,37),
         range(3)
 {
 }
@@ -46,27 +51,41 @@ void Player::init() {
             case Type::ENEMY:
                 this->collisionEnemy = std::dynamic_pointer_cast<Enemy>(gameObject);
                 break;
+            case Type::Layer:break;
+            case Type::Particle:break;
+            case Type::MoveParticle:break;
         }
     };
-    auto collider = std::shared_ptr<Collider>(new Collider(-3, 3, 6, 1, collisionFunc));
+    auto collider = std::shared_ptr<Collider>(new Collider(this->scene, -3, 3, 6, 1, collisionFunc));
     this->addChild(collider);
-    Game::get()->scene->collision.addObjectRequire(collider);
+    this->scene.lock()->collision.addObjectRequire(collider);
 }
 
+void Player::shot(){
+    auto bullet = std::make_shared<ArrowBullet>(this->scene, this->x(), this->y(), this->getType());
+    this->scene.lock()->addObject(bullet);
+}
 void Player::update() {
+    if(this->isReleaseKeyF && this->scene.lock()->inputManager->isPush(InputManager::LIST::KEY_F)){
+        this->isReleaseKeyF = false;
+        this->shot();
+    }
+    if(!this->scene.lock()->inputManager->isPush(InputManager::LIST::KEY_F)){
+        this->isReleaseKeyF = true;
+    }
     this->state->update();
     if(this->bottomY() > 50) {
-        Game::get()->scene->reset();
+        this->scene.lock()->reset();
     }
     this->collisionBlock.reset();
-    Game::get()->scene->getObject<Camera>(GameObject::Type::CAMERA)->set();
+    this->scene.lock()->getObject<Camera>(GameObject::Type::CAMERA)->set();
 }
 
 void Player::draw() {
     this->state->draw();
 
     const double num = 6;
-    const double loopTime = 60;
+    const double loopTime = 30;
     for(int i = 0;i < num;i++){
         double x, y;
         double garbage;

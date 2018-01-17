@@ -5,10 +5,11 @@
 #include "block.h"
 #include "../core/game.h"
 #include "debugMessage.h"
+#include "../scene/gameing/gameingScene.h"
 
 
-Block::Block(double x, double y, double w, double h):
-        GameObject(x ,y),
+Block::Block(std::weak_ptr<GameingScene> scene, double x, double y, double w, double h):
+        GameObject(scene, x ,y),
         w(w),
         h(h)
 {
@@ -16,10 +17,10 @@ Block::Block(double x, double y, double w, double h):
 
 
 void Block::start(){
-    this->collider = std::shared_ptr<Collider>(new Collider(0, 0, w, h, [](auto obj, auto overarea){}));
+    this->collider = std::shared_ptr<Collider>(new Collider(this->scene, 0, 0, w, h, [](auto obj, auto overarea){}));
     this->addChild(this->collider);
-    Game::get()->scene->addObject(this->collider);
-    Game::get()->scene->collision.addObjectRequire(this->collider);
+    this->scene.lock()->addObject(this->collider);
+    this->scene.lock()->collision.addObjectRequire(this->collider);
 }
 void Block::update() {
 }
@@ -34,8 +35,7 @@ void Block::draw() {
     }
 }
 
-Block::~Block() {
-    Game::get()->scene->removeObject(this->collider);
-    Game::get()->scene->collision.removeObjectRequire(this->collider);
+void Block::end() {
+    this->scene.lock()->removeObject(this->collider);
+    this->scene.lock()->collision.removeObjectRequire(this->collider);
 }
-

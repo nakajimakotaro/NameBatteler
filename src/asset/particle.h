@@ -12,7 +12,7 @@ class Particle: public GameObject{
 public:
     int countFrame;
 public:
-    Particle(double x, double y);
+    Particle(std::weak_ptr<GameingScene> scene, double x, double y);
     void update() override;
     void draw() override;
     Type getType() override {

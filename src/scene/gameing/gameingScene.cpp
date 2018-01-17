@@ -10,22 +10,25 @@
 #include "../../asset/block.h"
 #include "../../asset/debugMessage.h"
 #include "../../core/game.h"
+#include "gameingInputManager.h"
 
 GameingScene::GameingScene()
 {
 }
 
 void GameingScene::startScene() {
-    this->addObject(std::make_shared<DebugMessage>());
-    this->addObject(std::make_shared<Camera>());
-    this->addObject(Player::create());
-    this->addObject(std::make_shared<Block>(-40, -1, 100, 31));
-    this->addObject(std::make_shared<Block>(-50, 40, 100, 30));
-    this->addObject(std::make_shared<Block>(-150, 30, 90, 30));
-    this->addObject(std::make_shared<Block>(-300, 30, 130, 31));
-    this->addObject(std::make_shared<Block>(-300, 30, 130, 31));
-    this->addObject(std::make_shared<Enemy>(-30, 37));
-    this->addObject(std::make_shared<Enemy>(-120, 17));
+    auto res = shared_from_this();
+    this->inputManager = std::unique_ptr<GameingInputManager>(new GameingInputManager(shared_from_this()));
+    this->addObject(std::make_shared<DebugMessage>(shared_from_this()));
+    this->addObject(std::make_shared<Camera>(shared_from_this()));
+    this->addObject(Player::create(shared_from_this()));
+    this->addObject(std::shared_ptr<Block>(new Block(shared_from_this(), -40, -1, 100, 31)));
+    this->addObject(std::shared_ptr<Block>(new Block(shared_from_this(), -50, 40, 100, 30)));
+    this->addObject(std::shared_ptr<Block>(new Block(shared_from_this(), -150, 30, 90, 30)));
+    this->addObject(std::shared_ptr<Block>(new Block(shared_from_this(), -300, 30, 130, 31)));
+    this->addObject(std::shared_ptr<Block>(new Block(shared_from_this(), -300, 30, 130, 31)));
+    this->addObject(std::shared_ptr<Enemy>(new Enemy(shared_from_this(), -30, 37)));
+    this->addObject(std::shared_ptr<Enemy>(new Enemy(shared_from_this(), -120, 17)));
 }
 
 void GameingScene::queueUpdate(){
@@ -53,7 +56,7 @@ void GameingScene::queueUpdate(){
 }
 
 void GameingScene::update() {
-    this->inputManager.update();
+    this->inputManager->update();
     if(!this->isPause){
         this->queueUpdate();
         this->collision.tick();
@@ -93,13 +96,13 @@ void GameingScene::reset() {
     this->resetRequire = true;
 }
 
-std::shared_ptr<GameObject> GameingScene::addObject(std::shared_ptr<GameObject> obj){
-    this->addQueueList.push_back(obj);
-    return obj;
+std::shared_ptr<GameObject> GameingScene::addObject(std::weak_ptr<GameObject> obj){
+    this->addQueueList.push_back(obj.lock());
+    return obj.lock();
 }
 
-std::shared_ptr<GameObject> GameingScene::removeObject(std::shared_ptr<GameObject> obj) {
-    this->removeQueueList.push_back(obj);
-    return obj;
+std::shared_ptr<GameObject> GameingScene::removeObject(std::weak_ptr<GameObject> obj) {
+    this->removeQueueList.push_back(obj.lock());
+    return obj.lock();
 }
 

@@ -14,7 +14,7 @@ class DebugMessage : public GameObject{
 private:
     std::vector<std::pair<std::string, std::string>> messageList;
 public:
-    DebugMessage();
+    DebugMessage(std::weak_ptr<GameingScene> scene);
     void postUpdate() override;
     void draw() override;
     Type getType() override;

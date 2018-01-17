@@ -4,16 +4,17 @@
 
 #include "enemy.h"
 #include "../core/game.h"
+#include "../scene/gameing/gameingScene.h"
 
-Enemy::Enemy(double x, double y):
-        GameObject(x, y)
+Enemy::Enemy(std::weak_ptr<GameingScene> scene, double x, double y):
+        GameObject(scene, x, y)
 {
     isCollision = false;
 }
 void Enemy::start(){
     isCollision = false;
-    std::shared_ptr<Collider> collider = std::make_shared<Collider>(0, 0, 1, 1, [this](auto obj, auto overarea){ });
-    Game::get()->scene->collision.addObjectRequire(collider);
+    std::shared_ptr<Collider> collider = std::make_shared<Collider>(this->scene, 0, 0, 1, 1, [this](auto obj, auto overarea){ });
+    this->scene.lock()->collision.addObjectRequire(collider);
 }
 void Enemy::update() {
 }

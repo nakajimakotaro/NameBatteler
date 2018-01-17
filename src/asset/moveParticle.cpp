@@ -5,9 +5,10 @@
 #include "moveParticle.h"
 #include "../core/game.h"
 #include "player.h"
+#include "../scene/gameing/gameingScene.h"
 
-MoveParticle::MoveParticle():
-        GameObject(0, 0)
+MoveParticle::MoveParticle(std::weak_ptr<GameingScene> scene):
+        GameObject(scene, 0, 0)
 {
 }
 
@@ -17,7 +18,7 @@ GameObject::Type MoveParticle::getType() {
 }
 
 void MoveParticle::start() {
-    this->player = Game::get()->scene->getObject<Player>(GameObject::Type::PLAYER);
+    this->player = this->scene.lock()->getObject<Player>(GameObject::Type::PLAYER);
 }
 
 void MoveParticle::update() {

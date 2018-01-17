@@ -4,12 +4,12 @@
 
 #include "debugMessage.h"
 #include "../core/game.h"
-
-DebugMessage::DebugMessage():
-GameObject(0, 0)
+DebugMessage::DebugMessage(std::weak_ptr<GameingScene> scene):
+        GameObject(scene, 0, 0)
 {
 
 }
+
 void DebugMessage::postUpdate() {
     this->localX = Game::get()->screen.rect.x;
 }

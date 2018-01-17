@@ -6,10 +6,15 @@
 #define NAMEBATTLER_GAMEINGCONTROLLER_H
 
 
+#include <c++/memory>
 #include "../inputManager.h"
+#include "gameingScene.h"
 
 class GameingInputManager final: public InputManager{
+private:
+    std::weak_ptr<GameingScene> scene;
 public:
+    GameingInputManager(std::weak_ptr<GameingScene> scene);
     void update() override;
 };
 

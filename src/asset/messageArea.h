@@ -12,7 +12,7 @@
 //80Byteまでのメッセージ(Shift-jisだから40字)
 class MessageArea final: public GameObject{
 public:
-    MessageArea();
+    MessageArea(std::weak_ptr<GameingScene> scene);
     void update() override;
     void draw() override;
     Type getType() override;

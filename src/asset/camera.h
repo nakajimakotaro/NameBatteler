@@ -11,7 +11,7 @@
 
 class Camera : public GameObject{
 public:
-    Camera();
+    Camera(std::weak_ptr<GameingScene> scene);
     std::weak_ptr<Player> player;
 
     void start();

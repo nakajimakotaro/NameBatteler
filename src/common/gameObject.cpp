@@ -5,14 +5,13 @@
 #include "gameObject.h"
 #include "../core/game.h"
 
-GameObject::GameObject(double localX, double localY):
+GameObject::GameObject(std::weak_ptr<GameingScene> scene, double localX, double localY):
+        scene(scene),
         localX(localX),
         localY(localY),
         startFrame(Game::get()->fps.getCountFrame())
 {
 }
-
-
 double GameObject::x() const {
     if(this->parent.use_count() != 0){
         return this->parent.lock()->x() + this->localX;

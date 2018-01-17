@@ -7,8 +7,8 @@
 #include "../core/game.h"
 #include "../common/gameObject.h"
 
-Particle::Particle(double x, double y):
-        GameObject(x, y),
+Particle::Particle(std::weak_ptr<GameingScene> scene, double x, double y):
+        GameObject(scene, x, y),
         countFrame(0)
 {
 }

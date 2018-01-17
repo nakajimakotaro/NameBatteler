@@ -11,9 +11,9 @@
 class Player;
 class MoveParticle: public GameObject{
 public:
+    MoveParticle(std::weak_ptr<GameingScene> scene);
     int lifeTime;
     std::weak_ptr<Player> player;
-    MoveParticle();
     void start() override;
     void update() override;
     void draw() override;

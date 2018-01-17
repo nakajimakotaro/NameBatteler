@@ -7,20 +7,25 @@
 #include "../../core/game.h"
 #include "../../asset/player.h"
 
+GameingInputManager::GameingInputManager(std::weak_ptr<GameingScene> scene):scene(scene) {
+
+}
 void GameingInputManager::update() {
+    InputManager::update();
     if(this->isPush(InputManager::LIST::KEY_ESCAPE)) {
         Game::get()->exitRequire();
     }
     if(this->isPush(InputManager::LIST::KEY_R)) {
-        Game::get()->scene->reset();
+        this->scene.lock()->reset();
     }
     static bool pushingD = false;
     if(this->isPush(InputManager::LIST::KEY_D)) {
         if(!pushingD){
-            Game::get()->scene->pause();
+            this->scene.lock()->pause();
             pushingD = true;
         }
     }else{
         pushingD = false;
     }
 }
+

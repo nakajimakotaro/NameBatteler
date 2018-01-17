@@ -36,7 +36,7 @@ void PlayerFallState::update() {
 
     double fallY;
     if(this->countFrame < 15){
-        fallY = sin(this->countFrame / 30.0 * M_PI) * 2;
+        fallY = sin((this->countFrame / 30.0) * M_PI) * 2;
     }else{
         fallY = 1;
     }

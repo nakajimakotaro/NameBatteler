@@ -10,7 +10,6 @@
 #include "screen.h"
 #include "../scene/scene.h"
 #include "fps.h"
-#include "../scene/gameing/gameingScene.h"
 
 class Game {
 private:
@@ -19,16 +18,16 @@ private:
 public:
     static std::unique_ptr<Game>& get();
 private:
-    std::shared_ptr<GameingScene> nextScene;
+    std::shared_ptr<Scene> nextScene;
 public:
     Screen screen;
     FPS fps;
-    std::shared_ptr<GameingScene> scene;
+    std::shared_ptr<Scene> scene;
     bool isExitRequire = false;
 
     int loop();
     void exitRequire();
-    void changeScene(std::shared_ptr<GameingScene> scene);
+    void changeScene(std::shared_ptr<Scene> scene);
 };
 
 
