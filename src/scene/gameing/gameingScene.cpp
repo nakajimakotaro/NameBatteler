@@ -68,10 +68,6 @@ void GameingScene::update() {
         }
     }
 
-
-    if(this->resetRequire){
-        Game::get()->changeScene(std::make_shared<GameingScene>());
-    }
 }
 
 void GameingScene::draw() {
@@ -88,7 +84,7 @@ void GameingScene::pause(){
 }
 
 void GameingScene::reset() {
-    this->resetRequire = true;
+    Game::get()->changeScene(std::make_shared<GameingScene>());
 }
 
 std::shared_ptr<GameObject> GameingScene::addObject(std::weak_ptr<GameObject> obj){

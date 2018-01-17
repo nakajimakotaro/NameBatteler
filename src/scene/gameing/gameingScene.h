@@ -20,7 +20,6 @@ private:
     std::vector<std::shared_ptr<GameObject>> removeQueueList{};
     void queueUpdate();
     bool isPause = false;
-    bool resetRequire = false;
     std::vector<std::shared_ptr<GameObject>> objectList;
 public:
     std::unique_ptr<GameingInputManager> inputManager;
