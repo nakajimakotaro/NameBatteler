@@ -70,12 +70,7 @@ void GameingScene::update() {
 
 
     if(this->resetRequire){
-        this->resetRequire = false;
-        this->objectList.clear();
-        this->addQueueList.clear();
-        this->removeQueueList.clear();
-        this->collision = Collision();
-        this->startScene();
+        Game::get()->changeScene(std::make_shared<GameingScene>());
     }
 }
 
