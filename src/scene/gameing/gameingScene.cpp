@@ -31,29 +31,6 @@ void GameingScene::startScene() {
     this->addObject(std::shared_ptr<Enemy>(new Enemy(shared_from_this(), -120, 17)));
 }
 
-void GameingScene::queueUpdate(){
-    auto removeQueueList = this->removeQueueList;
-    this->removeQueueList.clear();
-    //removeQueueのオブジェクトを削除
-    for(auto& removeObject: removeQueueList) {
-        removeObject->end();
-    }
-    for(auto& removeObject: removeQueueList){
-        auto index = std::distance(this->objectList.begin(), std::find(this->objectList.begin(), this->objectList.end(), removeObject));
-        this->objectList[index] = *(this->objectList.end() - 1);
-        this->objectList.pop_back();
-    }
-
-    auto addQueueList = this->addQueueList;
-    this->addQueueList.clear();
-    //addQueueのオブジェクトを追加
-    for(const auto &obj: addQueueList){
-        this->objectList.push_back(obj);
-    }
-    for(const auto &obj: addQueueList){
-        obj->start();
-    }
-}
 
 void GameingScene::update() {
     this->inputManager->update();
@@ -87,13 +64,4 @@ void GameingScene::reset() {
     Game::get()->changeScene(std::make_shared<GameingScene>());
 }
 
-std::shared_ptr<GameObject> GameingScene::addObject(std::weak_ptr<GameObject> obj){
-    this->addQueueList.push_back(obj.lock());
-    return obj.lock();
-}
-
-std::shared_ptr<GameObject> GameingScene::removeObject(std::weak_ptr<GameObject> obj) {
-    this->removeQueueList.push_back(obj.lock());
-    return obj.lock();
-}
 
