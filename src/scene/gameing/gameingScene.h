@@ -12,14 +12,14 @@
 #include "../../common/collision.h"
 
 class GameingInputManager;
-class GameingScene final: public Scene, public std::enable_shared_from_this<GameingScene>{
+class GameingScene final: public Scene{
 private:
     bool isPause = false;
+    std::string name;
 public:
     std::unique_ptr<GameingInputManager> inputManager;
-    Collision collision;
 public:
-    GameingScene();
+    GameingScene(std::string name);
     void startScene() override;
     void update() override;
     void draw() override;

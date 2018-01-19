@@ -74,7 +74,10 @@ public:
                    BackColor backColor = BackColor::BLACK,
                    int layer = 0);
     void move(int x, int y);
+    void cursorShow(int x, int y);
+    void cursorHide();
     ~Screen();
+private: void writeZenkaku(char f, char l, double x, double y, Screen::ForColor forColor, Screen::BackColor backColor, int layer);
 };
 
 

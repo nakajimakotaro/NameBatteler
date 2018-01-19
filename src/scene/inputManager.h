@@ -6,6 +6,8 @@
 #define NAMEBATTLER_INPUTMANAGER_H
 
 
+#include <c++/vector>
+
 class InputManager {
 public:
     enum class LIST{
@@ -92,6 +94,10 @@ public:
     virtual ~InputManager() = default;
     bool isPush(LIST key);
     virtual void update();
+
+    std::vector<LIST> pushKey();
+
+    char toChar(LIST key);
 };
 
 

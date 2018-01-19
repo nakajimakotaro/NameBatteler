@@ -6,7 +6,7 @@
 #include "../core/game.h"
 #include "../scene/gameing/gameingScene.h"
 
-WhipBullet::WhipBullet(std::weak_ptr<GameingScene> scene, double x, double y, GameObject::Type shotOwner): Bullet(scene, x, y, shotOwner)
+WhipBullet::WhipBullet(std::weak_ptr<Scene> scene, double x, double y, GameObject::Type shotOwner): Bullet(scene, x, y, shotOwner)
 {
 }
 

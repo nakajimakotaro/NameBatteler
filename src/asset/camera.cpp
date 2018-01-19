@@ -9,7 +9,7 @@
 #include "player.h"
 #include "../scene/gameing/gameingScene.h"
 
-Camera::Camera(std::weak_ptr<GameingScene> scene):
+Camera::Camera(std::weak_ptr<Scene> scene):
 GameObject(scene, 0 ,0)
 {
 }

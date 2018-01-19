@@ -8,7 +8,7 @@
 #include "../scene/gameing/gameingScene.h"
 
 
-Block::Block(std::weak_ptr<GameingScene> scene, double x, double y, double w, double h):
+Block::Block(std::weak_ptr<Scene> scene, double x, double y, double w, double h):
         GameObject(scene, x ,y),
         w(w),
         h(h)

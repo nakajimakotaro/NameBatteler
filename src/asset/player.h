@@ -15,10 +15,10 @@ class Block;
 class Enemy;
 class Player final: public GameObject{
 public:
-    static std::shared_ptr<Player> create(std::weak_ptr<GameingScene> scene);
+    static std::shared_ptr<Player> create(std::weak_ptr<Scene> scene, std::string name);
     bool isReleaseKeyF = true;
 private:
-    Player(std::weak_ptr<GameingScene> scene);
+    Player(std::weak_ptr<Scene> scene, std::string name);
     void init();
 public:
     double speed = 1;

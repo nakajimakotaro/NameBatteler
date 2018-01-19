@@ -15,7 +15,7 @@ private:
     std::shared_ptr<Collider> collider;
     double w, h;
 public:
-    Block(std::weak_ptr<GameingScene> scene, double x, double y, double w, double h);
+    Block(std::weak_ptr<Scene> scene, double x, double y, double w, double h);
     void update() override;
     void start() override;
     void draw() override;

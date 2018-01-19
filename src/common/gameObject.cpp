@@ -5,7 +5,7 @@
 #include "gameObject.h"
 #include "../core/game.h"
 
-GameObject::GameObject(std::weak_ptr<GameingScene> scene, double localX, double localY):
+GameObject::GameObject(std::weak_ptr<Scene> scene, double localX, double localY):
         scene(scene),
         localX(localX),
         localY(localY),

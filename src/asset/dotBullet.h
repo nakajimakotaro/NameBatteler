@@ -18,7 +18,7 @@ public:
     Screen::BackColor backColor = Screen::BackColor::BLACK;
     int layer = 0;
 public:
-    DotBullet(std::weak_ptr<GameingScene> scene, double x, double y, GameObject::Type shotOwner);
+    DotBullet(std::weak_ptr<Scene> scene, double x, double y, GameObject::Type shotOwner);
     void start() override ;
     void update() override ;
     void draw() override ;

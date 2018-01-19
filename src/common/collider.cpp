@@ -5,7 +5,7 @@
 #include "collider.h"
 #include "../core/game.h"
 
-Collider::Collider(std::weak_ptr<GameingScene> scene, double localX, double localY, double w, double h,
+Collider::Collider(std::weak_ptr<Scene> scene, double localX, double localY, double w, double h,
                    std::function<void(std::shared_ptr<Collider>, Rect)> collision):
         GameObject(scene, localX, localY),
         w(w),

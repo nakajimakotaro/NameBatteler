@@ -5,7 +5,7 @@
 #include "dotBullet.h"
 #include "../core/game.h"
 #include "../scene/gameing/gameingScene.h"
-DotBullet::DotBullet(std::weak_ptr<GameingScene> scene, double x, double y, GameObject::Type shotOwner) : Bullet(scene, x, y, shotOwner) {
+DotBullet::DotBullet(std::weak_ptr<Scene> scene, double x, double y, GameObject::Type shotOwner) : Bullet(scene, x, y, shotOwner) {
 
 }
 

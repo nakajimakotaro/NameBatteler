@@ -8,7 +8,7 @@
 
 #include "../scene.h"
 
-class StartScene: Scene{
+class StartScene: public Scene{
     void startScene() override;
     void update() override;
     void draw() override;

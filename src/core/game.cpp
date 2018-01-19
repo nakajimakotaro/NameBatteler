@@ -5,6 +5,8 @@
 #include "game.h"
 #include "../scene/gameing/gameingScene.h"
 #include "../scene/gameing/gameingInputManager.h"
+#include "../scene/start/startScene.h"
+#include "../scene/scene.h"
 
 std::unique_ptr<Game> Game::instance;
 
@@ -17,8 +19,9 @@ std::unique_ptr<Game>& Game::get(){
 Game::Game():
         fps(30)
 {
-    this->scene = std::make_shared<NoneScene>();
-    this->nextScene = std::make_unique<GameingScene>();
+    auto p = new NoneScene();
+    this->scene = std::shared_ptr<Scene>(p);
+    this->nextScene = std::make_shared<StartScene>();
 }
 
 int Game::loop(){

@@ -9,13 +9,19 @@
 #include <vector>
 #include <algorithm>
 #include "../common/gameObject.h"
+#include "inputManager.h"
+#include "../common/collision.h"
 
-class Scene {
+class Scene: public std::enable_shared_from_this<Scene>{
 protected:
     std::vector<std::shared_ptr<GameObject>> addQueueList{};
     std::vector<std::shared_ptr<GameObject>> removeQueueList{};
     std::vector<std::shared_ptr<GameObject>> objectList;
     void queueUpdate();
+
+public:
+    InputManager input;
+    Collision collision;
 public:
     virtual void startScene(){};
     virtual void update(){};

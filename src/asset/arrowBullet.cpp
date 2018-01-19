@@ -5,7 +5,7 @@
 #include "arrowBullet.h"
 #include "../core/game.h"
 
-ArrowBullet::ArrowBullet(std::weak_ptr<GameingScene> scene, double x, double y, GameObject::Type ownerType) : Bullet(scene, x, y, ownerType) {
+ArrowBullet::ArrowBullet(std::weak_ptr<Scene> scene, double x, double y, GameObject::Type ownerType) : Bullet(scene, x, y, ownerType) {
 }
 
 void ArrowBullet::start() {

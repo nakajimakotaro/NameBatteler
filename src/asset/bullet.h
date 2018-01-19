@@ -13,7 +13,7 @@ class Bullet: public GameObject {
 public:
     GameObject::Type shotOwner;
 public:
-    Bullet(std::weak_ptr<GameingScene> scene, double x, double y, GameObject::Type shotOwner):
+    Bullet(std::weak_ptr<Scene> scene, double x, double y, GameObject::Type shotOwner):
             GameObject(scene, x, y),
             shotOwner(shotOwner){ }
 };

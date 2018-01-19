@@ -7,7 +7,7 @@
 #include "player.h"
 #include "../scene/gameing/gameingScene.h"
 
-MoveParticle::MoveParticle(std::weak_ptr<GameingScene> scene):
+MoveParticle::MoveParticle(std::weak_ptr<Scene> scene):
         GameObject(scene, 0, 0)
 {
 }

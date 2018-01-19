@@ -12,16 +12,16 @@
 #include "../../core/game.h"
 #include "gameingInputManager.h"
 
-GameingScene::GameingScene()
+GameingScene::GameingScene(std::string name):name(name)
 {
 }
 
 void GameingScene::startScene() {
     auto res = shared_from_this();
-    this->inputManager = std::unique_ptr<GameingInputManager>(new GameingInputManager(shared_from_this()));
+    this->inputManager = std::make_unique<GameingInputManager>(std::dynamic_pointer_cast<GameingScene>(shared_from_this()));
     this->addObject(std::make_shared<DebugMessage>(shared_from_this()));
     this->addObject(std::make_shared<Camera>(shared_from_this()));
-    this->addObject(Player::create(shared_from_this()));
+    this->addObject(Player::create(shared_from_this(), name));
     this->addObject(std::shared_ptr<Block>(new Block(shared_from_this(), -40, -1, 100, 31)));
     this->addObject(std::shared_ptr<Block>(new Block(shared_from_this(), -50, 40, 100, 30)));
     this->addObject(std::shared_ptr<Block>(new Block(shared_from_this(), -150, 30, 90, 30)));
@@ -61,7 +61,7 @@ void GameingScene::pause(){
 }
 
 void GameingScene::reset() {
-    Game::get()->changeScene(std::make_shared<GameingScene>());
+    Game::get()->changeScene(std::make_shared<GameingScene>(this->name));
 }
 
 

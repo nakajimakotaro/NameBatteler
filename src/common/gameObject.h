@@ -11,6 +11,7 @@
 #include <vector>
 
 class GameingScene;
+class Scene;
 class GameObject: public std::enable_shared_from_this<GameObject>{
 public:
     enum class Type{
@@ -26,7 +27,8 @@ public:
         MoveParticle,
         DotBullet,
         WhipBullet,
-        ArrowBullet
+        ArrowBullet,
+        NameInput
     };
 private:
     std::weak_ptr<GameObject> parent;
@@ -36,9 +38,9 @@ public:
     double localX;
     double localY;
 protected:
-    GameObject(std::weak_ptr<GameingScene> scene, double localX, double localY);
+    GameObject(std::weak_ptr<Scene> scene, double localX, double localY);
 public:
-    std::weak_ptr<GameingScene> scene;
+    std::weak_ptr<Scene> scene;
     std::weak_ptr<GameObject> getParent(){
         return this->parent;
     }

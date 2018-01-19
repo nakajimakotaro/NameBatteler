@@ -14,7 +14,7 @@ private:
     std::shared_ptr<Collider> collider;
     std::vector<std::shared_ptr<DotBullet>> bulletList;
 public:
-    WhipBullet(std::weak_ptr<GameingScene> scene, double x, double y, GameObject::Type shotOwner);
+    WhipBullet(std::weak_ptr<Scene> scene, double x, double y, GameObject::Type shotOwner);
     void start() override ;
     void update() override ;
     void draw() override ;

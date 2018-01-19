@@ -10,7 +10,7 @@
 
 class ArrowBullet: public Bullet {
 public:
-    ArrowBullet(std::weak_ptr<GameingScene> scene, double x, double y, Type ownerType);
+    ArrowBullet(std::weak_ptr<Scene> scene, double x, double y, Type ownerType);
     void start() override ;
     void update() override ;
     void draw() override ;

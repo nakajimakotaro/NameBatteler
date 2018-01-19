@@ -9,6 +9,7 @@ Depth::Depth(int w, int h):
         height(h),
         depthLayer(w * h, INT_MIN)
 {
+    0x80;
 }
 
 bool Depth::checkFront(int x, int y, int layer){
@@ -85,6 +86,10 @@ Screen::~Screen(){
     }
 }
 
+bool isZenkaku(char firstByte){
+    return (firstByte & (char)1 << 7) != 0;
+}
+
 void Screen::writeString(std::string str,
                          double x,
                          double y,
@@ -100,7 +105,12 @@ void Screen::writeString(std::string str,
         return;
     }
     for(int i = 0;i < drawRect.w;i++){
-        this->writeChar(str[i], drawRect.x + i, y, forColor, backColor, layer);
+        if(isZenkaku(str[i])){
+            this->writeZenkaku(str[i], str[i + 1], drawRect.x + i, y, forColor, backColor, layer);
+            i++;
+        }else{
+            this->writeChar(str[i], drawRect.x + i, y, forColor, backColor, layer);
+        }
     }
 }
 void Screen::writeChar(char c, double x, double y, Screen::ForColor forColor, Screen::BackColor backColor, int layer) {
@@ -117,8 +127,47 @@ void Screen::writeChar(char c, double x, double y, Screen::ForColor forColor, Sc
     WriteConsoleOutputCharacter(this->backScreen(), &c, 1, {(SHORT)screenX, (SHORT)screenY}, &p);
     this->depth.write(screenX, screenY, layer);
 }
+void Screen::writeZenkaku(char f, char l, double x, double y, Screen::ForColor forColor, Screen::BackColor backColor, int layer) {
+    int screenX = std::floor(x - this->rect.x);
+    int screenY = std::floor(y - this->rect.y);
+    if(
+            !this->rect.in(x, y) ||
+            !this->depth.checkFront(screenX, screenY, layer) ||
+            !this->rect.in(x + 1, y) ||
+            !this->depth.checkFront(screenX + 1, screenY, layer)
+            ) {
+        return;
+    }
+    char str[3] = {f, l, '\0'};
+    DWORD p;
+    WORD attribute = static_cast<int>(forColor) | static_cast<int>(backColor);
+    WriteConsoleOutputAttribute(this->backScreen(), &attribute, 2, {(SHORT)screenX, (SHORT)screenY}, &p);
+    WriteConsoleOutputCharacter(this->backScreen(), str, 2, {(SHORT)screenX, (SHORT)screenY}, &p);
+    this->depth.write(screenX, screenY, layer);
+    this->depth.write(screenX + 1, screenY, layer);
+}
 
 void Screen::move(int x, int y){
     this->rect.x = x;
     this->rect.y = y;
 }
+
+void Screen::cursorShow(int x, int y){
+    for(auto handle: this->poolScreen){
+        CONSOLE_CURSOR_INFO cursorInfo;
+        GetConsoleCursorInfo(handle, &cursorInfo);
+        cursorInfo.bVisible = true;
+        SetConsoleCursorInfo(handle, &cursorInfo);
+
+        SetConsoleCursorPosition(handle, {(SHORT)x, (SHORT)y});
+    }
+}
+void Screen::cursorHide(){
+    for(auto handle: this->poolScreen){
+        CONSOLE_CURSOR_INFO cursorInfo;
+        GetConsoleCursorInfo(handle, &cursorInfo);
+        cursorInfo.bVisible = false;
+        SetConsoleCursorInfo(handle, &cursorInfo);
+    }
+}
+

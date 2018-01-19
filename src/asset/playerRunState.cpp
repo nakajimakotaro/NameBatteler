@@ -36,7 +36,7 @@ void PlayerRunState::start() {
 void PlayerRunState::update() {
     this->machine.lock()->body.lock()->localX -= this->machine.lock()->body.lock()->speed;
 
-    if(this->body()->scene.lock()->inputManager->isPush(InputManager::LIST::KEY_SPACE)) {
+    if(Game::get()->scene->input.isPush(InputManager::LIST::KEY_SPACE)) {
         this->machine.lock()->changeRequire("jump");
     }
     if(!this->body()->collisionBlock){

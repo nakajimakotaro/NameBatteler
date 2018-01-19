@@ -18,15 +18,15 @@
 #include "../scene/gameing/gameingScene.h"
 
 
-std::shared_ptr<Player> Player::create(std::weak_ptr<GameingScene> scene) {
+std::shared_ptr<Player> Player::create(std::weak_ptr<Scene> scene, std::string name) {
     auto ptr = std::shared_ptr<Player>(
-            new Player(scene)
+            new Player(scene, name)
     );
     ptr->init();
     return ptr;
 }
 
-Player::Player(std::weak_ptr<GameingScene> scene):
+Player::Player(std::weak_ptr<Scene> scene, std::string name):
         GameObject(scene, 40 ,37),
         range(3)
 {
@@ -66,16 +66,16 @@ void Player::shot(){
     this->scene.lock()->addObject(bullet);
 }
 void Player::update() {
-    if(this->isReleaseKeyF && this->scene.lock()->inputManager->isPush(InputManager::LIST::KEY_F)){
+    if(this->isReleaseKeyF && this->scene.lock()->input.isPush(InputManager::LIST::KEY_F)){
         this->isReleaseKeyF = false;
         this->shot();
     }
-    if(!this->scene.lock()->inputManager->isPush(InputManager::LIST::KEY_F)){
+    if(!this->scene.lock()->input.isPush(InputManager::LIST::KEY_F)){
         this->isReleaseKeyF = true;
     }
     this->state->update();
     if(this->bottomY() > 50) {
-        this->scene.lock()->reset();
+        //this->scene.lock()->reset();
     }
     this->collisionBlock.reset();
     this->scene.lock()->getObject<Camera>(GameObject::Type::CAMERA)->set();

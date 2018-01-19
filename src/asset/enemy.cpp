@@ -6,7 +6,7 @@
 #include "../core/game.h"
 #include "../scene/gameing/gameingScene.h"
 
-Enemy::Enemy(std::weak_ptr<GameingScene> scene, double x, double y):
+Enemy::Enemy(std::weak_ptr<Scene> scene, double x, double y):
         GameObject(scene, x, y)
 {
     isCollision = false;

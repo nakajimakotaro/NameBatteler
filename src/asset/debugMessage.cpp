@@ -4,7 +4,7 @@
 
 #include "debugMessage.h"
 #include "../core/game.h"
-DebugMessage::DebugMessage(std::weak_ptr<GameingScene> scene):
+DebugMessage::DebugMessage(std::weak_ptr<Scene> scene):
         GameObject(scene, 0, 0)
 {
 
