@@ -9,13 +9,14 @@
 #include "../common/gameObject.h"
 #include "../common/rect.h"
 #include "../common/collision.h"
+#include "../lib/json.hpp"
 
 class Block: public GameObject{
 private:
     std::shared_ptr<Collider> collider;
     double w, h;
 public:
-    Block(std::weak_ptr<Scene> scene, double x, double y, double w, double h);
+    Block(std::weak_ptr<Scene> scene, nlohmann::json json);
     void update() override;
     void start() override;
     void draw() override;

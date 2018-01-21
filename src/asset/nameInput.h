@@ -14,6 +14,7 @@ public:
     NameInput(std::weak_ptr<Scene> scene, double x, double y);
     void update() override;
     void draw() override;
+    void end() override;
     GameObject::Type getType(){
         return GameObject::Type::NameInput;
     }

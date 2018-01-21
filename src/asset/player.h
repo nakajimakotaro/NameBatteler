@@ -11,23 +11,24 @@
 #include "../common/stateMachine.h"
 #include "../common/collision.h"
 #include <memory>
+#include "../lib/json.hpp"
+
 class Block;
 class Enemy;
 class Player final: public GameObject{
 public:
-    static std::shared_ptr<Player> create(std::weak_ptr<Scene> scene, std::string name);
     bool isReleaseKeyF = true;
-private:
-    Player(std::weak_ptr<Scene> scene, std::string name);
-    void init();
-public:
     double speed = 1;
+    std::string name;
+    int range;
     double bottomX();
     double bottomY();
-    int range;
     std::shared_ptr<Block> collisionBlock;
     std::shared_ptr<Enemy> collisionEnemy;
     std::shared_ptr<StateMachine<Player>> state;
+public:
+    Player(std::weak_ptr<Scene> scene, nlohmann::json json, std::string name);
+    void start() override;
     void update() override;
     void draw() override;
     GameObject::Type getType() override;

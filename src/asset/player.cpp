@@ -16,22 +16,13 @@
 #include "../scene/inputManager.h"
 #include "../scene/gameing/gameingInputManager.h"
 #include "../scene/gameing/gameingScene.h"
-
-
-std::shared_ptr<Player> Player::create(std::weak_ptr<Scene> scene, std::string name) {
-    auto ptr = std::shared_ptr<Player>(
-            new Player(scene, name)
-    );
-    ptr->init();
-    return ptr;
-}
-
-Player::Player(std::weak_ptr<Scene> scene, std::string name):
-        GameObject(scene, 40 ,37),
+Player::Player(std::weak_ptr<Scene> scene, nlohmann::json json, std::string name):
+        GameObject(scene, json["x"].get<double>(), json["y"].get<double>()),
+        name(name),
         range(3)
 {
 }
-void Player::init() {
+void Player::start() {
     this->state = StateMachine<Player>::create(std::dynamic_pointer_cast<Player>(shared_from_this()), PlayerRunState::name(), {
             PlayerRunState::mapPair(),
             PlayerJumpState::mapPair(),
@@ -109,3 +100,4 @@ double Player::bottomX() {
 double Player::bottomY() {
     return this->y() + this->range - 1;
 }
+

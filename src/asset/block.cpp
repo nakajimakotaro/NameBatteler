@@ -8,12 +8,15 @@
 #include "../scene/gameing/gameingScene.h"
 
 
-Block::Block(std::weak_ptr<Scene> scene, double x, double y, double w, double h):
-        GameObject(scene, x ,y),
-        w(w),
-        h(h)
+
+Block::Block(std::weak_ptr<Scene> scene, nlohmann::json json):
+        GameObject(scene, json["x"].get<double>(), json["y"].get<double>()),
+        w(json["w"].get<double>()),
+        h(json["h"].get<double>())
 {
+
 }
+
 
 
 void Block::start(){
@@ -39,3 +42,4 @@ void Block::end() {
     this->scene.lock()->removeObject(this->collider);
     this->scene.lock()->collision.removeObjectRequire(this->collider);
 }
+

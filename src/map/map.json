@@ -1,0 +1,54 @@
+{
+  "object": [
+    {
+      "type": "block",
+      "data": {
+        "type": "block",
+        "x": 45,
+        "y": 20,
+        "w": 45,
+        "h": 16
+      }
+    },
+    {
+      "type": "block",
+      "data": {
+        "type": "block",
+        "x": 21,
+        "y": 24,
+        "w": 19,
+        "h": 11
+      }
+    },
+    {
+      "type": "moveblock",
+      "data": {
+        "type": "moveblock",
+        "startX": 5,
+        "startY": 27,
+        "goalX": 5,
+        "goalY": 6,
+        "w": 12,
+        "h": 8
+      }
+    },
+    {
+      "type": "block",
+      "data": {
+        "type": "block",
+        "x": 92,
+        "y": 29,
+        "w": 60,
+        "h": 6
+      }
+    },
+    {
+      "type": "player",
+      "data": {
+        "x": 139.00868055555554,
+        "y": 24.22222222222222,
+        "type": "player"
+      }
+    }
+  ]
+}

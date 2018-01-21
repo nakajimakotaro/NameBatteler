@@ -3,6 +3,7 @@
 //
 
 #include <algorithm>
+#include <fstream>
 #include "gameingScene.h"
 #include "../../asset/player.h"
 #include "../../asset/camera.h"
@@ -11,8 +12,10 @@
 #include "../../asset/debugMessage.h"
 #include "../../core/game.h"
 #include "gameingInputManager.h"
+#include "../../lib/json.hpp"
 
-GameingScene::GameingScene(std::string name):name(name)
+using json = nlohmann::json;
+GameingScene::GameingScene(std::string name, std::string mapPath):name(name), mapPath(mapPath)
 {
 }
 
@@ -21,14 +24,8 @@ void GameingScene::startScene() {
     this->inputManager = std::make_unique<GameingInputManager>(std::dynamic_pointer_cast<GameingScene>(shared_from_this()));
     this->addObject(std::make_shared<DebugMessage>(shared_from_this()));
     this->addObject(std::make_shared<Camera>(shared_from_this()));
-    this->addObject(Player::create(shared_from_this(), name));
-    this->addObject(std::shared_ptr<Block>(new Block(shared_from_this(), -40, -1, 100, 31)));
-    this->addObject(std::shared_ptr<Block>(new Block(shared_from_this(), -50, 40, 100, 30)));
-    this->addObject(std::shared_ptr<Block>(new Block(shared_from_this(), -150, 30, 90, 30)));
-    this->addObject(std::shared_ptr<Block>(new Block(shared_from_this(), -300, 30, 130, 31)));
-    this->addObject(std::shared_ptr<Block>(new Block(shared_from_this(), -300, 30, 130, 31)));
-    this->addObject(std::shared_ptr<Enemy>(new Enemy(shared_from_this(), -30, 37)));
-    this->addObject(std::shared_ptr<Enemy>(new Enemy(shared_from_this(), -120, 17)));
+
+    this->load();
 }
 
 
@@ -61,7 +58,19 @@ void GameingScene::pause(){
 }
 
 void GameingScene::reset() {
-    Game::get()->changeScene(std::make_shared<GameingScene>(this->name));
+    Game::get()->changeScene(std::make_shared<GameingScene>(this->name, "map/map.json"));
 }
 
 
+void GameingScene::load(){
+    json mapData;
+    std::ifstream("../src/map/map.json") >> mapData;
+    for(auto data: mapData["object"]){
+        if(data["type"] == "player"){
+            this->addObject(std::shared_ptr<Player>(new Player(shared_from_this(), data["data"], this->name)));
+        }else if(data["type"] == "block") {
+            this->addObject(std::shared_ptr<Block>(new Block(shared_from_this(), data["data"])));
+        }else if(data["type"] == "moveblock") {
+        }
+    }
+}

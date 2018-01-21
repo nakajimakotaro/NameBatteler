@@ -16,10 +16,11 @@ class GameingScene final: public Scene{
 private:
     bool isPause = false;
     std::string name;
+    std::string mapPath;
 public:
     std::unique_ptr<GameingInputManager> inputManager;
 public:
-    GameingScene(std::string name);
+    GameingScene(std::string name, std::string mapPath);
     void startScene() override;
     void update() override;
     void draw() override;
@@ -27,6 +28,9 @@ public:
 
     void pause();
     void reset();
+
+private:
+    void load();
 };
 
 #endif //NAMEBATTLER_GAMEINGSCENE_H

@@ -30,7 +30,7 @@ void NameInput::update() {
         }
     }
     if(this->scene.lock()->input.isPush(InputManager::LIST::KEY_RETURN)){
-        Game::get()->changeScene(std::make_shared<GameingScene>(this->name));
+        Game::get()->changeScene(std::make_shared<GameingScene>(this->name, "map/map.json"));
     }
 }
 
@@ -52,5 +52,9 @@ void NameInput::draw() {
         Game::get()->screen.writeString(this->name, this->x() - 49, this->y());
         Game::get()->screen.cursorShow(this->x() - 49 + this->name.length(), this->y());
     }
+}
+
+void NameInput::end() {
+    Game::get()->screen.cursorHide();
 }
 

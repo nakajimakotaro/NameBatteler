@@ -20,6 +20,7 @@ void Camera::start() {
 }
 void Camera::set() {
     this->localX = std::floor(this->player.lock()->x() - 120);
+    this->localY = std::floor(this->player.lock()->y() - 20);
     Game::get()->screen.move(this->x(), this->y());
 }
 
