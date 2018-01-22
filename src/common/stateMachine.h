@@ -65,4 +65,5 @@ void StateMachine<T>::draw() {
     this->state->draw();
 }
 
+
 #endif //NAMEBATTLER_STATEMACHINE_H

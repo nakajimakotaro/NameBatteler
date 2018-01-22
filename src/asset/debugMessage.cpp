@@ -12,6 +12,7 @@ DebugMessage::DebugMessage(std::weak_ptr<Scene> scene):
 
 void DebugMessage::postUpdate() {
     this->localX = Game::get()->screen.rect.x;
+    this->localY = Game::get()->screen.rect.y;
 }
 
 void DebugMessage::draw() {

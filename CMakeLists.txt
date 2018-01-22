@@ -37,6 +37,9 @@ add_executable(nameBattler
         src/asset/whipBullet.cpp src/asset/whipBullet.h
         src/asset/dotBullet.cpp src/asset/dotBullet.h
         src/asset/arrowBullet.cpp src/asset/arrowBullet.h
-        src/scene/start/startScene.cpp src/scene/start/startScene.h src/scene/scene.cpp src/asset/nameInput.cpp src/asset/nameInput.h)
+        src/scene/start/startScene.cpp src/scene/start/startScene.h
+        src/scene/scene.cpp src/asset/nameInput.cpp
+        src/asset/nameInput.h
+        src/asset/moveBlock.cpp src/asset/moveBlock.h)
 target_link_libraries(nameBattler winmm)
 

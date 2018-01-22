@@ -21,7 +21,8 @@ Game::Game():
 {
     auto p = new NoneScene();
     this->scene = std::shared_ptr<Scene>(p);
-    this->nextScene = std::make_shared<StartScene>();
+    //this->nextScene = std::make_shared<StartScene>();
+    this->nextScene = std::make_shared<GameingScene>("test", "../map/map.json");
 }
 
 int Game::loop(){

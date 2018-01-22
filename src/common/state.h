@@ -19,6 +19,7 @@ public:
     virtual void draw(){};
     virtual void end(){};
     virtual ~State() = default;
+    std::shared_ptr<T> body_ptr();
 };
 
 template <typename T> State<T>::State(std::weak_ptr<StateMachine<T>> machine):
@@ -26,6 +27,10 @@ template <typename T> State<T>::State(std::weak_ptr<StateMachine<T>> machine):
 {
 }
 
+template<typename T>
+std::shared_ptr<T> State<T>::body_ptr() {
+    return this->machine.lock()->body.lock();
+}
 
 
 #endif //NAMEBATTLER_STATE_H

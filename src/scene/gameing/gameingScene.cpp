@@ -13,6 +13,7 @@
 #include "../../core/game.h"
 #include "gameingInputManager.h"
 #include "../../lib/json.hpp"
+#include "../../asset/moveBlock.h"
 
 using json = nlohmann::json;
 GameingScene::GameingScene(std::string name, std::string mapPath):name(name), mapPath(mapPath)
@@ -71,6 +72,7 @@ void GameingScene::load(){
         }else if(data["type"] == "block") {
             this->addObject(std::shared_ptr<Block>(new Block(shared_from_this(), data["data"])));
         }else if(data["type"] == "moveblock") {
+            this->addObject(std::shared_ptr<MoveBlock>(new MoveBlock(shared_from_this(), data["data"])));
         }
     }
 }

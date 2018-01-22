@@ -28,7 +28,8 @@ public:
         DotBullet,
         WhipBullet,
         ArrowBullet,
-        NameInput
+        NameInput,
+        MOVEBLOCK
     };
 private:
     std::weak_ptr<GameObject> parent;
