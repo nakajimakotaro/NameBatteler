@@ -28,28 +28,44 @@ void Player::start() {
             PlayerJumpState::mapPair(),
             PlayerFallState::mapPair(),
     });
-    auto collisionFunc = [this](auto obj, auto overarea){
+
+    //’n–Ê—p
+    auto rideCollider = std::shared_ptr<Collider>(new Collider(this->scene, -3, 3, 6, 1, [this](auto obj, auto overarea){
         std::shared_ptr<GameObject> gameObject = (obj->getParent().lock());
-        switch (gameObject->getType()){
-            case Type::PLAYER:break;
-            case Type::CAMERA:break;
-            case Type::BLOCK:
-                this->collisionBlock = std::dynamic_pointer_cast<Block>(gameObject);
-                break;
-            case Type::MESSAGE_AREA:break;
-            case Type::DEBUG_MESSAGE:break;
-            case Type::COLLIDER:break;
-            case Type::ENEMY:
-                this->collisionEnemy = std::dynamic_pointer_cast<Enemy>(gameObject);
-                break;
-            case Type::Layer:break;
-            case Type::Particle:break;
-            case Type::MoveParticle:break;
+            if(gameObject->getType() == GameObject::Type::BLOCK | gameObject->getType() == GameObject::Type::MOVEBLOCK) {
+                this->rideCollisionBlock = std::dynamic_pointer_cast<Block>(gameObject);
+            }
+    }));
+    this->addChild(rideCollider);
+    this->scene.lock()->collision.addObjectRequire(rideCollider);
+
+    //‘Ì
+    auto bodyCollider = std::shared_ptr<Collider>(new Collider(this->scene, -6, -6, 11, 8, [this](std::shared_ptr<Collider> collider, Rect overarea){
+        std::shared_ptr<GameObject> gameObject = (collider->getParent().lock());
+
+
+        if(gameObject->getType() == GameObject::Type::BLOCK | gameObject->getType() == GameObject::Type::MOVEBLOCK) {
+            double colliderCentorX = collider->x() + collider->w / 2;
+            double colliderCentorY = collider->y() + collider->h / 2;
+            double inDirectionX = colliderCentorX - overarea.centorX();
+            double inDirectionY = colliderCentorY - overarea.centorY();
+            if(abs(inDirectionX) > abs(inDirectionY)){
+                if(inDirectionX < 0){
+                    this->localX = collider->x() + collider->w + 6;
+                }else{
+                    this->localX = collider->x() - 6;
+                }
+            } else{
+                if (inDirectionY < 0) {
+                    this->localY = collider->y() + collider->h + 6;
+                } else {
+                    this->localY = collider->y() - 6;
+                }
+            }
         }
-    };
-    auto collider = std::shared_ptr<Collider>(new Collider(this->scene, -3, 3, 6, 1, collisionFunc));
-    this->addChild(collider);
-    this->scene.lock()->collision.addObjectRequire(collider);
+    }));
+    this->addChild(bodyCollider);
+    this->scene.lock()->collision.addObjectRequire(bodyCollider);
 }
 
 void Player::shot(){
@@ -68,7 +84,7 @@ void Player::update() {
     if(this->bottomY() > 50) {
         //this->scene.lock()->reset();
     }
-    this->collisionBlock.reset();
+    this->rideCollisionBlock.reset();
     this->scene.lock()->getObject<Camera>(GameObject::Type::CAMERA)->set();
 }
 

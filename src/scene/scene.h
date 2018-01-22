@@ -26,7 +26,12 @@ public:
     virtual void startScene(){};
     virtual void update(){};
     virtual void draw(){};
-    virtual void endScene(){};
+    virtual void endScene(){
+        for(auto obj: this->objectList){
+            obj->end();
+        }
+
+    };
     std::shared_ptr<GameObject> addObject(std::weak_ptr<GameObject> obj);;
     std::shared_ptr<GameObject> removeObject(std::weak_ptr<GameObject> obj);;
     template <typename T> std::shared_ptr<T> getObject(GameObject::Type type);

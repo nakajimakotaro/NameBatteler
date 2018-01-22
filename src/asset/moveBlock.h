@@ -8,17 +8,18 @@
 
 #include "../common/gameObject.h"
 #include "../lib/json.hpp"
+#include "block.h"
 
 template <typename T> class StateMachine;
-class MoveBlock: public GameObject {
+class MoveBlock: public Block {
 public:
     double startX;
     double startY;
     double goalX;
     double goalY;
-    const double w;
-    const double h;
     std::shared_ptr<StateMachine<MoveBlock>> state;
+    double prevMoveX;
+    double prevMoveY;
 public:
     MoveBlock(const std::weak_ptr<Scene> &scene, double startX, double startY, double goalX, double goalY, double w, double h);
     MoveBlock(std::weak_ptr<Scene> scene, nlohmann::json json);
@@ -29,7 +30,6 @@ public:
     Type getType() override {
         return GameObject::Type::MOVEBLOCK;
     }
-
 };
 
 

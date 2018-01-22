@@ -6,6 +6,7 @@
 #include "player.h"
 #include "playerFallState.h"
 #include "block.h"
+#include "../core/game.h"
 
 StateMapPair<Player> PlayerFallState::mapPair() {
     return std::make_pair(
@@ -15,9 +16,6 @@ StateMapPair<Player> PlayerFallState::mapPair() {
             }
     );
 }
-std::shared_ptr<Player> PlayerFallState::body() {
-    return this->machine.lock()->body.lock();
-}
 
 PlayerFallState::PlayerFallState(std::weak_ptr<StateMachine<Player>> machine) : State(machine) {
 }
@@ -26,13 +24,17 @@ PlayerFallState::PlayerFallState(std::weak_ptr<StateMachine<Player>> machine) : 
 void PlayerFallState::start() {
 }
 void PlayerFallState::update() {
-    this->body()->localX -= this->body()->speed;
-    if(this->countFrame > 1 && this->body()->collisionBlock){
-        this->body()->localY = this->body()->collisionBlock->y() - this->body()->range;
+    if(Game::get()->scene->input.isPush(InputManager::LIST::KEY_A)){
+        this->body_ptr()->localX -= this->body_ptr()->speed;
+    }
+    if(Game::get()->scene->input.isPush(InputManager::LIST::KEY_D)){
+        this->body_ptr()->localX += this->body_ptr()->speed;
+    }
+    if(this->countFrame > 1 && this->body_ptr()->rideCollisionBlock){
+        this->body_ptr()->localY = this->body_ptr()->rideCollisionBlock->y() - this->body_ptr()->range;
         this->machine.lock()->changeRequire("run");
         return;
     }
-
 
     double fallY;
     if(this->countFrame < 15){
@@ -41,7 +43,7 @@ void PlayerFallState::update() {
         fallY = 1;
     }
 
-    this->body()->localY += fallY;
+    this->body_ptr()->localY += fallY;
     this->countFrame++;
 }
 

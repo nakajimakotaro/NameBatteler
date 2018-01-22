@@ -14,6 +14,8 @@ public:
     bool in(double x, double y)const;
     Rect intersect(double x, double y, double w, double h)const;
     Rect intersect(const Rect& rect)const;
+    double centorX();
+    double centorY();
 };
 
 

@@ -4,49 +4,61 @@
       "type": "block",
       "data": {
         "type": "block",
-        "x": 45,
-        "y": 20,
-        "w": 45,
-        "h": 16
+        "x": 105,
+        "y": 37,
+        "w": 54,
+        "h": 7
       }
     },
     {
       "type": "block",
       "data": {
         "type": "block",
-        "x": 21,
-        "y": 24,
-        "w": 19,
-        "h": 11
+        "x": 16,
+        "y": 37,
+        "w": 65,
+        "h": 6
       }
     },
     {
       "type": "moveblock",
       "data": {
         "type": "moveblock",
-        "startX": 5,
-        "startY": 27,
-        "goalX": 5,
-        "goalY": 6,
-        "w": 12,
-        "h": 8
+        "startX": -17,
+        "startY": 37,
+        "goalX": -90,
+        "goalY": 37,
+        "w": 30,
+        "h": 5
+      }
+    },
+    {
+      "type": "moveblock",
+      "data": {
+        "type": "moveblock",
+        "startX": -120,
+        "startY": 37,
+        "goalX": -120,
+        "goalY": 13,
+        "w": 28,
+        "h": 4
       }
     },
     {
       "type": "block",
       "data": {
         "type": "block",
-        "x": 92,
-        "y": 29,
-        "w": 60,
-        "h": 6
+        "x": -177,
+        "y": 13,
+        "w": 52,
+        "h": 4
       }
     },
     {
       "type": "player",
       "data": {
-        "x": 139.00868055555554,
-        "y": 24.22222222222222,
+        "x": 150.89756944444446,
+        "y": 33.44444444444444,
         "type": "player"
       }
     }

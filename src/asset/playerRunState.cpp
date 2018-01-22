@@ -9,8 +9,10 @@
 #include "moveParticle.h"
 #include "../scene/gameing/gameingInputManager.h"
 #include "../scene/gameing/gameingScene.h"
-
 #include <utility>
+#include "../common/gameObject.h"
+#include "block.h"
+#include "moveBlock.h"
 
 
 StateMapPair<Player> PlayerRunState::mapPair() {
@@ -20,9 +22,6 @@ StateMapPair<Player> PlayerRunState::mapPair() {
                 return std::unique_ptr<State<Player>>(new PlayerRunState(machine));
             }
     );
-}
-std::shared_ptr<Player> PlayerRunState::body() {
-    return this->machine.lock()->body.lock();
 }
 PlayerRunState::PlayerRunState(std::weak_ptr<StateMachine<Player>> machine):
         State<Player>(std::move(machine))
@@ -34,13 +33,22 @@ void PlayerRunState::start() {
 }
 
 void PlayerRunState::update() {
-    this->machine.lock()->body.lock()->localX -= this->machine.lock()->body.lock()->speed;
+    if(Game::get()->scene->input.isPush(InputManager::LIST::KEY_A)){
+        this->body_ptr()->localX -= this->body_ptr()->speed;
+    }
+    if(Game::get()->scene->input.isPush(InputManager::LIST::KEY_D)){
+        this->body_ptr()->localX += this->body_ptr()->speed;
+    }
 
     if(Game::get()->scene->input.isPush(InputManager::LIST::KEY_SPACE)) {
         this->machine.lock()->changeRequire("jump");
     }
-    if(!this->body()->collisionBlock){
+    if(!this->body_ptr()->rideCollisionBlock){
         this->machine.lock()->changeRequire("fall");
+    }
+    if(this->body_ptr()->rideCollisionBlock && this->body_ptr()->rideCollisionBlock->getType() == GameObject::Type::MOVEBLOCK){
+        this->body_ptr()->localX += std::dynamic_pointer_cast<MoveBlock>(this->body_ptr()->rideCollisionBlock)->prevMoveX;
+        this->body_ptr()->localY += std::dynamic_pointer_cast<MoveBlock>(this->body_ptr()->rideCollisionBlock)->prevMoveY;
     }
 
     this->countFrame++;
@@ -55,8 +63,8 @@ void PlayerRunState::draw() {
         const double percent = modf(this->countFrame / (double)loopTime + i / (double)num, &garbage);
         x = std::cos(percent * M_PI) * range;
         y = 1;
-        x += this->body()->bottomX();
-        y += this->body()->bottomY();
+        x += this->body_ptr()->bottomX();
+        y += this->body_ptr()->bottomY();
         Game::get()->screen.writeChar('-', x, y, Screen::ForColor::WHILE, Screen::BackColor::YELLOW, 10);
     }
 }

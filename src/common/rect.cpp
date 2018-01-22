@@ -30,3 +30,11 @@ Rect Rect::intersect(const Rect& rect)const{
     result.h = static_cast<double>(std::fmin(this->y + this->h, rect.y + rect.h) - result.y);
     return result;
 }
+
+double Rect::centorX() {
+    return this->x + this->w / 2;
+}
+
+double Rect::centorY() {
+    return this->y + this->h / 2;
+}

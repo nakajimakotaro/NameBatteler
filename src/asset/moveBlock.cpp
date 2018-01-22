@@ -65,13 +65,11 @@ public:
 };
 
 MoveBlock::MoveBlock(const std::weak_ptr<Scene> &scene, double startX, double startY, double goalX, double goalY, double w, double h):
-        GameObject(scene, startX, startY),
+        Block(scene, startX, startY, w, h),
         startX(startX),
         startY(startY),
         goalX(goalX),
-        goalY(goalY),
-        w(w),
-        h(h)
+        goalY(goalY)
 {
 }
 MoveBlock::MoveBlock(std::weak_ptr<Scene> scene, nlohmann::json json):
@@ -89,28 +87,23 @@ MoveBlock::MoveBlock(std::weak_ptr<Scene> scene, nlohmann::json json):
 
 
 void MoveBlock::start() {
-    this->state = StateMachine<MoveBlock>::create(std::dynamic_pointer_cast<MoveBlock>(shared_from_this()), "wait", {
-            MoveState::mapPair(),
-            WaitState::mapPair()
-    });
+    Block::start();
+    this->state = StateMachine<MoveBlock>::create(std::dynamic_pointer_cast<MoveBlock>(shared_from_this()), "move", {MoveState::mapPair(), WaitState::mapPair()});
 }
 
 void MoveBlock::update() {
+    double x = this->localX;
+    double y = this->localY;
     this->state->update();
+    this->prevMoveX = this->localX - x;
+    this->prevMoveY = this->localY - y;
 }
 
 
 void MoveBlock::draw() {
-    this->state->draw();
-    for(int x = this->x();x < this->x() + this->w;x++){
-        Game::get()->screen.writeChar('-', x, this->y());
-        Game::get()->screen.writeChar('-', x, this->y() + this->h - 1);
-    }
-    for(int y = this->y() + 1;y < this->y() + this->h - 1;y++){
-        Game::get()->screen.writeChar('|', this->x(), y);
-        Game::get()->screen.writeChar('|', this->x() + this->w - 1, y);
-    }
+    Block::draw();
 }
 void MoveBlock::end() {
+    Block::end();
 }
 

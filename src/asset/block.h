@@ -16,12 +16,13 @@ private:
     std::shared_ptr<Collider> collider;
     double w, h;
 public:
+    Block(std::weak_ptr<Scene> scene, double localX, double localY, double w, double h);
     Block(std::weak_ptr<Scene> scene, nlohmann::json json);
-    void update() override;
-    void start() override;
-    void draw() override;
-    void end() override;
-    Type getType() override {
+    virtual void update() override;
+    virtual void start() override;
+    virtual void draw() override;
+    virtual void end() override;
+    virtual Type getType() override {
         return GameObject::Type::BLOCK;
     }
 };

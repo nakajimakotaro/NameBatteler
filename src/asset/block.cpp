@@ -9,12 +9,17 @@
 
 
 
-Block::Block(std::weak_ptr<Scene> scene, nlohmann::json json):
-        GameObject(scene, json["x"].get<double>(), json["y"].get<double>()),
-        w(json["w"].get<double>()),
-        h(json["h"].get<double>())
+Block::Block(std::weak_ptr<Scene> scene, double localX, double localY, double w, double h) :
+        GameObject(scene, localX, localY),
+        w(w),
+        h(h)
 {
 
+}
+
+Block::Block(std::weak_ptr<Scene> scene, nlohmann::json json):
+        Block(scene, json["x"].get<double>(), json["y"].get<double>(), json["w"].get<double>(), json["h"].get<double>())
+{
 }
 
 

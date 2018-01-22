@@ -19,13 +19,13 @@ void GameingInputManager::update() {
         this->scene.lock()->reset();
     }
     static bool pushingD = false;
-    if(this->isPush(InputManager::LIST::KEY_D)) {
-        if(!pushingD){
-            this->scene.lock()->pause();
-            pushingD = true;
-        }
-    }else{
-        pushingD = false;
-    }
+    //if(this->isPush(InputManager::LIST::KEY_D)) {
+    //    if(!pushingD){
+    //        this->scene.lock()->pause();
+    //        pushingD = true;
+    //    }
+    //}else{
+    //    pushingD = false;
+    //}
 }
 

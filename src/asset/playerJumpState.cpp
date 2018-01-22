@@ -7,6 +7,7 @@
 #include <cmath>
 #include "player.h"
 #include "block.h"
+#include "../core/game.h"
 
 StateMapPair<Player> PlayerJumpState::mapPair() {
     return std::make_pair(
@@ -28,7 +29,12 @@ PlayerJumpState::PlayerJumpState(std::weak_ptr<StateMachine<Player>> machine):
 void PlayerJumpState::start() {
 }
 void PlayerJumpState::update() {
-    this->body()->localX -= this->body()->speed;
+    if(Game::get()->scene->input.isPush(InputManager::LIST::KEY_A)){
+        this->body_ptr()->localX -= this->body_ptr()->speed;
+    }
+    if(Game::get()->scene->input.isPush(InputManager::LIST::KEY_D)){
+        this->body_ptr()->localX += this->body_ptr()->speed;
+    }
     double risingY = cos((this->countFrame / 30.0) * M_PI) * 2;
     if(risingY < 0.1){
         this->machine.lock()->changeRequire("fall");

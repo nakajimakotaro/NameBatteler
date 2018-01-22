@@ -23,8 +23,7 @@ public:
     int range;
     double bottomX();
     double bottomY();
-    std::shared_ptr<Block> collisionBlock;
-    std::shared_ptr<Enemy> collisionEnemy;
+    std::shared_ptr<Block> rideCollisionBlock;
     std::shared_ptr<StateMachine<Player>> state;
 public:
     Player(std::weak_ptr<Scene> scene, nlohmann::json json, std::string name);
