@@ -11,6 +11,10 @@ Enemy::Enemy(std::weak_ptr<Scene> scene, double x, double y):
 {
     isCollision = false;
 }
+Enemy::Enemy(std::weak_ptr<Scene> scene, nlohmann::json json):
+        GameObject(scene, json["x"].get<double>(), json["y"].get<double>())
+{
+}
 void Enemy::start(){
     isCollision = false;
     std::shared_ptr<Collider> collider = std::make_shared<Collider>(this->scene, 0, 0, 1, 1, [this](auto obj, auto overarea){ });
@@ -19,6 +23,8 @@ void Enemy::start(){
 void Enemy::update() {
 }
 void Enemy::draw() {
-    Game::get()->screen.writeChar('*', this->x(), this->y());
+    Game::get()->screen.writeString(R"(\\\\\\)", this->x(), this->y() - 1);
+    Game::get()->screen.writeString(R"(\\**\\)", this->x(), this->y());
+    Game::get()->screen.writeString(R"(\\\\\\)", this->x(), this->y() + 1);
 }
 

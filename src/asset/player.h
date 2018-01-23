@@ -15,10 +15,19 @@
 
 class Block;
 class Enemy;
+
 class Player final: public GameObject{
+
 public:
+    enum Direction{
+        Left,
+        Right,
+        Wait
+    };
     bool isReleaseKeyF = true;
-    double speed = 1;
+    Direction moveDirection = Direction::Wait;
+    Direction direction = Direction::Left;
+    double speed = 2;
     std::string name;
     int range;
     double bottomX();

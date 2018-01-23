@@ -45,6 +45,14 @@
       }
     },
     {
+      "type": "enemy",
+      "data": {
+        "type": "enemy",
+        "x": 20,
+        "y": 33
+      }
+    },
+    {
       "type": "block",
       "data": {
         "type": "block",

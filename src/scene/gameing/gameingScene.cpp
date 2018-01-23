@@ -38,11 +38,11 @@ void GameingScene::update() {
         for(const auto &object: this->objectList){
             object->update();
         }
+        this->getObject<Camera>(GameObject::Type::CAMERA)->set();
         for(const auto &object: this->objectList){
             object->postUpdate();
         }
     }
-
 }
 
 void GameingScene::draw() {
@@ -73,6 +73,8 @@ void GameingScene::load(){
             this->addObject(std::shared_ptr<Block>(new Block(shared_from_this(), data["data"])));
         }else if(data["type"] == "moveblock") {
             this->addObject(std::shared_ptr<MoveBlock>(new MoveBlock(shared_from_this(), data["data"])));
+        }else if(data["type"] == "enemy") {
+            this->addObject(std::shared_ptr<Enemy>(new Enemy(shared_from_this(), data["data"])));
         }
     }
 }

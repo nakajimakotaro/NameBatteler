@@ -69,10 +69,11 @@ void Player::start() {
 }
 
 void Player::shot(){
-    auto bullet = std::make_shared<ArrowBullet>(this->scene, this->x(), this->y(), this->getType());
+    auto bullet = std::make_shared<ArrowBullet>(this->scene, this->x(), this->y(), this->getType(), this->direction == Direction::Right ? 0 : M_PI);
     this->scene.lock()->addObject(bullet);
 }
 void Player::update() {
+    double prevX = this->x();
     if(this->isReleaseKeyF && this->scene.lock()->input.isPush(InputManager::LIST::KEY_F)){
         this->isReleaseKeyF = false;
         this->shot();
@@ -81,24 +82,48 @@ void Player::update() {
         this->isReleaseKeyF = true;
     }
     this->state->update();
-    if(this->bottomY() > 50) {
-        //this->scene.lock()->reset();
-    }
     this->rideCollisionBlock.reset();
-    this->scene.lock()->getObject<Camera>(GameObject::Type::CAMERA)->set();
+
+    if(prevX > this->x()){
+        this->moveDirection = Direction::Left;
+        this->direction = Direction::Left;
+    }else if(prevX < this->x()){
+        this->moveDirection = Direction::Right;
+        this->direction = Direction::Right;
+    }else{
+        this->moveDirection = Direction::Wait;
+    }
 }
 
 void Player::draw() {
     this->state->draw();
 
+    static int direNum = 0;
+    switch (this->moveDirection){
+        case Left:
+            direNum = -1;
+            break;
+        case Right:
+            direNum = 1;
+            break;
+    }
+
     const double num = 6;
     const double loopTime = 30;
+    static int prevCountFrame = this->countFrame();
     for(int i = 0;i < num;i++){
+        double percent;
+        if(this->moveDirection == Direction::Wait){
+            double garbage;
+            percent = modf(prevCountFrame     / (double)loopTime + i / (double)num, &garbage);
+        }else{
+            double garbage;
+            percent = modf(this->countFrame() / (double)loopTime + i / (double)num, &garbage);
+            prevCountFrame = this->countFrame();
+        }
         double x, y;
-        double garbage;
-        const double percent = modf(this->countFrame() / (double)loopTime + i / (double)num, &garbage);
-        x = std::cos(-1 * percent * M_PI * 2) * range * 2;
-        y = std::sin(-1 * percent * M_PI * 2) * range    ;
+        x = std::cos(direNum * percent * M_PI * 2) * range * 2;
+        y = std::sin(direNum * percent * M_PI * 2) * range    ;
         x += this->x();
         y += this->y();
         Game::get()->screen.writeChar(' ', x, y, Screen::ForColor::CYAN, Screen::BackColor::CYAN);

@@ -5,14 +5,20 @@
 #include "arrowBullet.h"
 #include "../core/game.h"
 
-ArrowBullet::ArrowBullet(std::weak_ptr<Scene> scene, double x, double y, GameObject::Type ownerType) : Bullet(scene, x, y, ownerType) {
+ArrowBullet::ArrowBullet(std::weak_ptr<Scene> scene, double x, double y, GameObject::Type ownerType, double angle) :
+        Bullet(scene, x, y, ownerType),
+        angle(angle)
+{
+
 }
 
 void ArrowBullet::start() {
 }
 
 void ArrowBullet::update() {
-    this->localX -= 3;
+    double speed = 3;
+    this->localX += cos(this->angle) * speed;
+    this->localY += sin(this->angle) * speed;
 }
 
 void ArrowBullet::draw() {
@@ -26,3 +32,4 @@ void ArrowBullet::draw() {
 
 void ArrowBullet::end() {
 }
+

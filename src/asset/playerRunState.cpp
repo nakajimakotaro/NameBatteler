@@ -54,13 +54,17 @@ void PlayerRunState::update() {
     this->countFrame++;
 }
 void PlayerRunState::draw() {
+    if(this->body_ptr()->moveDirection == Player::Direction::Wait){
+        return;
+    }
     double x, y;
     const int num = 3;
     const int loopTime = 10;
     const int range = 6;
     for(int i = 0;i < num;i++){
         double garbage;
-        const double percent = modf(this->countFrame / (double)loopTime + i / (double)num, &garbage);
+        double percent;
+        percent = modf(this->countFrame / (double)loopTime + i / (double)num, &garbage);
         x = std::cos(percent * M_PI) * range;
         y = 1;
         x += this->body_ptr()->bottomX();

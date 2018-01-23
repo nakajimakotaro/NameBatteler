@@ -6,11 +6,12 @@
 #define NAMEBATTLER_ENEMY_H
 
 
-
 #include "../common/gameObject.h"
+#include "../lib/json.hpp"
 class Enemy: public GameObject{
 public:
     Enemy(std::weak_ptr<Scene> scene, double x, double y);
+    Enemy(std::weak_ptr<Scene> scene, nlohmann::json json);
     void start() override;
     void update() override;
     void draw() override;
