@@ -37,6 +37,9 @@ void GameObject::removeChild(std::weak_ptr<GameObject> child) {
     auto index = std::distance(this->childList.begin(), std::find_if(this->childList.begin(), this->childList.end(), [child](auto a){
         return a.lock() == child.lock();
     }));
+    if(this->childList.size() >= index){
+        return;
+    }
     this->childList[index] = *(this->childList.end() - 1);
     this->childList.pop_back();
 }

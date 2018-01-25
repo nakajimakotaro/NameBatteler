@@ -8,13 +8,18 @@
 
 #include "../common/gameObject.h"
 #include "../lib/json.hpp"
+
+class Bullet;
 class Enemy: public GameObject{
+private:
+    std::shared_ptr<Bullet> bullet;
 public:
     Enemy(std::weak_ptr<Scene> scene, double x, double y);
     Enemy(std::weak_ptr<Scene> scene, nlohmann::json json);
     void start() override;
     void update() override;
     void draw() override;
+    void end() override;
     Type getType() override {
         return GameObject::Type::ENEMY;
     }

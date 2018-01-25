@@ -17,7 +17,6 @@ class Block;
 class Enemy;
 
 class Player final: public GameObject{
-
 public:
     enum Direction{
         Left,

@@ -11,6 +11,7 @@
 class ArrowBullet: public Bullet {
 public:
     double angle;
+    std::shared_ptr<Collider> collider;
 public:
     ArrowBullet(std::weak_ptr<Scene> scene, double x, double y, Type ownerType, double angle);
     void start() override ;

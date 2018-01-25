@@ -29,7 +29,8 @@ public:
         WhipBullet,
         ArrowBullet,
         NameInput,
-        MOVEBLOCK
+        MOVEBLOCK,
+        EnemyBullet
     };
 private:
     std::weak_ptr<GameObject> parent;

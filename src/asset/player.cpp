@@ -42,6 +42,9 @@ void Player::start() {
     //‘Ì
     auto bodyCollider = std::shared_ptr<Collider>(new Collider(this->scene, -6, -6, 11, 8, [this](std::shared_ptr<Collider> collider, Rect overarea){
         std::shared_ptr<GameObject> gameObject = (collider->getParent().lock());
+        if(gameObject.use_count() == 0){
+            return;
+        }
 
 
         if(gameObject->getType() == GameObject::Type::BLOCK | gameObject->getType() == GameObject::Type::MOVEBLOCK) {
@@ -110,17 +113,16 @@ void Player::draw() {
 
     const double num = 6;
     const double loopTime = 30;
-    static int prevCountFrame = this->countFrame();
     for(int i = 0;i < num;i++){
         double percent;
+        int frame;
         if(this->moveDirection == Direction::Wait){
-            double garbage;
-            percent = modf(prevCountFrame     / (double)loopTime + i / (double)num, &garbage);
+            frame = 0;
         }else{
-            double garbage;
-            percent = modf(this->countFrame() / (double)loopTime + i / (double)num, &garbage);
-            prevCountFrame = this->countFrame();
+            frame = this->countFrame();
         }
+        double garbage;
+        percent = modf(frame / (double)loopTime + i / (double)num, &garbage);
         double x, y;
         x = std::cos(direNum * percent * M_PI * 2) * range * 2;
         y = std::sin(direNum * percent * M_PI * 2) * range    ;

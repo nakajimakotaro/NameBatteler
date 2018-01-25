@@ -40,6 +40,7 @@ add_executable(nameBattler
         src/scene/start/startScene.cpp src/scene/start/startScene.h
         src/scene/scene.cpp src/asset/nameInput.cpp
         src/asset/nameInput.h
-        src/asset/moveBlock.cpp src/asset/moveBlock.h)
+        src/asset/moveBlock.cpp src/asset/moveBlock.h
+        src/asset/EnemyBullet.cpp src/asset/EnemyBullet.h)
 target_link_libraries(nameBattler winmm)
 

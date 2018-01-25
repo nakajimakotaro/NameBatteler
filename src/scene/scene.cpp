@@ -15,6 +15,16 @@ std::shared_ptr<GameObject> Scene::removeObject(std::weak_ptr<GameObject> obj) {
 }
 
 void Scene::queueUpdate(){
+    auto addQueueList = this->addQueueList;
+    this->addQueueList.clear();
+    //addQueueのオブジェクトを追加
+    for(const auto &obj: addQueueList){
+        this->objectList.push_back(obj);
+    }
+    for(const auto &obj: addQueueList){
+        obj->start();
+    }
+
     auto removeQueueList = this->removeQueueList;
     this->removeQueueList.clear();
     //removeQueueのオブジェクトを削除
@@ -25,15 +35,5 @@ void Scene::queueUpdate(){
         auto index = std::distance(this->objectList.begin(), std::find(this->objectList.begin(), this->objectList.end(), removeObject));
         this->objectList[index] = *(this->objectList.end() - 1);
         this->objectList.pop_back();
-    }
-
-    auto addQueueList = this->addQueueList;
-    this->addQueueList.clear();
-    //addQueueのオブジェクトを追加
-    for(const auto &obj: addQueueList){
-        this->objectList.push_back(obj);
-    }
-    for(const auto &obj: addQueueList){
-        obj->start();
     }
 }
