@@ -30,7 +30,8 @@ public:
         ArrowBullet,
         NameInput,
         MOVEBLOCK,
-        EnemyBullet
+        EnemyBullet,
+        Goal
     };
 private:
     std::weak_ptr<GameObject> parent;

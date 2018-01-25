@@ -35,9 +35,10 @@ Screen::Screen():
         GetConsoleCursorInfo(handle, &cursorInfo);
         cursorInfo.bVisible = false;
         SetConsoleCursorInfo(handle, &cursorInfo);
-        SetConsoleScreenBufferSize(handle, {Screen::WIDTH, Screen::HEIGHT});
+        SetConsoleScreenBufferSize(handle, {Screen::WIDTH});
+
         SMALL_RECT winRect{0, 0, Screen::WIDTH - 1, Screen::HEIGHT - 1};
-        SetConsoleWindowInfo(handle, TRUE, &winRect);
+        auto res = SetConsoleWindowInfo(handle, TRUE, &winRect);
 
         CONSOLE_FONT_INFOEX fontInfo;
         GetCurrentConsoleFontEx(handle, TRUE, &fontInfo);

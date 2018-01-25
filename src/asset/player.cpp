@@ -16,11 +16,19 @@
 #include "../scene/inputManager.h"
 #include "../scene/gameing/gameingInputManager.h"
 #include "../scene/gameing/gameingScene.h"
+#include "../scene/start/startScene.h"
+
 Player::Player(std::weak_ptr<Scene> scene, nlohmann::json json, std::string name):
         GameObject(scene, json["x"].get<double>(), json["y"].get<double>()),
         name(name),
-        range(3)
+        range(3),
+        hp(9)
 {
+    int seed = 0;
+    for(char c: name){
+        seed += c;
+    }
+    this->hp = (seed + 3) % 10 + 3;
 }
 void Player::start() {
     this->state = StateMachine<Player>::create(std::dynamic_pointer_cast<Player>(shared_from_this()), PlayerRunState::name(), {
@@ -32,6 +40,9 @@ void Player::start() {
     //地面用
     auto rideCollider = std::shared_ptr<Collider>(new Collider(this->scene, -3, 3, 6, 1, [this](auto obj, auto overarea){
         std::shared_ptr<GameObject> gameObject = (obj->getParent().lock());
+        if(!gameObject){
+            return;
+        }
             if(gameObject->getType() == GameObject::Type::BLOCK | gameObject->getType() == GameObject::Type::MOVEBLOCK) {
                 this->rideCollisionBlock = std::dynamic_pointer_cast<Block>(gameObject);
             }
@@ -39,14 +50,23 @@ void Player::start() {
     this->addChild(rideCollider);
     this->scene.lock()->collision.addObjectRequire(rideCollider);
 
-    //体
+    //ボディー
     auto bodyCollider = std::shared_ptr<Collider>(new Collider(this->scene, -6, -6, 11, 8, [this](std::shared_ptr<Collider> collider, Rect overarea){
         std::shared_ptr<GameObject> gameObject = (collider->getParent().lock());
         if(gameObject.use_count() == 0){
             return;
         }
 
-
+        if(gameObject->getType() == GameObject::Type::Goal) {
+            Game::get()->changeScene(std::make_shared<StartScene>());
+        }
+        if(gameObject->getType() == GameObject::Type::ArrowBullet) {
+            if(this->prevDamage + 3000 > timeGetTime()){
+                return;
+            }
+            this->hp--;
+            this->prevDamage = timeGetTime();
+        }
         if(gameObject->getType() == GameObject::Type::BLOCK | gameObject->getType() == GameObject::Type::MOVEBLOCK) {
             double colliderCentorX = collider->x() + collider->w / 2;
             double colliderCentorY = collider->y() + collider->h / 2;
@@ -76,6 +96,9 @@ void Player::shot(){
     this->scene.lock()->addObject(bullet);
 }
 void Player::update() {
+    if(this->hp <= 0){
+        this->scene.lock()->reset();
+    }
     double prevX = this->x();
     if(this->isReleaseKeyF && this->scene.lock()->input.isPush(InputManager::LIST::KEY_F)){
         this->isReleaseKeyF = false;
@@ -131,6 +154,10 @@ void Player::draw() {
         Game::get()->screen.writeChar(' ', x, y, Screen::ForColor::CYAN, Screen::BackColor::CYAN);
     }
     Game::get()->screen.writeChar('*', this->x(), this->y(), Screen::ForColor::MAGENTA);
+    this->scene.lock()->getObject<DebugMessage>(GameObject::Type::DEBUG_MESSAGE)->set("hp", std::to_string(this->hp));
+}
+
+void Player::postUpdate(){
 }
 
 GameObject::Type Player::getType() {

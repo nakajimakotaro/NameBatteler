@@ -6,7 +6,7 @@
 #define NAMEBATTLER_INPUTMANAGER_H
 
 
-#include <c++/vector>
+#include <vector>
 
 class InputManager {
 public:

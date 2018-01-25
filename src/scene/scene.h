@@ -26,6 +26,7 @@ public:
     virtual void startScene(){};
     virtual void update(){};
     virtual void draw(){};
+    virtual void reset(){};
     virtual void endScene(){
         for(auto obj: this->objectList){
             obj->end();

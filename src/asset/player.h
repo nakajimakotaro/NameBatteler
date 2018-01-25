@@ -29,6 +29,8 @@ public:
     double speed = 2;
     std::string name;
     int range;
+    int hp;
+    int prevDamage = 0;
     double bottomX();
     double bottomY();
     std::shared_ptr<Block> rideCollisionBlock;
@@ -38,6 +40,7 @@ public:
     void start() override;
     void update() override;
     void draw() override;
+    void postUpdate() override;
     GameObject::Type getType() override;
 
     void shot();

@@ -27,7 +27,7 @@ public:
     void endScene() override;
 
     void pause();
-    void reset();
+    void reset() override ;
 
 private:
     void load();

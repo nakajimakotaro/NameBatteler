@@ -83,6 +83,14 @@
       }
     },
     {
+      "type": "goal",
+      "data": {
+        "type": "goal",
+        "x": -238,
+        "y": 10
+      }
+    },
+    {
       "type": "player",
       "data": {
         "x": 103,

@@ -33,6 +33,9 @@ void Scene::queueUpdate(){
     }
     for(auto& removeObject: removeQueueList){
         auto index = std::distance(this->objectList.begin(), std::find(this->objectList.begin(), this->objectList.end(), removeObject));
+        if(this->objectList.size() <= index){
+            continue;
+        }
         this->objectList[index] = *(this->objectList.end() - 1);
         this->objectList.pop_back();
     }
