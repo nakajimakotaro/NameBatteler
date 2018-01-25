@@ -1,0 +1,183 @@
+﻿  Building Custom Rule C:/Users/harus/program/NameBatteler/CMakeLists.txt
+  CMake does not need to re-run because C:/Users/harus/program/NameBatteler/vs/CMakeFiles/generate.stamp is up-to-date.
+  Microsoft(R) C/C++ Optimizing Compiler Version 19.10.25019 for x86
+  Copyright (C) Microsoft Corporation.  All rights reserved.
+  
+  cl /c /Zi /W3 /WX- /diagnostics:classic /Od /Ob0 /Oy- /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\"Debug\"" /D _MBCS /Gm- /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /GR /std:c++latest /Fo"nameBattler.dir\Debug\\" /Fd"nameBattler.dir\Debug\vc141.pdb" /Gd /TP /analyze- /errorReport:prompt C:\Users\harus\program\NameBatteler\src\main.cpp C:\Users\harus\program\NameBatteler\src\core\screen.cpp C:\Users\harus\program\NameBatteler\src\core\game.cpp C:\Users\harus\program\NameBatteler\src\core\fps.cpp C:\Users\harus\program\NameBatteler\src\common\rect.cpp C:\Users\harus\program\NameBatteler\src\asset\messageArea.cpp C:\Users\harus\program\NameBatteler\src\asset\player.cpp C:\Users\harus\program\NameBatteler\src\asset\playerJumpState.cpp C:\Users\harus\program\NameBatteler\src\asset\playerRunState.cpp C:\Users\harus\program\NameBatteler\src\scene\inputManager.cpp C:\Users\harus\program\NameBatteler\src\scene\gameing\gameingScene.cpp C:\Users\harus\program\NameBatteler\src\scene\gameing\gameingInputManager.cpp C:\Users\harus\program\NameBatteler\src\asset\camera.cpp C:\Users\harus\program\NameBatteler\src\asset\block.cpp C:\Users\harus\program\NameBatteler\src\asset\debugMessage.cpp C:\Users\harus\program\NameBatteler\src\common\collision.cpp C:\Users\harus\program\NameBatteler\src\common\collider.cpp C:\Users\harus\program\NameBatteler\src\asset\playerFallState.cpp C:\Users\harus\program\NameBatteler\src\asset\enemy.cpp C:\Users\harus\program\NameBatteler\src\asset\playerDamageState.cpp C:\Users\harus\program\NameBatteler\src\common\gameObject.cpp C:\Users\harus\program\NameBatteler\src\asset\particle.cpp C:\Users\harus\program\NameBatteler\src\asset\moveParticle.cpp C:\Users\harus\program\NameBatteler\src\asset\whipBullet.cpp C:\Users\harus\program\NameBatteler\src\asset\dotBullet.cpp C:\Users\harus\program\NameBatteler\src\asset\arrowBullet.cpp C:\Users\harus\program\NameBatteler\src\scene\start\startScene.cpp C:\Users\harus\program\NameBatteler\src\scene\scene.cpp C:\Users\harus\program\NameBatteler\src\asset\nameInput.cpp C:\Users\harus\program\NameBatteler\src\asset\moveBlock.cpp C:\Users\harus\program\NameBatteler\src\asset\EnemyBullet.cpp
+  
+  main.cpp
+c:\users\harus\program\namebatteler\src\scene\inputManager.h(9): fatal error C1083: include ファイルを開けません。'c++/vector':No such file or directory
+  screen.cpp
+C:\Users\harus\program\NameBatteler\src\core\screen.cpp(117): warning C4244: '初期化中': 'double' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\harus\program\NameBatteler\src\core\screen.cpp(118): warning C4244: '初期化中': 'double' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\harus\program\NameBatteler\src\core\screen.cpp(131): warning C4244: '初期化中': 'double' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\harus\program\NameBatteler\src\core\screen.cpp(132): warning C4244: '初期化中': 'double' から 'int' への変換です。データが失われる可能性があります。
+  game.cpp
+c:\users\harus\program\namebatteler\src\scene\inputManager.h(9): fatal error C1083: include ファイルを開けません。'c++/vector':No such file or directory
+  fps.cpp
+C:\Users\harus\program\NameBatteler\src\core\fps.cpp(22): warning C4244: '初期化中': 'double' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\harus\program\NameBatteler\src\core\fps.cpp(34): warning C4018: '>=': signed と unsigned の数値を比較しようとしました。
+  rect.cpp
+  messageArea.cpp
+c:\users\harus\program\namebatteler\src\asset\messageArea.h : warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+c:\users\harus\program\namebatteler\src\scene\inputManager.h(9): fatal error C1083: include ファイルを開けません。'c++/vector':No such file or directory
+  player.cpp
+c:\users\harus\program\namebatteler\src\common\collider.h(14): error C2039: 'function': 'std' のメンバーではありません。
+  C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.10.25017\include\unordered_map(15): note: 'std' の宣言を確認してください
+c:\users\harus\program\namebatteler\src\common\collider.h(14): error C2061: 構文エラー: 識別子 'function'
+c:\users\harus\program\namebatteler\src\common\collider.h(17): error C2039: 'function': 'std' のメンバーではありません。
+  C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.10.25017\include\unordered_map(15): note: 'std' の宣言を確認してください
+c:\users\harus\program\namebatteler\src\common\collider.h(17): error C2143: 構文エラー: ';' が '<' の前にありません。
+c:\users\harus\program\namebatteler\src\common\collider.h(17): error C4430: 型指定子がありません - int と仮定しました。メモ: C++ は int を既定値としてサポートしていません
+c:\users\harus\program\namebatteler\src\common\collider.h(17): error C2238: ';' の前に無効なトークンがあります。
+c:\users\harus\program\namebatteler\src\scene\inputManager.h(9): fatal error C1083: include ファイルを開けません。'c++/vector':No such file or directory
+  playerJumpState.cpp
+c:\users\harus\program\namebatteler\src\common\collider.h(14): error C2039: 'function': 'std' のメンバーではありません。
+  C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.10.25017\include\algorithm(14): note: 'std' の宣言を確認してください
+c:\users\harus\program\namebatteler\src\common\collider.h(14): error C2061: 構文エラー: 識別子 'function'
+c:\users\harus\program\namebatteler\src\common\collider.h(17): error C2039: 'function': 'std' のメンバーではありません。
+  C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.10.25017\include\algorithm(14): note: 'std' の宣言を確認してください
+c:\users\harus\program\namebatteler\src\common\collider.h(17): error C2143: 構文エラー: ';' が '<' の前にありません。
+c:\users\harus\program\namebatteler\src\common\collider.h(17): error C4430: 型指定子がありません - int と仮定しました。メモ: C++ は int を既定値としてサポートしていません
+c:\users\harus\program\namebatteler\src\common\collider.h(17): error C2238: ';' の前に無効なトークンがあります。
+c:\users\harus\program\namebatteler\src\scene\inputManager.h(9): fatal error C1083: include ファイルを開けません。'c++/vector':No such file or directory
+  playerRunState.cpp
+c:\users\harus\program\namebatteler\src\common\collider.h(14): error C2039: 'function': 'std' のメンバーではありません。
+  C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.10.25017\include\unordered_map(15): note: 'std' の宣言を確認してください
+c:\users\harus\program\namebatteler\src\common\collider.h(14): error C2061: 構文エラー: 識別子 'function'
+c:\users\harus\program\namebatteler\src\common\collider.h(17): error C2039: 'function': 'std' のメンバーではありません。
+  C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.10.25017\include\unordered_map(15): note: 'std' の宣言を確認してください
+c:\users\harus\program\namebatteler\src\common\collider.h(17): error C2143: 構文エラー: ';' が '<' の前にありません。
+c:\users\harus\program\namebatteler\src\common\collider.h(17): error C4430: 型指定子がありません - int と仮定しました。メモ: C++ は int を既定値としてサポートしていません
+c:\users\harus\program\namebatteler\src\common\collider.h(17): error C2238: ';' の前に無効なトークンがあります。
+c:\users\harus\program\namebatteler\src\asset\../scene/inputManager.h(9): fatal error C1083: include ファイルを開けません。'c++/vector':No such file or directory
+  inputManager.cpp
+c:\users\harus\program\namebatteler\src\scene\inputManager.h(9): fatal error C1083: include ファイルを開けません。'c++/vector':No such file or directory
+  gameingScene.cpp
+c:\users\harus\program\namebatteler\src\scene\inputManager.h(9): fatal error C1083: include ファイルを開けません。'c++/vector':No such file or directory
+  gameingInputManager.cpp
+c:\users\harus\program\namebatteler\src\scene\gameing\gameingInputManager.h(9): fatal error C1083: include ファイルを開けません。'c++/memory':No such file or directory
+  camera.cpp
+c:\users\harus\program\namebatteler\src\common\collider.h(14): error C2039: 'function': 'std' のメンバーではありません。
+  C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.10.25017\include\unordered_map(15): note: 'std' の宣言を確認してください
+c:\users\harus\program\namebatteler\src\common\collider.h(14): error C2061: 構文エラー: 識別子 'function'
+c:\users\harus\program\namebatteler\src\common\collider.h(17): error C2039: 'function': 'std' のメンバーではありません。
+  C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.10.25017\include\unordered_map(15): note: 'std' の宣言を確認してください
+c:\users\harus\program\namebatteler\src\common\collider.h(17): error C2143: 構文エラー: ';' が '<' の前にありません。
+c:\users\harus\program\namebatteler\src\common\collider.h(17): error C4430: 型指定子がありません - int と仮定しました。メモ: C++ は int を既定値としてサポートしていません
+c:\users\harus\program\namebatteler\src\common\collider.h(17): error C2238: ';' の前に無効なトークンがあります。
+c:\users\harus\program\namebatteler\src\scene\inputManager.h(9): fatal error C1083: include ファイルを開けません。'c++/vector':No such file or directory
+  block.cpp
+c:\users\harus\program\namebatteler\src\common\collider.h(14): error C2039: 'function': 'std' のメンバーではありません。
+  C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.10.25017\include\vector(15): note: 'std' の宣言を確認してください
+c:\users\harus\program\namebatteler\src\common\collider.h(14): error C2061: 構文エラー: 識別子 'function'
+c:\users\harus\program\namebatteler\src\common\collider.h(17): error C2039: 'function': 'std' のメンバーではありません。
+  C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.10.25017\include\vector(15): note: 'std' の宣言を確認してください
+c:\users\harus\program\namebatteler\src\common\collider.h(17): error C2143: 構文エラー: ';' が '<' の前にありません。
+c:\users\harus\program\namebatteler\src\common\collider.h(17): error C4430: 型指定子がありません - int と仮定しました。メモ: C++ は int を既定値としてサポートしていません
+c:\users\harus\program\namebatteler\src\common\collider.h(17): error C2238: ';' の前に無効なトークンがあります。
+c:\users\harus\program\namebatteler\src\scene\inputManager.h(9): fatal error C1083: include ファイルを開けません。'c++/vector':No such file or directory
+  debugMessage.cpp
+c:\users\harus\program\namebatteler\src\scene\inputManager.h(9): fatal error C1083: include ファイルを開けません。'c++/vector':No such file or directory
+  collision.cpp
+c:\users\harus\program\namebatteler\src\common\collider.h(14): error C2039: 'function': 'std' のメンバーではありません。
+  C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.10.25017\include\algorithm(14): note: 'std' の宣言を確認してください
+c:\users\harus\program\namebatteler\src\common\collider.h(14): error C2061: 構文エラー: 識別子 'function'
+c:\users\harus\program\namebatteler\src\common\collider.h(17): error C2039: 'function': 'std' のメンバーではありません。
+  C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.10.25017\include\algorithm(14): note: 'std' の宣言を確認してください
+c:\users\harus\program\namebatteler\src\common\collider.h(17): error C2143: 構文エラー: ';' が '<' の前にありません。
+c:\users\harus\program\namebatteler\src\common\collider.h(17): error C4430: 型指定子がありません - int と仮定しました。メモ: C++ は int を既定値としてサポートしていません
+c:\users\harus\program\namebatteler\src\common\collider.h(17): error C2238: ';' の前に無効なトークンがあります。
+C:\Users\harus\program\NameBatteler\src\common\collision.cpp(51): error C2039: 'collision': 'Collider' のメンバーではありません。
+  c:\users\harus\program\namebatteler\src\common\collider.h(12): note: 'Collider' の宣言を確認してください
+C:\Users\harus\program\NameBatteler\src\common\collision.cpp(52): error C2039: 'collision': 'Collider' のメンバーではありません。
+  c:\users\harus\program\namebatteler\src\common\collider.h(12): note: 'Collider' の宣言を確認してください
+  collider.cpp
+c:\users\harus\program\namebatteler\src\common\collider.h(14): error C2039: 'function': 'std' のメンバーではありません。
+  C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.10.25017\include\vector(15): note: 'std' の宣言を確認してください
+c:\users\harus\program\namebatteler\src\common\collider.h(14): error C2061: 構文エラー: 識別子 'function'
+c:\users\harus\program\namebatteler\src\common\collider.h(17): error C2039: 'function': 'std' のメンバーではありません。
+  C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.10.25017\include\vector(15): note: 'std' の宣言を確認してください
+c:\users\harus\program\namebatteler\src\common\collider.h(17): error C2143: 構文エラー: ';' が '<' の前にありません。
+c:\users\harus\program\namebatteler\src\common\collider.h(17): error C4430: 型指定子がありません - int と仮定しました。メモ: C++ は int を既定値としてサポートしていません
+c:\users\harus\program\namebatteler\src\common\collider.h(17): error C2238: ';' の前に無効なトークンがあります。
+c:\users\harus\program\namebatteler\src\scene\inputManager.h(9): fatal error C1083: include ファイルを開けません。'c++/vector':No such file or directory
+  playerFallState.cpp
+c:\users\harus\program\namebatteler\src\common\collider.h(14): error C2039: 'function': 'std' のメンバーではありません。
+  C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.10.25017\include\unordered_map(15): note: 'std' の宣言を確認してください
+c:\users\harus\program\namebatteler\src\common\collider.h(14): error C2061: 構文エラー: 識別子 'function'
+c:\users\harus\program\namebatteler\src\common\collider.h(17): error C2039: 'function': 'std' のメンバーではありません。
+  C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.10.25017\include\unordered_map(15): note: 'std' の宣言を確認してください
+c:\users\harus\program\namebatteler\src\common\collider.h(17): error C2143: 構文エラー: ';' が '<' の前にありません。
+c:\users\harus\program\namebatteler\src\common\collider.h(17): error C4430: 型指定子がありません - int と仮定しました。メモ: C++ は int を既定値としてサポートしていません
+c:\users\harus\program\namebatteler\src\common\collider.h(17): error C2238: ';' の前に無効なトークンがあります。
+c:\users\harus\program\namebatteler\src\scene\inputManager.h(9): fatal error C1083: include ファイルを開けません。'c++/vector':No such file or directory
+  enemy.cpp
+c:\users\harus\program\namebatteler\src\scene\inputManager.h(9): fatal error C1083: include ファイルを開けません。'c++/vector':No such file or directory
+  playerDamageState.cpp
+c:\users\harus\program\namebatteler\src\common\collider.h(14): error C2039: 'function': 'std' のメンバーではありません。
+  C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.10.25017\include\algorithm(14): note: 'std' の宣言を確認してください
+c:\users\harus\program\namebatteler\src\common\collider.h(14): error C2061: 構文エラー: 識別子 'function'
+c:\users\harus\program\namebatteler\src\common\collider.h(17): error C2039: 'function': 'std' のメンバーではありません。
+  C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.10.25017\include\algorithm(14): note: 'std' の宣言を確認してください
+c:\users\harus\program\namebatteler\src\common\collider.h(17): error C2143: 構文エラー: ';' が '<' の前にありません。
+c:\users\harus\program\namebatteler\src\common\collider.h(17): error C4430: 型指定子がありません - int と仮定しました。メモ: C++ は int を既定値としてサポートしていません
+c:\users\harus\program\namebatteler\src\common\collider.h(17): error C2238: ';' の前に無効なトークンがあります。
+c:\users\harus\program\namebatteler\src\scene\inputManager.h(9): fatal error C1083: include ファイルを開けません。'c++/vector':No such file or directory
+  コードを生成中...
+  コンパイル中...
+  gameObject.cpp
+c:\users\harus\program\namebatteler\src\scene\inputManager.h(9): fatal error C1083: include ファイルを開けません。'c++/vector':No such file or directory
+  particle.cpp
+c:\users\harus\program\namebatteler\src\scene\inputManager.h(9): fatal error C1083: include ファイルを開けません。'c++/vector':No such file or directory
+  moveParticle.cpp
+c:\users\harus\program\namebatteler\src\scene\inputManager.h(9): fatal error C1083: include ファイルを開けません。'c++/vector':No such file or directory
+  whipBullet.cpp
+c:\users\harus\program\namebatteler\src\asset\../common/collider.h(14): error C2039: 'function': 'std' のメンバーではありません。
+  C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.10.25017\include\vector(15): note: 'std' の宣言を確認してください
+c:\users\harus\program\namebatteler\src\asset\../common/collider.h(14): error C2061: 構文エラー: 識別子 'function'
+c:\users\harus\program\namebatteler\src\asset\../common/collider.h(17): error C2039: 'function': 'std' のメンバーではありません。
+  C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.10.25017\include\vector(15): note: 'std' の宣言を確認してください
+c:\users\harus\program\namebatteler\src\asset\../common/collider.h(17): error C2143: 構文エラー: ';' が '<' の前にありません。
+c:\users\harus\program\namebatteler\src\asset\../common/collider.h(17): error C4430: 型指定子がありません - int と仮定しました。メモ: C++ は int を既定値としてサポートしていません
+c:\users\harus\program\namebatteler\src\asset\../common/collider.h(17): error C2238: ';' の前に無効なトークンがあります。
+c:\users\harus\program\namebatteler\src\scene\inputManager.h(9): fatal error C1083: include ファイルを開けません。'c++/vector':No such file or directory
+  dotBullet.cpp
+c:\users\harus\program\namebatteler\src\asset\../common/collider.h(14): error C2039: 'function': 'std' のメンバーではありません。
+  C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.10.25017\include\vector(15): note: 'std' の宣言を確認してください
+c:\users\harus\program\namebatteler\src\asset\../common/collider.h(14): error C2061: 構文エラー: 識別子 'function'
+c:\users\harus\program\namebatteler\src\asset\../common/collider.h(17): error C2039: 'function': 'std' のメンバーではありません。
+  C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.10.25017\include\vector(15): note: 'std' の宣言を確認してください
+c:\users\harus\program\namebatteler\src\asset\../common/collider.h(17): error C2143: 構文エラー: ';' が '<' の前にありません。
+c:\users\harus\program\namebatteler\src\asset\../common/collider.h(17): error C4430: 型指定子がありません - int と仮定しました。メモ: C++ は int を既定値としてサポートしていません
+c:\users\harus\program\namebatteler\src\asset\../common/collider.h(17): error C2238: ';' の前に無効なトークンがあります。
+c:\users\harus\program\namebatteler\src\scene\inputManager.h(9): fatal error C1083: include ファイルを開けません。'c++/vector':No such file or directory
+  arrowBullet.cpp
+c:\users\harus\program\namebatteler\src\asset\../common/collider.h(14): error C2039: 'function': 'std' のメンバーではありません。
+  C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.10.25017\include\vector(15): note: 'std' の宣言を確認してください
+c:\users\harus\program\namebatteler\src\asset\../common/collider.h(14): error C2061: 構文エラー: 識別子 'function'
+c:\users\harus\program\namebatteler\src\asset\../common/collider.h(17): error C2039: 'function': 'std' のメンバーではありません。
+  C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.10.25017\include\vector(15): note: 'std' の宣言を確認してください
+c:\users\harus\program\namebatteler\src\asset\../common/collider.h(17): error C2143: 構文エラー: ';' が '<' の前にありません。
+c:\users\harus\program\namebatteler\src\asset\../common/collider.h(17): error C4430: 型指定子がありません - int と仮定しました。メモ: C++ は int を既定値としてサポートしていません
+c:\users\harus\program\namebatteler\src\asset\../common/collider.h(17): error C2238: ';' の前に無効なトークンがあります。
+c:\users\harus\program\namebatteler\src\scene\inputManager.h(9): fatal error C1083: include ファイルを開けません。'c++/vector':No such file or directory
+  startScene.cpp
+c:\users\harus\program\namebatteler\src\scene\inputManager.h(9): fatal error C1083: include ファイルを開けません。'c++/vector':No such file or directory
+  scene.cpp
+c:\users\harus\program\namebatteler\src\scene\inputManager.h(9): fatal error C1083: include ファイルを開けません。'c++/vector':No such file or directory
+  nameInput.cpp
+c:\users\harus\program\namebatteler\src\scene\inputManager.h(9): fatal error C1083: include ファイルを開けません。'c++/vector':No such file or directory
+  moveBlock.cpp
+c:\users\harus\program\namebatteler\src\scene\inputManager.h(9): fatal error C1083: include ファイルを開けません。'c++/vector':No such file or directory
+  EnemyBullet.cpp
+c:\users\harus\program\namebatteler\src\asset\../common/collider.h(14): error C2039: 'function': 'std' のメンバーではありません。
+  C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.10.25017\include\vector(15): note: 'std' の宣言を確認してください
+c:\users\harus\program\namebatteler\src\asset\../common/collider.h(14): error C2061: 構文エラー: 識別子 'function'
+c:\users\harus\program\namebatteler\src\asset\../common/collider.h(17): error C2039: 'function': 'std' のメンバーではありません。
+  C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.10.25017\include\vector(15): note: 'std' の宣言を確認してください
+c:\users\harus\program\namebatteler\src\asset\../common/collider.h(17): error C2143: 構文エラー: ';' が '<' の前にありません。
+c:\users\harus\program\namebatteler\src\asset\../common/collider.h(17): error C4430: 型指定子がありません - int と仮定しました。メモ: C++ は int を既定値としてサポートしていません
+c:\users\harus\program\namebatteler\src\asset\../common/collider.h(17): error C2238: ';' の前に無効なトークンがあります。
+c:\users\harus\program\namebatteler\src\scene\inputManager.h(9): fatal error C1083: include ファイルを開けません。'c++/vector':No such file or directory
+  コードを生成中...

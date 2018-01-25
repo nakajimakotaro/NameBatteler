@@ -35,7 +35,7 @@ Screen::Screen():
         GetConsoleCursorInfo(handle, &cursorInfo);
         cursorInfo.bVisible = false;
         SetConsoleCursorInfo(handle, &cursorInfo);
-        SetConsoleScreenBufferSize(handle, {Screen::WIDTH});
+        SetConsoleScreenBufferSize(handle, {Screen::WIDTH, Screen::HEIGHT});
 
         SMALL_RECT winRect{0, 0, Screen::WIDTH - 1, Screen::HEIGHT - 1};
         auto res = SetConsoleWindowInfo(handle, TRUE, &winRect);

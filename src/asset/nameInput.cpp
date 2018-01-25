@@ -8,6 +8,7 @@
 #include "../scene/gameing/gameingScene.h"
 
 NameInput::NameInput(std::weak_ptr<Scene> scene, double x, double y) : GameObject(scene, x, y) {
+    Game::get()->screen.move(0, 0);
 }
 
 

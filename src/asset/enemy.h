@@ -13,6 +13,7 @@ class Bullet;
 class Enemy: public GameObject{
 private:
     std::shared_ptr<Bullet> bullet;
+    int hp;
 public:
     Enemy(std::weak_ptr<Scene> scene, double x, double y);
     Enemy(std::weak_ptr<Scene> scene, nlohmann::json json);

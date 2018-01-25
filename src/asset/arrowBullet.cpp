@@ -51,7 +51,7 @@ void ArrowBullet::draw() {
     //Game::get()->screen.writeChar(count % 10 < 4 ? '/' : '\\', this->x() + 1, this->y() - 1);
     //Game::get()->screen.writeChar(count % 10 > 4 ? '/' : '\\', this->x() + 1, this->y() + 1);
     //Game::get()->screen.writeChar(count % 10 < 4 ? '/' : '\\', this->x() - 1, this->y() + 1);
-    Game::get()->screen.writeChar('*', this->x() - 0, this->y() + 0, Screen::ForColor::MAGENTA, Screen::BackColor::YELLOW);
+    Game::get()->screen.writeChar('+', this->x() - 0, this->y() + 0, Screen::ForColor::MAGENTA, Screen::BackColor::MAGENTA);
 }
 
 void ArrowBullet::end() {

@@ -45,6 +45,7 @@ int Game::loop(){
 
 void Game::changeScene(std::shared_ptr<Scene> scene) {
     this->nextScene = std::move(scene);
+    this->screen.move(0, 0);
 }
 
 void Game::exitRequire() {
