@@ -10,7 +10,6 @@ ArrowBullet::ArrowBullet(std::weak_ptr<Scene> scene, double x, double y, GameObj
         Bullet(scene, x, y, ownerType),
         angle(angle)
 {
-
 }
 
 void ArrowBullet::start() {
@@ -20,8 +19,8 @@ void ArrowBullet::start() {
             return;
         }
         if(
-                obj.lock()->getParent().lock()->getType() == GameObject::Type::BLOCK ||
-                obj.lock()->getParent().lock()->getType() == GameObject::Type::MOVEBLOCK
+                obj.lock()->getParent().lock()->getType() != this->shotOwner &&
+                obj.lock()->getParent().lock()->getType() != GameObject::Type::ArrowBullet
                 ){
             this->scene.lock()->removeObject(shared_from_this());
         }
