@@ -4,9 +4,9 @@
       "type": "block",
       "data": {
         "type": "block",
-        "x": 29,
-        "y": 39,
-        "w": 82,
+        "x": 44,
+        "y": 45,
+        "w": 107,
         "h": 3
       }
     },
@@ -14,11 +14,11 @@
       "type": "moveblock",
       "data": {
         "type": "moveblock",
-        "startX": -1,
-        "startY": 39,
-        "goalX": -1,
+        "startX": 5,
+        "startY": 45,
+        "goalX": 5,
         "goalY": 18,
-        "w": 26,
+        "w": 36,
         "h": 2
       }
     },
@@ -26,11 +26,11 @@
       "type": "moveblock",
       "data": {
         "type": "moveblock",
-        "startX": -28,
+        "startX": -31,
         "startY": 18,
-        "goalX": -86,
+        "goalX": -105,
         "goalY": 18,
-        "w": 24,
+        "w": 34,
         "h": 2
       }
     },
@@ -38,9 +38,45 @@
       "type": "block",
       "data": {
         "type": "block",
-        "x": -149,
+        "x": -140,
         "y": 18,
-        "w": 60,
+        "w": 29,
+        "h": 19
+      }
+    },
+    {
+      "type": "moveblock",
+      "data": {
+        "type": "moveblock",
+        "startX": -179,
+        "startY": 18,
+        "goalX": -179,
+        "goalY": 44,
+        "w": 27,
+        "h": 3
+      }
+    },
+    {
+      "type": "moveblock",
+      "data": {
+        "type": "moveblock",
+        "startX": -246,
+        "startY": 44,
+        "goalX": -246,
+        "goalY": 17,
+        "w": 35,
+        "h": 2
+      }
+    },
+    {
+      "type": "moveblock",
+      "data": {
+        "type": "moveblock",
+        "startX": -298,
+        "startY": 16,
+        "goalX": -298,
+        "goalY": 46,
+        "w": 42,
         "h": 2
       }
     },
@@ -48,19 +84,31 @@
       "type": "block",
       "data": {
         "type": "block",
-        "x": -123,
-        "y": 11,
-        "w": 7,
-        "h": 7
+        "x": -355,
+        "y": 16,
+        "w": 56,
+        "h": 2
+      }
+    },
+    {
+      "type": "moveblock",
+      "data": {
+        "type": "moveblock",
+        "startX": -405,
+        "startY": 16,
+        "goalX": -490,
+        "goalY": 50,
+        "w": 48,
+        "h": 2
       }
     },
     {
       "type": "block",
       "data": {
         "type": "block",
-        "x": -194,
-        "y": 18,
-        "w": 45,
+        "x": -634,
+        "y": 50,
+        "w": 142,
         "h": 2
       }
     },
@@ -68,33 +116,117 @@
       "type": "enemy",
       "data": {
         "type": "enemy",
-        "x": -194,
-        "y": 13
+        "x": -624,
+        "y": 46
       }
     },
     {
       "type": "block",
       "data": {
         "type": "block",
-        "x": -248,
-        "y": 18,
-        "w": 51,
+        "x": -540,
+        "y": 41,
+        "w": 9,
+        "h": 10
+      }
+    },
+    {
+      "type": "block",
+      "data": {
+        "type": "block",
+        "x": -724,
+        "y": 76,
+        "w": 88,
+        "h": 4
+      }
+    },
+    {
+      "type": "moveblock",
+      "data": {
+        "type": "moveblock",
+        "startX": -769,
+        "startY": 76,
+        "goalX": -874,
+        "goalY": 76,
+        "w": 39,
+        "h": 4
+      }
+    },
+    {
+      "type": "enemy",
+      "data": {
+        "type": "enemy",
+        "x": -774,
+        "y": 98
+      }
+    },
+    {
+      "type": "moveblock",
+      "data": {
+        "type": "moveblock",
+        "startX": -928,
+        "startY": 70,
+        "goalX": -1009,
+        "goalY": 35,
+        "w": 52,
         "h": 2
+      }
+    },
+    {
+      "type": "block",
+      "data": {
+        "type": "block",
+        "x": -1055,
+        "y": 35,
+        "w": 43,
+        "h": 2
+      }
+    },
+    {
+      "type": "moveblock",
+      "data": {
+        "type": "moveblock",
+        "startX": -1135,
+        "startY": 35,
+        "goalX": -1310,
+        "goalY": 102,
+        "w": 77,
+        "h": 2
+      }
+    },
+    {
+      "type": "block",
+      "data": {
+        "type": "block",
+        "x": -1408,
+        "y": 102,
+        "w": 97,
+        "h": 2
+      }
+    },
+    {
+      "type": "block",
+      "data": {
+        "type": "block",
+        "x": -928,
+        "y": 76,
+        "w": 93,
+        "h": 4
       }
     },
     {
       "type": "goal",
       "data": {
         "type": "goal",
-        "x": -238,
-        "y": 10
+        "x": -1400,
+        "y": 95
       }
     },
     {
       "type": "player",
       "data": {
-        "x": 103,
-        "y": 34.111111111111114,
+        "x": 135.33333333333334,
+        "y": 40.666666666666664,
         "type": "player"
       }
     }

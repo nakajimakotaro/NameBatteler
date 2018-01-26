@@ -15,6 +15,7 @@
 #include "../../lib/json.hpp"
 #include "../../asset/moveBlock.h"
 #include "../../asset/goal.h"
+#include "../end/endScene.h"
 
 using json = nlohmann::json;
 GameingScene::GameingScene(std::string name, std::string mapPath):name(name), mapPath(mapPath)
@@ -62,12 +63,16 @@ void GameingScene::pause(){
 void GameingScene::reset() {
     Game::get()->changeScene(std::make_shared<GameingScene>(this->name, "map/map.json"));
 }
+void GameingScene::goal() {
+    Game::get()->changeScene(std::make_shared<EndScene>(this->name));
+}
 
 
 void GameingScene::load(){
     json mapData;
     std::ifstream("../src/map/map.json") >> mapData;
     for(auto data: mapData["object"]){
+        std::string dataType = data["type"];
         if(data["type"] == "player"){
             this->addObject(std::shared_ptr<Player>(new Player(shared_from_this(), data["data"], this->name)));
         }else if(data["type"] == "block") {

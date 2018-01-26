@@ -28,6 +28,7 @@ public:
 
     void pause();
     void reset() override ;
+    void goal();
 
 private:
     void load();

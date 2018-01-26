@@ -20,9 +20,11 @@ std::vector<InputManager::LIST> InputManager::pushKey() {
     return inputList;
 }
 
+//‰Ÿ‚³‚ê‚½ƒL[‚ğ•¶š‚É•ÏŠ·‚·‚é
 char InputManager::toChar(InputManager::LIST key){
     char chara;
     switch(key){
+        case InputManager::LIST::KEY_SPACE:chara = ' ';break;
         case InputManager::LIST::KEY_0:chara = '0';break;
         case InputManager::LIST::KEY_1:chara = '1';break;
         case InputManager::LIST::KEY_2:chara = '2';break;

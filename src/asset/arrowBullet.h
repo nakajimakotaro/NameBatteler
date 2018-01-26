@@ -7,13 +7,15 @@
 
 
 #include "bullet.h"
+#include "../core/screen.h"
 
 class ArrowBullet: public Bullet {
 public:
     double angle;
+    Screen::BackColor color;
     std::shared_ptr<Collider> collider;
 public:
-    ArrowBullet(std::weak_ptr<Scene> scene, double x, double y, Type ownerType, double angle);
+    ArrowBullet(std::weak_ptr<Scene> scene, double x, double y, Type ownerType, double angle, Screen::BackColor color);
     void start() override ;
     void update() override ;
     void draw() override ;

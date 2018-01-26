@@ -14,8 +14,8 @@
 class Block: public GameObject{
 private:
     std::shared_ptr<Collider> collider;
-    double w, h;
 public:
+    double w, h;
     Block(std::weak_ptr<Scene> scene, double localX, double localY, double w, double h);
     Block(std::weak_ptr<Scene> scene, nlohmann::json json);
     virtual void update() override;

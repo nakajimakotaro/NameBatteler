@@ -23,7 +23,7 @@ void EnemyBullet::shot(){
         double x, y;
         double percent = i / (num - 1);
         double angle = this->angle - this->arc / 2 + percent * this->arc;
-        auto bullet = std::shared_ptr<Bullet>(new ArrowBullet(this->scene, this->x(), this->y(), this->shotOwner, angle));
+        auto bullet = std::shared_ptr<Bullet>(new ArrowBullet(this->scene, this->x(), this->y(), this->shotOwner, angle, Screen::BackColor::MAGENTA));
         this->scene.lock()->addObject(bullet);
     }
 }

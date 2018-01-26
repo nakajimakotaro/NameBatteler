@@ -58,9 +58,12 @@ void Player::start() {
         }
 
         if(gameObject->getType() == GameObject::Type::Goal) {
-            Game::get()->changeScene(std::make_shared<StartScene>());
+            std::dynamic_pointer_cast<GameingScene>(this->scene.lock())->goal();
         }
         if(gameObject->getType() == GameObject::Type::ArrowBullet) {
+            if(std::dynamic_pointer_cast<ArrowBullet>(gameObject)->shotOwner != Type::ENEMY) {
+                return;
+            }
             if(this->prevDamage + 3000 > timeGetTime()){
                 return;
             }
@@ -92,7 +95,7 @@ void Player::start() {
 }
 
 void Player::shot(){
-    auto bullet = std::make_shared<ArrowBullet>(this->scene, this->x(), this->y(), this->getType(), this->direction == Direction::Right ? 0 : M_PI);
+    auto bullet = std::make_shared<ArrowBullet>(this->scene, this->x(), this->y(), this->getType(), this->direction == Direction::Right ? 0 : M_PI, Screen::BackColor::CYAN);
     this->scene.lock()->addObject(bullet);
 }
 void Player::update() {

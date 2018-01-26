@@ -65,7 +65,7 @@ void Screen::swap(){
     DWORD p;
     FillConsoleOutputAttribute(
             this->backScreen(),
-            static_cast<int>(Screen::ForColor::WHILE),
+            static_cast<int>(Screen::ForColor::BLACK) | static_cast<int>(Screen::BackColor::WHILE),
             static_cast<DWORD>(screenBufferInfo.dwSize.X * screenBufferInfo.dwSize.Y),
             {0, 0},
             &p
