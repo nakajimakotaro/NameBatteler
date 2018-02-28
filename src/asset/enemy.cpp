@@ -15,8 +15,8 @@ Enemy::Enemy(std::weak_ptr<Scene> scene, double x, double y):
 {
     isCollision = false;
 }
-Enemy::Enemy(std::weak_ptr<Scene> scene, nlohmann::json json):
-        Enemy(scene, json["x"].get<double>(), json["y"].get<double>())
+Enemy::Enemy(std::weak_ptr<Scene> scene, std::shared_ptr<MyJson::JsonInterFace> json):
+        Enemy(scene, json("x")->getDouble(), json("y")->getDouble())
 {
 }
 void Enemy::start(){

@@ -9,7 +9,7 @@
 #include "../common/gameObject.h"
 #include "../common/rect.h"
 #include "../common/collision.h"
-#include "../lib/json.hpp"
+#include "../common/json.h"
 
 class Block: public GameObject{
 private:
@@ -17,7 +17,7 @@ private:
     double w, h;
 public:
     Block(std::weak_ptr<Scene> scene, double localX, double localY, double w, double h);
-    Block(std::weak_ptr<Scene> scene, nlohmann::json json);
+    Block(std::weak_ptr<Scene> scene, std::shared_ptr<MyJson::JsonInterFace> json);
     virtual void update() override;
     virtual void start() override;
     virtual void draw() override;

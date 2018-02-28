@@ -72,15 +72,15 @@ MoveBlock::MoveBlock(const std::weak_ptr<Scene> &scene, double startX, double st
         goalY(goalY)
 {
 }
-MoveBlock::MoveBlock(std::weak_ptr<Scene> scene, nlohmann::json json):
+MoveBlock::MoveBlock(std::weak_ptr<Scene> scene, std::shared_ptr<MyJson::JsonInterFace> json):
         MoveBlock(
                 scene,
-                json["startX"].get<double>(),
-                json["startY"].get<double>(),
-                json["goalX"].get<double>(),
-                json["goalY"].get<double>(),
-                json["w"].get<double>(),
-                json["h"].get<double>()
+                json("startX")->getDouble(),
+                json("startY")->getDouble(),
+                json("goalX")->getDouble(),
+                json("goalY")->getDouble(),
+                json("w")->getDouble(),
+                json("h")->getDouble()
         )
 {
 }

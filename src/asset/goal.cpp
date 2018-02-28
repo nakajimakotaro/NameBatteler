@@ -7,8 +7,8 @@
 
 Goal::Goal(std::weak_ptr<Scene> scene, double localX, double localY) : GameObject(scene, localX, localY) {
 }
-Goal::Goal(std::weak_ptr<Scene> scene, nlohmann::json json):
-       Goal(scene, json["x"].get<int>(), json["y"].get<int>())
+Goal::Goal(std::weak_ptr<Scene> scene, std::shared_ptr<MyJson::JsonInterFace> json):
+       Goal(scene, json("x")->getInt(), json("y")->getInt())
 {
 }
 

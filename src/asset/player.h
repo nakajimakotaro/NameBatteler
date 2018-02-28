@@ -11,7 +11,7 @@
 #include "../common/stateMachine.h"
 #include "../common/collision.h"
 #include <memory>
-#include "../lib/json.hpp"
+#include "../common/json.h"
 
 class Block;
 class Enemy;
@@ -36,7 +36,7 @@ public:
     std::shared_ptr<Block> rideCollisionBlock;
     std::shared_ptr<StateMachine<Player>> state;
 public:
-    Player(std::weak_ptr<Scene> scene, nlohmann::json json, std::string name);
+    Player(std::weak_ptr<Scene> scene, MyJson::JsonInterFace json, std::string name);
     void start() override;
     void update() override;
     void draw() override;

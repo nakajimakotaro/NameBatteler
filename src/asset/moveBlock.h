@@ -7,7 +7,7 @@
 
 
 #include "../common/gameObject.h"
-#include "../lib/json.hpp"
+#include "../common/json.h"
 #include "block.h"
 
 template <typename T> class StateMachine;
@@ -22,7 +22,7 @@ public:
     double prevMoveY;
 public:
     MoveBlock(const std::weak_ptr<Scene> &scene, double startX, double startY, double goalX, double goalY, double w, double h);
-    MoveBlock(std::weak_ptr<Scene> scene, nlohmann::json json);
+    MoveBlock(std::weak_ptr<Scene> scene, std::shared_ptr<MyJson::JsonInterFace> json);
     void start() override;
     void update() override;
     void draw() override;

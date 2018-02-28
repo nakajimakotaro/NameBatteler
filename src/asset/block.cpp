@@ -17,12 +17,10 @@ Block::Block(std::weak_ptr<Scene> scene, double localX, double localY, double w,
 
 }
 
-Block::Block(std::weak_ptr<Scene> scene, nlohmann::json json):
-        Block(scene, json["x"].get<double>(), json["y"].get<double>(), json["w"].get<double>(), json["h"].get<double>())
+Block::Block(std::weak_ptr<Scene> scene, std::shared_ptr<MyJson::JsonInterFace> json):
+        Block(scene, json("x")->getDouble(), json("y")->getDouble(), json("w")->getDouble(), json("h")->getDouble())
 {
 }
-
-
 
 void Block::start(){
     this->collider = std::shared_ptr<Collider>(new Collider(this->scene, 0, 0, w, h, [](auto obj, auto overarea){}));

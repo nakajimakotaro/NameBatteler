@@ -10,6 +10,7 @@ add_executable(nameBattler
         src/core/screen.cpp
         src/core/game.cpp
         src/core/fps.cpp
+        src/common/json.h
         src/common/rect.cpp
         src/common/state.h
         src/common/stateMachine.h

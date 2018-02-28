@@ -7,7 +7,7 @@
 
 
 #include "../common/gameObject.h"
-#include "../lib/json.hpp"
+#include "../common/json.h"
 
 class Bullet;
 class Enemy: public GameObject{
@@ -16,7 +16,7 @@ private:
     int hp;
 public:
     Enemy(std::weak_ptr<Scene> scene, double x, double y);
-    Enemy(std::weak_ptr<Scene> scene, nlohmann::json json);
+    Enemy(std::weak_ptr<Scene> scene, std::shared_ptr<MyJson::JsonInterFace> json);
     void start() override;
     void update() override;
     void draw() override;

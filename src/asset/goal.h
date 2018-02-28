@@ -7,12 +7,12 @@
 
 
 #include "../common/gameObject.h"
-#include "../lib/json.hpp"
+#include "../common/json.h"
 
 class Goal: public GameObject {
 public:
     Goal(std::weak_ptr<Scene> scene, double localX, double localY);
-    Goal(std::weak_ptr<Scene> scene, nlohmann::json json);
+    Goal(std::weak_ptr<Scene> scene, std::shared_ptr<MyJson::JsonInterFace> json);
     void start() override ;
     void update() override ;
     void draw() override ;
