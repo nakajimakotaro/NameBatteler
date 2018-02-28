@@ -15,6 +15,7 @@
 #include "../../common/json.h"
 #include "../../asset/moveBlock.h"
 #include "../../asset/goal.h"
+#include "../end/endScene.h"
 
 GameingScene::GameingScene(std::string name, std::string mapPath):name(name), mapPath(mapPath)
 {
@@ -61,9 +62,13 @@ void GameingScene::pause(){
 void GameingScene::reset() {
     Game::get()->changeScene(std::make_shared<GameingScene>(this->name, "map/map.json"));
 }
+void GameingScene::goal() {
+    Game::get()->changeScene(std::make_shared<EndScene>(this->name));
+}
 
 
 void GameingScene::load(){
+<<<<<<< HEAD
     MyJson::Json mapData;
     mapData.parseFile("../src/map/map.json");
     int size = std::dynamic_pointer_cast<MyJson::JsonArray>(mapData("object"))->size();
@@ -78,6 +83,22 @@ void GameingScene::load(){
             this->addObject(std::shared_ptr<Enemy>(new Enemy(shared_from_this(), mapData(i, "data"))));
         }else if(mapData(i, "type")->getString() == "goal") {
             this->addObject(std::shared_ptr<Goal>(new Goal(shared_from_this(), mapData(i, "data"))));
+=======
+    json mapData;
+    std::ifstream("../src/map/map.json") >> mapData;
+    for(auto data: mapData["object"]){
+        std::string dataType = data["type"];
+        if(data["type"] == "player"){
+            this->addObject(std::shared_ptr<Player>(new Player(shared_from_this(), data["data"], this->name)));
+        }else if(data["type"] == "block") {
+            this->addObject(std::shared_ptr<Block>(new Block(shared_from_this(), data["data"])));
+        }else if(data["type"] == "moveblock") {
+            this->addObject(std::shared_ptr<MoveBlock>(new MoveBlock(shared_from_this(), data["data"])));
+        }else if(data["type"] == "enemy") {
+            this->addObject(std::shared_ptr<Enemy>(new Enemy(shared_from_this(), data["data"])));
+        }else if(data["type"] == "goal") {
+            this->addObject(std::shared_ptr<Goal>(new Goal(shared_from_this(), data["data"])));
+>>>>>>> 671516d138c35db140c3f230c66cc98fc4670164
         }
     }
 }

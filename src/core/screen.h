@@ -63,15 +63,15 @@ public:
     void writeString(std::string str,
                      double x,
                      double y,
-                     ForColor forColor = ForColor::WHILE,
-                     BackColor backColor = BackColor::BLACK,
+                     ForColor forColor = ForColor::BLACK,
+                     BackColor backColor = BackColor::WHILE,
                      int layer = 0,
                      Rect rect = Rect(-1, -1, -1, -1));
     void writeChar(char c,
                    double x,
                    double y,
-                   ForColor forColor = ForColor::WHILE,
-                   BackColor backColor = BackColor::BLACK,
+                   ForColor forColor = ForColor::BLACK,
+                   BackColor backColor = BackColor::WHILE,
                    int layer = 0);
     void move(int x, int y);
     void cursorShow(int x, int y);

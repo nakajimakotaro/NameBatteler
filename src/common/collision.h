@@ -10,6 +10,7 @@
 #include <vector>
 #include "rect.h"
 #include "collider.h"
+//当たり判定の管理
 class Collision {
 private:
     std::vector<std::shared_ptr<Collider>> collisionList;
@@ -17,8 +18,11 @@ private:
     std::vector<std::shared_ptr<Collider>> removeQueue;
 public:
     Collision() = default;
+    //当たり判定を取るオブジェクトの追加
     void addObjectRequire(std::shared_ptr<Collider> obj);
+    //当たり判定を取るオブジェクトの削除
     void removeObjectRequire(std::shared_ptr<Collider> obj);
+    //当たり判定を取ってコールバックを呼び出す
     void tick();
 private:
     void ququeExe();

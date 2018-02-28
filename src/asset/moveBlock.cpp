@@ -99,8 +99,28 @@ void MoveBlock::update() {
     this->prevMoveY = this->localY - y;
 }
 
+void MoveBlock::railDraw(){
+    const double w = this->goalX - this->startX;
+    const double h = this->goalY - this->startY;
+    if(abs(w) > abs(h)){
+        const int stepX = w > 0 ? 2 : -2;
+        const double slope = h / w;
+        for(double x = 0;abs(w - x) > 1;x += stepX){
+            double y = x * slope;
+            Game::get()->screen.writeChar('*', x + this->startX + this->w / 2, y + this->startY + this->h / 2);
+        }
+    }else{
+        const int stepY = h > 0 ? 1 : -1;
+        const double slope = w / h;
+        for(double y = 0;abs(h - y) > 1;y += stepY){
+            double x = y * slope;
+            Game::get()->screen.writeChar('*', x + this->startX + this->w / 2, y + this->startY + this->h / 2);
+        }
+    }
+}
 
 void MoveBlock::draw() {
+    this->railDraw();
     Block::draw();
 }
 void MoveBlock::end() {

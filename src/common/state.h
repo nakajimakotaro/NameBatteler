@@ -8,6 +8,7 @@
 #include <memory>
 
 template <typename T> class StateMachine;
+//ステートはこのクラスを継承する
 template <typename T> class State {
 protected:
     explicit State(std::weak_ptr<StateMachine<T>> machine);

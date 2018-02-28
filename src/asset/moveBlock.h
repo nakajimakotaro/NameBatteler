@@ -30,6 +30,9 @@ public:
     Type getType() override {
         return GameObject::Type::MOVEBLOCK;
     }
+
+private:
+    void railDraw();
 };
 
 

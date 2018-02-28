@@ -6,11 +6,11 @@
 #include "../core/game.h"
 #include "camera.h"
 
-ArrowBullet::ArrowBullet(std::weak_ptr<Scene> scene, double x, double y, GameObject::Type ownerType, double angle) :
+ArrowBullet::ArrowBullet(std::weak_ptr<Scene> scene, double x, double y, GameObject::Type ownerType, double angle, Screen::BackColor color) :
         Bullet(scene, x, y, ownerType),
-        angle(angle)
+        angle(angle),
+        color(color)
 {
-
 }
 
 void ArrowBullet::start() {
@@ -20,8 +20,8 @@ void ArrowBullet::start() {
             return;
         }
         if(
-                obj.lock()->getParent().lock()->getType() == GameObject::Type::BLOCK ||
-                obj.lock()->getParent().lock()->getType() == GameObject::Type::MOVEBLOCK
+                obj.lock()->getParent().lock()->getType() != this->shotOwner &&
+                obj.lock()->getParent().lock()->getType() != GameObject::Type::ArrowBullet
                 ){
             this->scene.lock()->removeObject(shared_from_this());
         }
@@ -51,7 +51,7 @@ void ArrowBullet::draw() {
     //Game::get()->screen.writeChar(count % 10 < 4 ? '/' : '\\', this->x() + 1, this->y() - 1);
     //Game::get()->screen.writeChar(count % 10 > 4 ? '/' : '\\', this->x() + 1, this->y() + 1);
     //Game::get()->screen.writeChar(count % 10 < 4 ? '/' : '\\', this->x() - 1, this->y() + 1);
-    Game::get()->screen.writeChar('+', this->x() - 0, this->y() + 0, Screen::ForColor::MAGENTA, Screen::BackColor::MAGENTA);
+    Game::get()->screen.writeChar(' ', this->x() - 0, this->y() + 0, Screen::ForColor::BLACK, this->color);
 }
 
 void ArrowBullet::end() {

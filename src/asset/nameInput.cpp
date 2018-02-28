@@ -6,6 +6,7 @@
 #include "../core/game.h"
 #include "../scene/gameing/gameingInputManager.h"
 #include "../scene/gameing/gameingScene.h"
+#include "../scene/end/endScene.h"
 
 NameInput::NameInput(std::weak_ptr<Scene> scene, double x, double y) : GameObject(scene, x, y) {
     Game::get()->screen.move(0, 0);

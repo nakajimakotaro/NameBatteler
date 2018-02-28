@@ -32,12 +32,12 @@ void Block::update() {
 }
 void Block::draw() {
     for(int x = this->x();x < this->x() + this->w;x++){
-        Game::get()->screen.writeChar('-', x, this->y());
-        Game::get()->screen.writeChar('-', x, this->y() + this->h - 1);
+        Game::get()->screen.writeChar('-', x, this->y(), Screen::ForColor::BLACK, Screen::BackColor::WHILE);
+        Game::get()->screen.writeChar('-', x, this->y() + this->h - 1, Screen::ForColor::BLACK, Screen::BackColor::WHILE);
     }
     for(int y = this->y() + 1;y < this->y() + this->h - 1;y++){
-        Game::get()->screen.writeChar('|', this->x(), y);
-        Game::get()->screen.writeChar('|', this->x() + this->w - 1, y);
+        Game::get()->screen.writeChar('|', this->x(), y), Screen::ForColor::BLACK, Screen::BackColor::WHILE;
+        Game::get()->screen.writeChar('|', this->x() + this->w - 1, y, Screen::ForColor::BLACK, Screen::BackColor::WHILE);
     }
 }
 
