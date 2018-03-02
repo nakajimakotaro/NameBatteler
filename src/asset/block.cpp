@@ -18,7 +18,7 @@ Block::Block(std::weak_ptr<Scene> scene, double localX, double localY, double w,
 }
 
 Block::Block(std::weak_ptr<Scene> scene, std::shared_ptr<MyJson::JsonInterFace> json):
-        Block(scene, json("x")->getDouble(), json("y")->getDouble(), json("w")->getDouble(), json("h")->getDouble())
+        Block(scene, json->get("x")->getDouble(), json->get("y")->getDouble(), json->get("w")->getDouble(), json->get("h")->getDouble())
 {
 }
 

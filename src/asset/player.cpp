@@ -18,8 +18,8 @@
 #include "../scene/gameing/gameingScene.h"
 #include "../scene/start/startScene.h"
 
-Player::Player(std::weak_ptr<Scene> scene, MyJson::JsonInterFace json, std::string name):
-        GameObject(scene, json("x")->getDouble(), json("y")->getDouble()),
+Player::Player(std::weak_ptr<Scene> scene, std::shared_ptr<MyJson::JsonInterFace> json, std::string name):
+        GameObject(scene, json->get("x")->getDouble(), json->get("y")->getDouble()),
         name(name),
         range(3),
         hp(9)

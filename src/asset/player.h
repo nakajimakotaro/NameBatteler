@@ -36,7 +36,7 @@ public:
     std::shared_ptr<Block> rideCollisionBlock;
     std::shared_ptr<StateMachine<Player>> state;
 public:
-    Player(std::weak_ptr<Scene> scene, MyJson::JsonInterFace json, std::string name);
+    Player(std::weak_ptr<Scene> scene, std::shared_ptr<MyJson::JsonInterFace> json, std::string name);
     void start() override;
     void update() override;
     void draw() override;

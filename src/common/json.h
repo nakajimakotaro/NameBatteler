@@ -63,14 +63,14 @@ namespace MyJson{
         };
         Token::Type type;
         std::string str;
-        int num;
+        double num;
         bool b;
 
         Token(const std::string &str) : type(Type::String) {
             new(&this->str) std::string(str);
         }
 
-        Token(int num) : type(Type::Number), num(num) {}
+        Token(double num) : type(Type::Number), num(num) {}
 
         Token(bool b) : type(Type::Bool), b(b) {}
 
@@ -153,6 +153,7 @@ namespace MyJson{
             for (char i = '0'; i <= '9'; i++) {
                 charType[i] = CharaType::Digital;
             }
+            charType['-'] = CharaType::Digital;
             for (char i = 'a'; i <= 'z'; i++) {
                 charType[i] = CharaType::Alphabet;
             }
@@ -180,10 +181,21 @@ namespace MyJson{
         }
 
         void readDigital() {
-            int num = 0;
+            double num = 0;
+            bool minus;
+            minus = input.c == '-';
+            input.nextChara();
             for (; charType[input.c] == CharaType::Digital; input.nextChara()) {
                 num = num * 10 + (input.c - '0');
             }
+            //少数
+            if(input.c == '.'){
+                input.nextChara();
+                for (double c = 1; charType[input.c] == CharaType::Digital; input.nextChara(), c++) {
+                    num = num + (input.c - '0') / (pow(10, c));
+                }
+            }
+            num *= minus ? -1 : 1;
             tokenList.emplace_back(num);
         }
 
@@ -287,26 +299,26 @@ namespace MyJson{
         JsonInterFace(JsonType type) : type(type) {}
 
         //オーバーロードしてる
-        virtual std::shared_ptr<JsonInterFace> operator()(int i) {
+        virtual std::shared_ptr<JsonInterFace> get(int i) {
             abort();
             //return std::shared_ptr<JsonInterFace>();
         }
 
-        virtual std::shared_ptr<JsonInterFace> operator()(std::string key) {
+        virtual std::shared_ptr<JsonInterFace> get(std::string key) {
             abort();
             //return std::shared_ptr<JsonInterFace>();
         }
 
         template<typename... T>
-        std::shared_ptr<JsonInterFace> operator()(int i, T... args) {
-            std::shared_ptr<JsonInterFace> temp = (*this)(i);
-            return (*temp)(args...);
+        std::shared_ptr<JsonInterFace> get(int i, T... args) {
+            std::shared_ptr<JsonInterFace> temp = get(i);
+            return temp->get(args...);
         }
 
         template<typename... T>
-        std::shared_ptr<JsonInterFace> operator()(std::string key, T... args) {
-            std::shared_ptr<JsonInterFace> temp = (*this)(key);
-            return (*temp)(args...);
+        std::shared_ptr<JsonInterFace> get(std::string key, T... args) {
+            std::shared_ptr<JsonInterFace> temp = get(key);
+            return temp->get(args...);
         }
 
         virtual int getInt() { abort(); }
@@ -337,7 +349,7 @@ namespace MyJson{
         JsonObject() : JsonInterFace(JsonType::Object) {
         }
 
-        std::shared_ptr<JsonInterFace> operator()(std::string key) override {
+        std::shared_ptr<JsonInterFace> get(std::string key) override {
             return objectList[key];
         }
     };
@@ -349,7 +361,7 @@ namespace MyJson{
         JsonArray() : JsonInterFace(JsonType::Array) {
         }
 
-        std::shared_ptr<JsonInterFace> operator()(int i) override {
+        std::shared_ptr<JsonInterFace> get(int i) override {
             return objectList[i];
         }
         int size(){
@@ -408,14 +420,14 @@ namespace MyJson{
         std::shared_ptr<JsonInterFace> root;
 
         template<typename... T>
-        std::shared_ptr<JsonInterFace> operator()(T... args) {
-            return (*root)(args...);
+        std::shared_ptr<JsonInterFace> get(T... args) {
+            return root->get(args...);
         }
 
         void parseFile(std::string filePath) {
             ParseToken parseToken;
             parseToken.parseFile(filePath);
-            this->tokenList = tokenList;
+            this->tokenList = parseToken.tokenList;
             this->root = read();
         }
 
@@ -469,7 +481,6 @@ namespace MyJson{
                 isNext = tokenList[index].type == Token::Type::Conma;
                 index++;
             }
-            index++;
             return object;
         }
 
@@ -482,7 +493,6 @@ namespace MyJson{
                 isNext = tokenList[index].type == Token::Type::Conma;
                 index++;
             }
-            index++;
             return array;
         }
 

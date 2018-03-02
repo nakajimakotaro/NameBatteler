@@ -68,37 +68,20 @@ void GameingScene::goal() {
 
 
 void GameingScene::load(){
-<<<<<<< HEAD
     MyJson::Json mapData;
-    mapData.parseFile("../src/map/map.json");
-    int size = std::dynamic_pointer_cast<MyJson::JsonArray>(mapData("object"))->size();
+    mapData.parseFile(R"(C:\Users\harus\program\NameBatteler\src\map\map.json)");
+    int size = std::dynamic_pointer_cast<MyJson::JsonArray>(mapData.get("object"))->size();
     for(int i = 0;i < size;i++){
-        if(mapData(i, "type")->getString() == "player"){
-            this->addObject(std::shared_ptr<Player>(new Player(shared_from_this(), mapData(i, "data"), this->name)));
-        }else if(mapData(i, "type")->getString() == "block") {
-            this->addObject(std::shared_ptr<Block>(new Block(shared_from_this(), mapData(i, "data"))));
-        }else if(mapData(i, "type")->getString() == "moveblock") {
-            this->addObject(std::shared_ptr<MoveBlock>(new MoveBlock(shared_from_this(), mapData(i, "data"))));
-        }else if(mapData(i, "type")->getString() == "enemy") {
-            this->addObject(std::shared_ptr<Enemy>(new Enemy(shared_from_this(), mapData(i, "data"))));
-        }else if(mapData(i, "type")->getString() == "goal") {
-            this->addObject(std::shared_ptr<Goal>(new Goal(shared_from_this(), mapData(i, "data"))));
-=======
-    json mapData;
-    std::ifstream("../src/map/map.json") >> mapData;
-    for(auto data: mapData["object"]){
-        std::string dataType = data["type"];
-        if(data["type"] == "player"){
-            this->addObject(std::shared_ptr<Player>(new Player(shared_from_this(), data["data"], this->name)));
-        }else if(data["type"] == "block") {
-            this->addObject(std::shared_ptr<Block>(new Block(shared_from_this(), data["data"])));
-        }else if(data["type"] == "moveblock") {
-            this->addObject(std::shared_ptr<MoveBlock>(new MoveBlock(shared_from_this(), data["data"])));
-        }else if(data["type"] == "enemy") {
-            this->addObject(std::shared_ptr<Enemy>(new Enemy(shared_from_this(), data["data"])));
-        }else if(data["type"] == "goal") {
-            this->addObject(std::shared_ptr<Goal>(new Goal(shared_from_this(), data["data"])));
->>>>>>> 671516d138c35db140c3f230c66cc98fc4670164
+        if(mapData.get("object", i, "type")->getString() == "player"){
+            this->addObject(std::shared_ptr<Player>(new Player(shared_from_this(), mapData.get("object", i, "data"), this->name)));
+        }else if(mapData.get("object", i, "type")->getString() == "block") {
+            this->addObject(std::shared_ptr<Block>(new Block(shared_from_this(), mapData.get("object", i, "data"))));
+        }else if(mapData.get("object", i, "type")->getString() == "moveblock") {
+            this->addObject(std::shared_ptr<MoveBlock>(new MoveBlock(shared_from_this(), mapData.get("object", i, "data"))));
+        }else if(mapData.get("object", i, "type")->getString() == "enemy") {
+            this->addObject(std::shared_ptr<Enemy>(new Enemy(shared_from_this(), mapData.get("object", i, "data"))));
+        }else if(mapData.get("object", i, "type")->getString() == "goal") {
+            this->addObject(std::shared_ptr<Goal>(new Goal(shared_from_this(), mapData.get("object", i, "data"))));
         }
     }
 }
