@@ -183,8 +183,12 @@ namespace MyJson{
         void readDigital() {
             double num = 0;
             bool minus;
-            minus = input.c == '-';
-            input.nextChara();
+            if(input.c == '-'){
+                minus = true;
+                input.nextChara();
+            }else{
+                minus = false;
+            }
             for (; charType[input.c] == CharaType::Digital; input.nextChara()) {
                 num = num * 10 + (input.c - '0');
             }
